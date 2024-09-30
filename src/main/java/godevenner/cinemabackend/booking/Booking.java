@@ -22,7 +22,7 @@ public class Booking {
     @JoinColumn(name = "costumer_id")
     private Costumer costumer;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "showing_id")
     private Showing showing;
 

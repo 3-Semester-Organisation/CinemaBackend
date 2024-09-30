@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -24,8 +25,8 @@ public class Showing {
     @JoinColumn(name = "theatre_id")
     private Theatre theatre;
 
-    @OneToOne(mappedBy = "showing")
-    private Booking booking;
+    @OneToMany(mappedBy = "showing", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Booking> booking;
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
