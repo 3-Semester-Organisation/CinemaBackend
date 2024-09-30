@@ -1,6 +1,7 @@
 package godevenner.cinemabackend.user;
 
 import godevenner.cinemabackend.costumer.Costumer;
+import godevenner.cinemabackend.employee.Employee;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
