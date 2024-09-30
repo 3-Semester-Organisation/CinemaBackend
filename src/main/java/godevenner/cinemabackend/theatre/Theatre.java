@@ -1,6 +1,7 @@
 package godevenner.cinemabackend.theatre;
 
 import godevenner.cinemabackend.showing.Showing;
+import godevenner.cinemabackend.theatrelayout.TheatreLayout;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
