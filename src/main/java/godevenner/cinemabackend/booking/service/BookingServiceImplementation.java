@@ -34,6 +34,11 @@ public class BookingServiceImplementation implements BookingService {
     }
 
     @Override
+    public List<Booking> getAllBookingsByShowingId(long id){
+        return bookingRepository.findAllByShowingId(id);
+    }
+
+    @Override
     public Optional<Booking> getBooking(long id){
         return bookingRepository.findById((int) id);
     }
@@ -72,10 +77,6 @@ public class BookingServiceImplementation implements BookingService {
         }
     }
 
-    @Override
-    public List<Booking> getAllBookingsByShowingId(long id){
-        return bookingRepository.findAllByShowingId(id);
-    }
 
     @Override
     public List<SeatBooking> getSeatBookings() {
@@ -90,12 +91,41 @@ public class BookingServiceImplementation implements BookingService {
     }
 
     @Override
-    public boolean existsById(long bookingId) {
-        return bookingRepository.existsById((int) bookingId);
+    public Optional<SeatBooking> getSeatBooking(long id){
+        return seatBookingRepository.findById((int) id);
     }
 
     @Override
-    public SeatBooking createSeatBooking(SeatBooking seatBooking) {
-        return seatBookingRepository.save(seatBooking);
+    public ResponseEntity<SeatBooking> createSeatBooking(SeatBooking seatBooking){
+        Optional<SeatBooking> alreadyExists = seatBookingRepository.findById((int)seatBooking.getId());
+        if(alreadyExists.isPresent()){
+            return ResponseEntity.badRequest().body(alreadyExists.get());
+        }else{
+            seatBookingRepository.save(seatBooking);
+            return ResponseEntity.ok(seatBooking);
+        }
+    }
+
+    @Override
+    public ResponseEntity<SeatBooking> updateSeatBooking(long id, SeatBooking seatBooking){
+        Optional<SeatBooking> alreadyExists = seatBookingRepository.findById((int) id);
+        if(alreadyExists.isPresent()){
+            seatBooking.setId(id);
+            seatBookingRepository.save(seatBooking);
+            return ResponseEntity.ok(seatBooking);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteSeatBooking(long id){
+        Optional<SeatBooking> alreadyExists = seatBookingRepository.findById((int) id);
+        if(alreadyExists.isPresent()){
+            seatBookingRepository.delete(alreadyExists.get());
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 }

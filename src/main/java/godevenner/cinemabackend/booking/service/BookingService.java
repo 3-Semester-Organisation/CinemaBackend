@@ -17,8 +17,11 @@ public interface BookingService {
     ResponseEntity<Void> deleteBooking(long id);
     List<SeatBooking> getSeatBookings();
     List<SeatBooking> getAllSeatBookingsByBookingId(long id);
+    Optional<SeatBooking> getSeatBooking(long id);
+    ResponseEntity<SeatBooking> createSeatBooking(SeatBooking seatBooking);
+    ResponseEntity<SeatBooking> updateSeatBooking(long id, SeatBooking seatBooking);
+    ResponseEntity<Void> deleteSeatBooking(long id);
 
     boolean existsById(long bookingId);
 
-    SeatBooking createSeatBooking(SeatBooking seatBooking);
 }

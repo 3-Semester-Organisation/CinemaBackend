@@ -30,7 +30,7 @@ public class BookingRestController {
     }
 
     @PutMapping("/booking/{id}")
-    public ResponseEntity<Booking> createBooking(@PathVariable Long id,
+    public ResponseEntity<Booking> updateBooking(@PathVariable Long id,
                                                  @RequestBody Booking booking){
         return bookingService.updateBooking(id, booking);
     }
@@ -47,15 +47,18 @@ public class BookingRestController {
 
     @PostMapping("/seatbooking")
     public ResponseEntity<SeatBooking> createSeatBooking(@RequestBody SeatBooking seatBooking) {
-        //tror det her skal ligge i service-laget
-        long bookingId = seatBooking.getBooking().getId();
-        boolean doesExists  = bookingService.existsById(bookingId);
+        return bookingService.createSeatBooking(seatBooking);
+    }
 
-        if (doesExists) {
-            return ResponseEntity.badRequest().build();
-        }
 
-        SeatBooking bookedSeats = bookingService.createSeatBooking(seatBooking);
-        return ResponseEntity.ok(bookedSeats);
+    @PutMapping("/seatbooking/{id}")
+    public ResponseEntity<SeatBooking> updateSeatBooking(@PathVariable Long id,
+                                                 @RequestBody SeatBooking seatBooking){
+        return bookingService.updateSeatBooking(id, seatBooking);
+    }
+
+    @DeleteMapping("/seatbooking/{id}")
+    public ResponseEntity<Void> deleteSeatBooking(@PathVariable Long id){
+        return bookingService.deleteSeatBooking(id);
     }
 }
