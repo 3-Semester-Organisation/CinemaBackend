@@ -38,4 +38,9 @@ public class BookingApiServiceImplementation implements BookingApiService{
     public List<Booking> getAllBookingsByShowingId(long id){
         return bookingRepository.findAllByShowingId(id);
     }
+
+    @Override
+    public List<SeatBooking> getAllSeatBookingsByBookingId(long id){
+        return seatBookingRepository.findAllByBookingId(id);
+    }
 }

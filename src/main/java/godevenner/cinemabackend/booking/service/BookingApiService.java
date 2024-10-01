@@ -10,4 +10,5 @@ public interface BookingApiService {
     List<Booking> getBookings();
     List<SeatBooking> getSeatBookings();
     List<Booking> getAllBookingsByShowingId(long id);
+    List<SeatBooking> getAllSeatBookingsByBookingId(long id);
 }
