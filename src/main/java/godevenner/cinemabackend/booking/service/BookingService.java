@@ -22,6 +22,5 @@ public interface BookingService {
     ResponseEntity<SeatBooking> updateSeatBooking(long id, SeatBooking seatBooking);
     ResponseEntity<Void> deleteSeatBooking(long id);
 
-    boolean existsById(long bookingId);
 
 }
