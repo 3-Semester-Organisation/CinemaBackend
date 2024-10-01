@@ -20,7 +20,7 @@ public class TheatreLayout {
     @OneToOne(mappedBy = "theatreLayout")
     private Theatre theatre;
 
-    private int row;
-    private String seat;
-    private SeatType type;
+    private int seatRowNumber;
+    private String seatNumber;
+    private SeatType seatType;
 }

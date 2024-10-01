@@ -23,5 +23,5 @@ public class SeatBooking {
     private Booking booking;
 
     private int seatNumber;
-    private int rowNumber;
+    private int seatRowNumber;
 }
