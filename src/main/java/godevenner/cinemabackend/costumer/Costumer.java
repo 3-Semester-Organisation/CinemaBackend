@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Getter
 @Setter
@@ -26,4 +27,11 @@ public class Costumer {
     private int phoneNumber;
     private String email;
     private LocalDate dateOfBirth;
+
+
+    public boolean isOldEnough(int requiredAge) {
+        LocalDate currentDate = LocalDate.now();
+        int age = Period.between(dateOfBirth, currentDate).getYears();
+        return age >= requiredAge;
+    }
 }
