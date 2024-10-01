@@ -46,7 +46,7 @@ public class BookingServiceImplementation implements BookingService {
 
     @Override
     public boolean existsById(long bookingId) {
-        return false;
+        return bookingRepository.existsById((int) bookingId);
     }
 
     @Override
