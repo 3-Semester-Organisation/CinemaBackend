@@ -1,4 +1,4 @@
-package godevenner.cinemabackend.booking;
+package godevenner.cinemabackend.booking.model;
 
 import godevenner.cinemabackend.costumer.Costumer;
 import godevenner.cinemabackend.enums.SeatType;
@@ -25,8 +25,4 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "showing_id")
     private Showing showing;
-
-    private int row;
-    private String seat;
-    private SeatType seatType;
 }
