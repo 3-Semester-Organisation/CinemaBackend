@@ -25,4 +25,11 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "showing_id")
     private Showing showing;
+
+
+
+    public boolean ageRequirementMet() {
+        return costumer.isOldEnough(showing.getMovieAgeLimit());
+    }
+
 }
