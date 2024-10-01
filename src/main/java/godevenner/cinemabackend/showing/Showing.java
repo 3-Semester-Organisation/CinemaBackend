@@ -1,6 +1,6 @@
 package godevenner.cinemabackend.showing;
 
-import godevenner.cinemabackend.booking.Booking;
+import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.movie.Movie;
 import godevenner.cinemabackend.theatre.Theatre;
 import jakarta.persistence.*;
