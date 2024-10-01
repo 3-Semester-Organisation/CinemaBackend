@@ -24,7 +24,11 @@ public class Theatre {
     @JoinColumn(name = "theatre_layout_id")
     private TheatreLayout theatreLayout;
 
-    private int noOfSeats;
-    private int rowSize;
-    private int rows;
+    private String name;
+
+    public Theatre(Showing showing, TheatreLayout theatreLayout, String name) {
+        this.showing = showing;
+        this.theatreLayout = theatreLayout;
+        this.name = name;
+    }
 }

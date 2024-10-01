@@ -33,4 +33,12 @@ public class Showing {
     private Movie movie;
     private LocalDateTime startTime; //LocalDateTime.of(1997,5,13,20,45);
     private boolean isCancelled;
+
+    public Showing(Theatre theatre, Set<Booking> booking, Movie movie, LocalDateTime startTime, boolean isCancelled) {
+        this.theatre = theatre;
+        this.booking = booking;
+        this.movie = movie;
+        this.startTime = startTime;
+        this.isCancelled = isCancelled;
+    }
 }
