@@ -4,6 +4,7 @@ import godevenner.cinemabackend.movie.Movie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -26,5 +27,16 @@ public class ShowingRestController {
         }
 
         return ResponseEntity.ok().body(showingSet);
+    }
+
+    @GetMapping("/allshowings")
+    public ResponseEntity<List<ShowingDto>> getAllShowings() {
+        List<ShowingDto> showingList = showingService.getAllShowings();
+
+        if (showingList.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok().body(showingList);
     }
 }
