@@ -9,4 +9,5 @@ import java.util.Set;
 public interface ShowingRepository extends JpaRepository<Showing, Long> {
 
     Set<Showing> getAllByMovie(Movie movie);
+    List<Showing> findAll();
 }

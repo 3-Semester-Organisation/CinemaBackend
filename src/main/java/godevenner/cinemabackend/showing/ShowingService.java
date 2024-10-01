@@ -3,6 +3,7 @@ package godevenner.cinemabackend.showing;
 import godevenner.cinemabackend.movie.Movie;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,5 +23,10 @@ public class ShowingService {
         return showingSet.stream()
                 .map(showingMapper)
                 .collect(Collectors.toSet());
+    }
+
+    // skal måske skrives om til at bruge DTO i stedet, please advise
+    public List<Showing> getAllShowings() {
+        return showingRepository.findAll();
     }
 }
