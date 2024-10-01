@@ -25,8 +25,4 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "showing_id")
     private Showing showing;
-
-    private int row;
-    private String seat;
-    private SeatType seatType;
 }
