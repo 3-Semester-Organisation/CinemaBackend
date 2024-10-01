@@ -51,6 +51,6 @@ public class BookingServiceImplementation implements BookingService {
 
     @Override
     public SeatBooking createBooking(SeatBooking seatBooking) {
-        return null;
+        return seatBookingRepository.save(seatBooking);
     }
 }
