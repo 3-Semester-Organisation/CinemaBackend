@@ -1,6 +1,6 @@
 package godevenner.cinemabackend.user;
 
-import godevenner.cinemabackend.costumer.Costumer;
+import godevenner.cinemabackend.customer.Customer;
 import godevenner.cinemabackend.employee.Employee;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,7 +18,7 @@ public class User {
     private long id;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Costumer costumer;
+    private Customer customer;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Employee employee;
