@@ -5,9 +5,11 @@ import godevenner.cinemabackend.booking.model.SeatBooking;
 import godevenner.cinemabackend.booking.repository.BookingRepository;
 import godevenner.cinemabackend.booking.repository.SeatBookingRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,11 +28,48 @@ public class BookingServiceImplementation implements BookingService {
 
     @Override
     public List<Booking> getBookings() {
-        return bookingRepository.findAll();
+        List<Booking> bookings = bookingRepository.findAll();
+        saveBookings(bookings);
+        return bookings;
     }
 
-    public Booking getBooking(long id){
-        return
+    @Override
+    public Optional<Booking> getBooking(long id){
+        return bookingRepository.findById((int) id);
+    }
+
+    @Override
+    public ResponseEntity<Booking> createBooking(Booking booking){
+        Optional<Booking> alreadyExists = bookingRepository.findById((int)booking.getId());
+        if(alreadyExists.isPresent()){
+            return ResponseEntity.badRequest().body(alreadyExists.get());
+        }else{
+            bookingRepository.save(booking);
+            return ResponseEntity.ok(booking);
+        }
+    }
+
+    @Override
+    public ResponseEntity<Booking> updateBooking(long id, Booking booking){
+        Optional<Booking> alreadyExists = bookingRepository.findById((int) id);
+        if(alreadyExists.isPresent()){
+            booking.setId(id);
+            bookingRepository.save(booking);
+            return ResponseEntity.ok(booking);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteBooking(long id){
+        Optional<Booking> alreadyExists = bookingRepository.findById((int) id);
+        if(alreadyExists.isPresent()){
+            bookingRepository.delete(alreadyExists.get());
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @Override
@@ -40,7 +79,9 @@ public class BookingServiceImplementation implements BookingService {
 
     @Override
     public List<SeatBooking> getSeatBookings() {
-        return seatBookingRepository.findAll();
+        List<SeatBooking> seatBookings = seatBookingRepository.findAll();
+        saveSeatBookings(seatBookings);
+        return seatBookings;
     }
 
     @Override
