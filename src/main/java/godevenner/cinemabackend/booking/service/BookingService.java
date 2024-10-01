@@ -5,10 +5,14 @@ import godevenner.cinemabackend.booking.model.SeatBooking;
 
 import java.util.List;
 
-public interface BookingApiService {
+public interface BookingService {
 
     List<Booking> getBookings();
     List<SeatBooking> getSeatBookings();
     List<Booking> getAllBookingsByShowingId(long id);
     List<SeatBooking> getAllSeatBookingsByBookingId(long id);
+
+    boolean existsById(long bookingId);
+
+    SeatBooking createBooking(SeatBooking seatBooking);
 }
