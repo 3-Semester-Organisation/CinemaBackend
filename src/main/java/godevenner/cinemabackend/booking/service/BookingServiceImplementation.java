@@ -26,17 +26,21 @@ public class BookingServiceImplementation implements BookingService {
 
     @Override
     public List<Booking> getBookings() {
-        return null;
+        return bookingRepository.findAll();
     }
 
-    @Override
-    public List<SeatBooking> getSeatBookings() {
-        return null;
+    public Booking getBooking(long id){
+        return
     }
 
     @Override
     public List<Booking> getAllBookingsByShowingId(long id){
         return bookingRepository.findAllByShowingId(id);
+    }
+
+    @Override
+    public List<SeatBooking> getSeatBookings() {
+        return seatBookingRepository.findAll();
     }
 
     @Override
@@ -50,7 +54,7 @@ public class BookingServiceImplementation implements BookingService {
     }
 
     @Override
-    public SeatBooking createBooking(SeatBooking seatBooking) {
+    public SeatBooking createSeatBooking(SeatBooking seatBooking) {
         return seatBookingRepository.save(seatBooking);
     }
 }

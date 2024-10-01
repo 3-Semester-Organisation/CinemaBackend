@@ -14,5 +14,5 @@ public interface BookingService {
 
     boolean existsById(long bookingId);
 
-    SeatBooking createBooking(SeatBooking seatBooking);
+    SeatBooking createSeatBooking(SeatBooking seatBooking);
 }

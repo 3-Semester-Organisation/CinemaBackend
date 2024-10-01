@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
-public class BookingController {
+public class BookingRestController {
 
     private final BookingService bookingService;
 
@@ -23,6 +23,7 @@ public class BookingController {
     public List<Booking> getBookings(@RequestParam long showingId){
         return bookingService.getAllBookingsByShowingId(showingId);
     }
+
 
     @GetMapping("/seatbookings")
     public List<SeatBooking> getSeatBookings(@RequestParam long bookingId){
@@ -39,7 +40,7 @@ public class BookingController {
             return ResponseEntity.badRequest().build();
         }
 
-        SeatBooking bookedSeats = bookingService.createBooking(seatBooking);
+        SeatBooking bookedSeats = bookingService.createSeatBooking(seatBooking);
         return ResponseEntity.ok(bookedSeats);
     }
 }
