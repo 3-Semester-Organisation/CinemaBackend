@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class BookingApiServiceImplementation implements BookingApiService{
+public class BookingServiceImplementation implements BookingService {
 
     private final BookingRepository bookingRepository;
     private final SeatBookingRepository seatBookingRepository;
@@ -42,5 +42,15 @@ public class BookingApiServiceImplementation implements BookingApiService{
     @Override
     public List<SeatBooking> getAllSeatBookingsByBookingId(long id){
         return seatBookingRepository.findAllByBookingId(id);
+    }
+
+    @Override
+    public boolean existsById(long bookingId) {
+        return bookingRepository.existsById((int) bookingId);
+    }
+
+    @Override
+    public SeatBooking createBooking(SeatBooking seatBooking) {
+        return seatBookingRepository.save(seatBooking);
     }
 }
