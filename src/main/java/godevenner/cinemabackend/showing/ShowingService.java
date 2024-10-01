@@ -25,8 +25,10 @@ public class ShowingService {
                 .collect(Collectors.toSet());
     }
 
-    // skal måske skrives om til at bruge DTO i stedet, please advise
-    public List<Showing> getAllShowings() {
-        return showingRepository.findAll();
+    public List<ShowingDto> getAllShowings() {
+        List<Showing> showingList = showingRepository.findAll();
+        return showingList.stream()
+                .map(showingMapper)
+                .collect(Collectors.toList());
     }
 }

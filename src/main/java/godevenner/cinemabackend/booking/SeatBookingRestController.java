@@ -1,13 +1,13 @@
 package godevenner.cinemabackend.booking;
 
+import godevenner.cinemabackend.booking.model.SeatBooking;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1")
-public class SeatBookingRestControllerOLD {
-
-    /*
+public class SeatBookingRestController {
 
     @PostMapping("/seatbooking")
     public ResponseEntity<SeatBooking> createSeatBooking(@RequestBody SeatBooking seatBooking) {
@@ -23,5 +23,5 @@ public class SeatBookingRestControllerOLD {
         return ResponseEntity.ok(bookedSeats);
     }
 
-     */
+
 }
