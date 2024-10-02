@@ -19,11 +19,18 @@ public class Costumer {
     private long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
     private User user;
 
     private String name;
     private int phoneNumber;
     private String email;
     private LocalDate dateOfBirth;
+
+    public Costumer(String name, int phoneNumber, String email, LocalDate dateOfBirth, User user) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+        this.user = user;
+    }
 }
