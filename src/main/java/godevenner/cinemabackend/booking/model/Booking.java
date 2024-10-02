@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.booking.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import godevenner.cinemabackend.customer.Customer;
 import godevenner.cinemabackend.showing.Showing;
 import jakarta.persistence.*;
@@ -23,6 +24,7 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "showing_id")
+    @JsonBackReference
     private Showing showing;
 
     public Booking(Customer customer, Showing showing) {

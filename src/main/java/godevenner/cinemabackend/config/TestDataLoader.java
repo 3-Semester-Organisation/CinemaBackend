@@ -1,5 +1,7 @@
 package godevenner.cinemabackend.config;
 
+import godevenner.cinemabackend.booking.model.Booking;
+import godevenner.cinemabackend.booking.repository.BookingRepository;
 import godevenner.cinemabackend.customer.Customer;
 import godevenner.cinemabackend.customer.CustomerRepository;
 import godevenner.cinemabackend.enums.Genre;
@@ -22,6 +24,7 @@ public class TestDataLoader implements CommandLineRunner {
 
     private final CustomerRepository customerRepository;
     private final ShowingRepository showingRepository;
+    private final BookingRepository bookingRepository;
 
     private void createCostumers() {
         customerRepository.save(
@@ -388,11 +391,27 @@ public class TestDataLoader implements CommandLineRunner {
 
     }
 
+    private void createBookings() {
+        bookingRepository.save(
+                new Booking(
+                        customerRepository.findById(1L).get(),
+                        showingRepository.findById(1L).get()
+                )
+        );
+        bookingRepository.save(
+                new Booking(
+                        customerRepository.findById(2L).get(),
+                        showingRepository.findById(2L).get()
+                )
+        );
+    }
+
 
     @Override
     public void run(String... args) throws Exception {
         createCostumers();
         createShowings();
+        createBookings();
 
     }
 }

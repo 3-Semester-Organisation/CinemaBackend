@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.booking.controller;
 
+import godevenner.cinemabackend.booking.dto.BookingCaS;
 import godevenner.cinemabackend.booking.dto.BookingRequest;
 import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
@@ -22,8 +23,16 @@ public class BookingRestController {
 
     //BOOKING
 
+    // commented out until seatbooking is functional
+    /*
     @GetMapping("/bookings")
     public List<Booking> getBookings(@RequestParam long showingId){
+        return bookingService.getAllBookingsByShowingId(showingId);
+    }
+    */
+
+    @GetMapping("/bookings")
+    public List<BookingCaS> getBookings(@RequestParam long showingId){
         return bookingService.getAllBookingsByShowingId(showingId);
     }
 
