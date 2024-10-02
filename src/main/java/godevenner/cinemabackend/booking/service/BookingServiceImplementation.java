@@ -103,7 +103,20 @@ public class BookingServiceImplementation implements BookingService {
         return seatBookingRepository.findById((int) id);
     }
 
-   
+    @Override
+    public Booking createSeatBooking(BookingRequest requestedBooking){
+        Booking booking = bookingRequestMapper.apply(requestedBooking);
+        Booking savedBooking = bookingRepository.save(booking);
+
+        List<SeatBooking> bookedSeats = requestedBooking.bookedSeats();
+
+        for (SeatBooking seatBooking : bookedSeats) {
+            seatBooking.setBooking(savedBooking);
+        }
+        seatBookingRepository.saveAll(bookedSeats);
+
+        return savedBooking;
+    }
 
     @Override
     public ResponseEntity<SeatBooking> updateSeatBooking(long id, SeatBooking seatBooking){
