@@ -82,7 +82,7 @@ public class TestDataLoader implements CommandLineRunner {
                                 new TheatreLayout(10, "a3"),
                                 "Sal 1"
                         ),
-                        new Movie("Alien", Genre.HORROR, 15, true, "imgur.com/alienposter"),
+                        new Movie("Alien", "scary aliens", Genre.HORROR, 15, true, "imgur.com/alienposter"),
                         LocalDateTime.now().plusHours(14),
                         false
                 )
@@ -94,7 +94,7 @@ public class TestDataLoader implements CommandLineRunner {
                                 new TheatreLayout(12, "b1"),
                                 "Sal 2"
                         ),
-                        new Movie("Inception", Genre.SCIFI, 13, true, "imgur.com/inceptionposter"),
+                        new Movie("Inception", "brain tiring", Genre.SCIFI, 13, true, "imgur.com/inceptionposter"),
                         LocalDateTime.now().plusHours(10),
                         false
                 )
@@ -106,7 +106,7 @@ public class TestDataLoader implements CommandLineRunner {
                                 new TheatreLayout(10, "a3"),
                                 "Sal 1"
                         ),
-                        new Movie("The Shining", Genre.HORROR, 16, false, "imgur.com/shiningposter"),
+                        new Movie("The Shining", "scary shit man", Genre.HORROR, 16, false, "imgur.com/shiningposter"),
                         LocalDateTime.now().plusHours(12),
                         true
                 )
@@ -118,7 +118,7 @@ public class TestDataLoader implements CommandLineRunner {
                                 new TheatreLayout(12, "b1"),
                                 "Sal 2"
                         ),
-                        new Movie("The Matrix", Genre.ACTION, 16, true, "imgur.com/matrixposter"),
+                        new Movie("The Matrix", "too mind bending", Genre.ACTION, 16, true, "imgur.com/matrixposter"),
                         LocalDateTime.now().plusHours(7),
                         true
                 )
@@ -130,7 +130,7 @@ public class TestDataLoader implements CommandLineRunner {
                                 new TheatreLayout(10, "a3"),
                                 "Sal 1"
                         ),
-                        new Movie("Jurassic Park", Genre.ADVENTURE, 10, true, "imgur.com/jurassicposter"),
+                        new Movie("Jurassic Park", "for dino lovers", Genre.ADVENTURE, 10, true, "imgur.com/jurassicposter"),
                         LocalDateTime.now().plusHours(8),
                         false)
         );
