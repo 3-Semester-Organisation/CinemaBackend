@@ -29,6 +29,13 @@ public class ShowingService {
                 .collect(Collectors.toSet());
     }
 
+    public Set<ShowingDto> getAllShowingsByTitle(String title) {
+        Set<Showing> showingSet = showingRepository.getAllByMovieTitle(title);
+        return showingSet.stream()
+                .map(showingMapper)
+                .collect(Collectors.toSet());
+    }
+
     public List<RequestAllShowings> getAllShowings() {
         List<Showing> showingList = showingRepository.findAll();
         return showingList.stream()

@@ -29,6 +29,17 @@ public class ShowingRestController {
         return ResponseEntity.ok().body(showingSet);
     }
 
+    @GetMapping("/showingsbytitle")
+    public ResponseEntity<Set<ShowingDto>> getAllShowingsByTitle (@RequestParam String title) {
+        Set<ShowingDto> showingSet = showingService.getAllShowingsByTitle(title);
+
+        if (showingSet.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok().body(showingSet);
+    }
+
     @GetMapping("/allshowings")
     public ResponseEntity<List<RequestAllShowings>> getAllShowings() {
         List<RequestAllShowings> showingList = showingService.getAllShowings();

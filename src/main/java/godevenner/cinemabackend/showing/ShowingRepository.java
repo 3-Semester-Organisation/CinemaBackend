@@ -7,4 +7,5 @@ import java.util.Set;
 
 public interface ShowingRepository extends JpaRepository<Showing, Long> {
     Set<Showing> getAllByMovie(Movie movie);
+    Set<Showing> getAllByMovieTitle(String title);
 }
