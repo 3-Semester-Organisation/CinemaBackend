@@ -19,8 +19,8 @@ public class ShowingRestController {
     }
 
     @GetMapping("/showings")
-    public ResponseEntity<Set<ShowingDto>> getAllShowingsByMovie (@RequestBody Movie movie) {
-        Set<ShowingDto> showingSet = showingService.getAllShowingsByMovie(movie);
+    public ResponseEntity<Set<RequestShowingByMovieTitle>> getAllShowingsByMovie (@RequestBody Movie movie) {
+        Set<RequestShowingByMovieTitle> showingSet = showingService.getAllShowingsByMovie(movie);
 
         if (showingSet.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -30,8 +30,8 @@ public class ShowingRestController {
     }
 
     @GetMapping("/showingsbytitle")
-    public ResponseEntity<Set<ShowingDto>> getAllShowingsByTitle (@RequestParam String title) {
-        Set<ShowingDto> showingSet = showingService.getAllShowingsByTitle(title);
+    public ResponseEntity<Set<RequestShowingByMovieTitle>> getAllShowingsByTitle (@RequestParam String title) {
+        Set<RequestShowingByMovieTitle> showingSet = showingService.getAllShowingsByTitle(title);
 
         if (showingSet.isEmpty()) {
             return ResponseEntity.notFound().build();
