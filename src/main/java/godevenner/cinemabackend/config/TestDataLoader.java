@@ -424,6 +424,13 @@ public class TestDataLoader implements CommandLineRunner {
                         1
                 )
         );
+        seatBookingRepository.save(
+                new SeatBooking(
+                        bookingRepository.findById(2).get(),
+                        1,
+                        1
+                )
+        );
     }
 
 

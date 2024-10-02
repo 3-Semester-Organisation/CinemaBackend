@@ -12,6 +12,7 @@ public class BookingCaSMapper implements Function<Booking, BookingCaS> {
     @Override
     public BookingCaS apply(Booking booking) {
         return new BookingCaS(
+                booking.getId(),
                 booking.getShowing(),
                 booking.getCustomer()
         );
