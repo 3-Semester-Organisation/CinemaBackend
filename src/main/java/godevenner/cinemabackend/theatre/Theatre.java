@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.theatre;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import godevenner.cinemabackend.showing.Showing;
 import godevenner.cinemabackend.theatrelayout.TheatreLayout;
 import jakarta.persistence.*;
@@ -22,6 +23,7 @@ public class Theatre {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "theatre_layout_id")
+    @JsonBackReference
     private TheatreLayout theatreLayout;
 
     private String name;

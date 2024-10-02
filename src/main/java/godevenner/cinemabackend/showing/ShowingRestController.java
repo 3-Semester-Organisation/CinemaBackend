@@ -30,8 +30,8 @@ public class ShowingRestController {
     }
 
     @GetMapping("/allshowings")
-    public ResponseEntity<List<ShowingDto>> getAllShowings() {
-        List<ShowingDto> showingList = showingService.getAllShowings();
+    public ResponseEntity<List<RequestAllShowings>> getAllShowings() {
+        List<RequestAllShowings> showingList = showingService.getAllShowings();
 
         if (showingList.isEmpty()) {
             return ResponseEntity.notFound().build();

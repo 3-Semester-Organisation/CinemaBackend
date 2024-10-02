@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.showing;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.movie.Movie;
 import godevenner.cinemabackend.theatre.Theatre;
@@ -23,6 +24,7 @@ public class Showing {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "theatre_id")
+    @JsonManagedReference
     private Theatre theatre;
 
     @OneToMany(mappedBy = "showing", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -30,6 +32,7 @@ public class Showing {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id")
+    @JsonManagedReference
     private Movie movie;
     private LocalDateTime startTime; //LocalDateTime.of(1997,5,13,20,45);
     private boolean isCancelled;
