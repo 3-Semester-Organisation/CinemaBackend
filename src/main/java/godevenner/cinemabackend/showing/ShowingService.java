@@ -10,14 +10,11 @@ import java.util.stream.Collectors;
 public class ShowingService {
 
     private final ShowingRepository showingRepository;
-    private final RequestShowingByMovieTitleMapper requestShowingByMovieTitleMapper;
     private final RequestShowingsMapper requestShowingsMapper;
 
     public ShowingService(ShowingRepository showingRepository,
-                          RequestShowingByMovieTitleMapper requestShowingByMovieTitleMapper,
                           RequestShowingsMapper requestShowingsMapper) {
         this.showingRepository = showingRepository;
-        this.requestShowingByMovieTitleMapper = requestShowingByMovieTitleMapper;
         this.requestShowingsMapper = requestShowingsMapper;
     }
 
