@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.booking.controller;
 
+import godevenner.cinemabackend.booking.dto.BookingRequest;
 import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
 import godevenner.cinemabackend.booking.service.BookingService;
@@ -18,6 +19,8 @@ import java.util.List;
 public class BookingRestController {
 
     private final BookingService bookingService;
+
+    //BOOKING
 
     @GetMapping("/bookings")
     public List<Booking> getBookings(@RequestParam long showingId){
@@ -40,14 +43,20 @@ public class BookingRestController {
         return bookingService.deleteBooking(id);
     }
 
+
+
+
+    //SEATBOOKINGS
     @GetMapping("/seatbookings")
     public List<SeatBooking> getSeatBookings(@RequestParam long bookingId){
         return bookingService.getAllSeatBookingsByBookingId(bookingId);
     }
 
-    @PostMapping("/seatbooking")
-    public ResponseEntity<SeatBooking> createSeatBooking(@RequestBody SeatBooking seatBooking) {
-        return bookingService.createSeatBooking(seatBooking);
+    @PostMapping("/booking")
+    public ResponseEntity<Booking> createSeatBooking(@RequestBody BookingRequest bookingRequest) {
+        Booking bookedSeats = bookingService.createSeatBooking(bookingRequest);
+
+        return ResponseEntity.ok(bookedSeats);
     }
 
 

@@ -25,6 +25,11 @@ public class Booking {
     @JoinColumn(name = "showing_id")
     private Showing showing;
 
+    public Booking(Customer customer, Showing showing) {
+        this.customer = customer;
+        this.showing = showing;
+    }
+
 
 
     public boolean ageRequirementMet() {
