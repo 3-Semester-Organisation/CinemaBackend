@@ -1,7 +1,7 @@
 package godevenner.cinemabackend.config;
 
-import godevenner.cinemabackend.costumer.Costumer;
-import godevenner.cinemabackend.costumer.CostumerRepository;
+import godevenner.cinemabackend.customer.Customer;
+import godevenner.cinemabackend.customer.CustomerRepository;
 import godevenner.cinemabackend.enums.Genre;
 import godevenner.cinemabackend.movie.Movie;
 import godevenner.cinemabackend.showing.Showing;
@@ -20,12 +20,12 @@ import java.time.LocalDateTime;
 @Component
 public class TestDataLoader implements CommandLineRunner {
 
-    private final CostumerRepository costumerRepository;
+    private final CustomerRepository customerRepository;
     private final ShowingRepository showingRepository;
 
     private void createCostumers() {
-        costumerRepository.save(
-                new Costumer(
+        customerRepository.save(
+                new Customer(
                         new User("jdoe", "password1"),
                         "John Doe",
                         "+1(555) 555-1111",
@@ -34,8 +34,8 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        costumerRepository.save(
-                new Costumer(
+        customerRepository.save(
+                new Customer(
                         new User("asmith", "password2"),
                         "Alice Smith",
                         "+1(555) 555-2222",
@@ -44,8 +44,8 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        costumerRepository.save(
-                new Costumer(
+        customerRepository.save(
+                new Customer(
                         new User("bwayne", "batman123"),
                         "Bruce Wayne",
                         "+1(555) 555-3333",
@@ -54,8 +54,8 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        costumerRepository.save(
-                new Costumer(
+        customerRepository.save(
+                new Customer(
                         new User("ckent", "superman456"),
                         "Clark Kent",
                         "+1(555) 555-4444",
@@ -64,8 +64,8 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        costumerRepository.save(
-                new Costumer(
+        customerRepository.save(
+                new Customer(
                         new User("dprince", "wonder789"),
                         "Diana Prince",
                         "+1(555) 555-5555",

@@ -1,4 +1,4 @@
-package godevenner.cinemabackend.costumer;
+package godevenner.cinemabackend.customer;
 
 import godevenner.cinemabackend.user.User;
 import jakarta.persistence.*;
@@ -7,12 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-public class Costumer {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +24,7 @@ public class Costumer {
     private User user;
 
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private LocalDate dateOfBirth;
 
@@ -34,7 +35,7 @@ public class Costumer {
         return age >= requiredAge;
     }
 
-    public Costumer(User user, String name, String phoneNumber, String email, LocalDate dateOfBirth) {
+    public Customer(User user, String name, String phoneNumber, String email, LocalDate dateOfBirth) {
         this.user = user;
         this.name = name;
         this.phoneNumber = phoneNumber;
