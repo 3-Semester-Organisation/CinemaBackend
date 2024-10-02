@@ -20,9 +20,16 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Costumer costumer;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Employee employee;
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    private Employee employee;
 
     private String username;
     private String password;
+
+    public User(String username, String password) {
+//        this.costumer = costumer;
+//        this.employee = employee;
+        this.username = username;
+        this.password = password;
+    }
 }
