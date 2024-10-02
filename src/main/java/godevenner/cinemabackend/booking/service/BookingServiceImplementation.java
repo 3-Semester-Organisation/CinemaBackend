@@ -1,5 +1,7 @@
 package godevenner.cinemabackend.booking.service;
 
+import godevenner.cinemabackend.booking.dto.BookingRequest;
+import godevenner.cinemabackend.booking.mapper.BookingRequestMapper;
 import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
 import godevenner.cinemabackend.booking.repository.BookingRepository;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -17,6 +20,11 @@ public class BookingServiceImplementation implements BookingService {
 
     private final BookingRepository bookingRepository;
     private final SeatBookingRepository seatBookingRepository;
+    private final BookingRequestMapper bookingRequestMapper;
+
+
+
+
 
     private void saveBookings(List<Booking> bookings){
         bookingRepository.saveAll(bookings);
@@ -95,16 +103,7 @@ public class BookingServiceImplementation implements BookingService {
         return seatBookingRepository.findById((int) id);
     }
 
-    @Override
-    public ResponseEntity<SeatBooking> createSeatBooking(SeatBooking seatBooking){
-        Optional<SeatBooking> alreadyExists = seatBookingRepository.findById((int)seatBooking.getId());
-        if(alreadyExists.isPresent()){
-            return ResponseEntity.badRequest().body(alreadyExists.get());
-        }else{
-            seatBookingRepository.save(seatBooking);
-            return ResponseEntity.ok(seatBooking);
-        }
-    }
+   
 
     @Override
     public ResponseEntity<SeatBooking> updateSeatBooking(long id, SeatBooking seatBooking){
