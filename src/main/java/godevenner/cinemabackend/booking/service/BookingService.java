@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.booking.service;
 
+import godevenner.cinemabackend.booking.dto.BookingRequest;
 import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public interface BookingService {
     List<SeatBooking> getSeatBookings();
     List<SeatBooking> getAllSeatBookingsByBookingId(long id);
     Optional<SeatBooking> getSeatBooking(long id);
-    ResponseEntity<SeatBooking> createSeatBooking(SeatBooking seatBooking);
+    Booking createSeatBooking(BookingRequest booking);
     ResponseEntity<SeatBooking> updateSeatBooking(long id, SeatBooking seatBooking);
     ResponseEntity<Void> deleteSeatBooking(long id);
 
