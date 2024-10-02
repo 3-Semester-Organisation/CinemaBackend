@@ -14,6 +14,7 @@ public class ShowingMapper implements Function<Showing, ShowingDto> {
     public ShowingDto apply(Showing showing) {
         return new ShowingDto(
                 showing.getTheatre(),
+                showing.getMovie(),
                 showing.getStartTime()
         );
     }

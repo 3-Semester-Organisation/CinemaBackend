@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.movie;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import godevenner.cinemabackend.enums.Genre;
 import godevenner.cinemabackend.showing.Showing;
 import jakarta.persistence.*;
@@ -20,6 +21,7 @@ public class Movie {
     private long id;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    @JsonBackReference
     private Set<Showing> showingSet;
 
     private String title;

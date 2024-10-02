@@ -32,6 +32,7 @@ public class Showing {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id")
+    @JsonManagedReference
     private Movie movie;
     private LocalDateTime startTime; //LocalDateTime.of(1997,5,13,20,45);
     private boolean isCancelled;
