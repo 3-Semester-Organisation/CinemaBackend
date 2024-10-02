@@ -32,13 +32,13 @@ public class BookingRestController {
         return bookingService.createBooking(booking);
     }
 
-    @PutMapping("/booking/{id}")
+    @PutMapping("/updatebooking/{id}")
     public ResponseEntity<Booking> updateBooking(@PathVariable Long id,
                                                  @RequestBody Booking booking){
         return bookingService.updateBooking(id, booking);
     }
 
-    @DeleteMapping("/booking/{id}")
+    @DeleteMapping("/deletebooking/{id}")
     public ResponseEntity<Void> deleteBooking(@PathVariable Long id){
         return bookingService.deleteBooking(id);
     }
@@ -52,7 +52,7 @@ public class BookingRestController {
         return bookingService.getAllSeatBookingsByBookingId(bookingId);
     }
 
-    @PostMapping("/booking")
+    @PostMapping("/seatbooking")
     public ResponseEntity<Booking> createSeatBooking(@RequestBody BookingRequest bookingRequest) {
         Booking bookedSeats = bookingService.createSeatBooking(bookingRequest);
 
@@ -60,13 +60,13 @@ public class BookingRestController {
     }
 
 
-    @PutMapping("/seatbooking/{id}")
+    @PutMapping("/updateseatbooking/{id}")
     public ResponseEntity<SeatBooking> updateSeatBooking(@PathVariable Long id,
                                                  @RequestBody SeatBooking seatBooking){
         return bookingService.updateSeatBooking(id, seatBooking);
     }
 
-    @DeleteMapping("/seatbooking/{id}")
+    @DeleteMapping("/deleteseatbooking/{id}")
     public ResponseEntity<Void> deleteSeatBooking(@PathVariable Long id){
         return bookingService.deleteSeatBooking(id);
     }
