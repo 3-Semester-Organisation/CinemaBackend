@@ -1,6 +1,5 @@
 package godevenner.cinemabackend.showing;
 
-import godevenner.cinemabackend.movie.Movie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +18,8 @@ public class ShowingRestController {
     }
 
     @GetMapping("/showings")
-    public ResponseEntity<Set<RequestShowingByMovieTitle>> getAllShowingsByMovieTitle (@RequestParam String title) {
-        Set<RequestShowingByMovieTitle> showingSet = showingService.getAllShowingsByMovieTitle(title);
+    public ResponseEntity<Set<RequestShowings>> getAllShowingsByMovieTitle (@RequestParam String title) {
+        Set<RequestShowings> showingSet = showingService.getAllShowingsByMovieTitle(title);
 
         if (showingSet.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -30,8 +29,8 @@ public class ShowingRestController {
     }
 
     @GetMapping("/allshowings")
-    public ResponseEntity<List<RequestAllShowings>> getAllShowings() {
-        List<RequestAllShowings> showingList = showingService.getAllShowings();
+    public ResponseEntity<List<RequestShowings>> getAllShowings() {
+        List<RequestShowings> showingList = showingService.getAllShowings();
 
         if (showingList.isEmpty()) {
             return ResponseEntity.notFound().build();
