@@ -1,5 +1,9 @@
 package godevenner.cinemabackend.config;
 
+import godevenner.cinemabackend.booking.model.Booking;
+import godevenner.cinemabackend.booking.model.SeatBooking;
+import godevenner.cinemabackend.booking.repository.BookingRepository;
+import godevenner.cinemabackend.booking.repository.SeatBookingRepository;
 import godevenner.cinemabackend.customer.Customer;
 import godevenner.cinemabackend.customer.CustomerRepository;
 import godevenner.cinemabackend.enums.Genre;
@@ -22,6 +26,8 @@ public class TestDataLoader implements CommandLineRunner {
 
     private final CustomerRepository customerRepository;
     private final ShowingRepository showingRepository;
+    private final BookingRepository bookingRepository;
+    private final SeatBookingRepository seatBookingRepository;
 
     private void createCostumers() {
         customerRepository.save(
@@ -106,6 +112,18 @@ public class TestDataLoader implements CommandLineRunner {
                                 new TheatreLayout(10, "a3"),
                                 "Sal 1"
                         ),
+                        new Movie("Inception", "inception, inception,inception,inception,inception,inception,", Genre.SCIFI, 13, true, "imgur.com/inceptionposter"),
+                        LocalDateTime.now().plusHours(4),
+                        false
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(10, "a3"),
+                                "Sal 1"
+                        ),
                         new Movie("The Shining", "scary shit man", Genre.HORROR, 16, false, "imgur.com/shiningposter"),
                         LocalDateTime.now().plusHours(12),
                         true
@@ -134,7 +152,285 @@ public class TestDataLoader implements CommandLineRunner {
                         LocalDateTime.now().plusHours(8),
                         false)
         );
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(14, "c1"),
+                                "Sal 3"
+                        ),
+                        new Movie("The Lion King", "the lions can speak :O",Genre.ANIMATION, 7, true, "imgur.com/lionkingposter"),
+                        LocalDateTime.now().plusHours(5),
+                        false
+                )
+        );
 
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(16, "d1"),
+                                "Sal 4"
+                        ),
+                        new Movie("Titanic", "some say this movie is funny", Genre.DRAMA, 12, true, "imgur.com/titanicposter"),
+                        LocalDateTime.now().plusHours(3),
+                        true
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(14, "c1"),
+                                "Sal 3"
+                        ),
+                        new Movie("Toy Story", "a true nightmare", Genre.ANIMATION, 7, true, "imgur.com/toystoryposter"),
+                        LocalDateTime.now().plusHours(9),
+                        true
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(12, "b2"),
+                                "Sal 2"
+                        ),
+                        new Movie("Fight Club", "fighting yes", Genre.DRAMA, 18, false, "imgur.com/fightclubposter"),
+                        LocalDateTime.now().plusHours(6),
+                        true
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(20, "e1"),
+                                "Sal 5"
+                        ),
+                        new Movie("Avengers: Endgame", "best movie",Genre.ACTION, 12, true, "imgur.com/endgameposter"),
+                        LocalDateTime.now().plusHours(11),
+                        false
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(10, "a1"),
+                                "Sal 1"
+                        ),
+                        new Movie("The Godfather", "farther here", Genre.DRAMA, 18, true, "imgur.com/godfatherposter"),
+                        LocalDateTime.now().plusHours(2),
+                        true
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(18, "f1"),
+                                "Sal 6"
+                        ),
+                        new Movie("Finding Nemo", "sushi", Genre.ANIMATION, 5, true, "imgur.com/findingnemo"),
+                        LocalDateTime.now().plusHours(4),
+                        false
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(12, "b2"),
+                                "Sal 2"
+                        ),
+                        new Movie("Pulp Fiction", "have not seen", Genre.ACTION, 18, true, "imgur.com/pulpfictionposter"),
+                        LocalDateTime.now().plusHours(8),
+                        true
+                )
+        );
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(15, "g1"),
+                                "Sal 7"
+                        ),
+                        new Movie("Jurassic World", "roar", Genre.ADVENTURE, 12, true, "imgur.com/jurassicworldposter"),
+                        LocalDateTime.now().plusHours(3),
+                        false
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(10, "h1"),
+                                "Sal 8"
+                        ),
+                        new Movie("Get Out", "nahh bud",Genre.HORROR, 15, true, "imgur.com/getoutposter"),
+                        LocalDateTime.now().plusHours(4),
+                        true
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(20, "i1"),
+                                "Sal 9"
+                        ),
+                        new Movie("The Notebook", "romance yes",Genre.ROMANCE, 12, true, "imgur.com/thenotebookposter"),
+                        LocalDateTime.now().plusHours(5),
+                        false
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(18, "j1"),
+                                "Sal 10"
+                        ),
+                        new Movie("Mad Max: Fury Road", "chiiiill", Genre.ACTION, 16, true, "imgur.com/madmaxposter"),
+                        LocalDateTime.now().plusHours(6),
+                        true
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(12, "k1"),
+                                "Sal 11"
+                        ),
+                        new Movie("Superbad", "very", Genre.COMEDY, 13, true, "imgur.com/superbadposter"),
+                        LocalDateTime.now().plusHours(2),
+                        false
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(16, "l1"),
+                                "Sal 12"
+                        ),
+                        new Movie("The Shawshank Redemption", "so many", Genre.DRAMA, 18, true, "imgur.com/shawshankposter"),
+                        LocalDateTime.now().plusHours(7),
+                        true
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(14, "m1"),
+                                "Sal 13"
+                        ),
+                        new Movie("Gone Girl", "gone yes", Genre.THRILLER, 16, true, "imgur.com/gonegirlposter"),
+                        LocalDateTime.now().plusHours(8),
+                        false
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(10, "n1"),
+                                "Sal 14"
+                        ),
+                        new Movie("Knives Out", "nah brotha",Genre.MYSTERY, 13, true, "imgur.com/knivesoutposter"),
+                        LocalDateTime.now().plusHours(9),
+                        true
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(20, "o1"),
+                                "Sal 15"
+                        ),
+                        new Movie("Shrek", "sexy" ,Genre.ANIMATION, 5, true, "imgur.com/shrekposter"),
+                        LocalDateTime.now().plusHours(10),
+                        false
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(8, "p1"),
+                                "Sal 16"
+                        ),
+                        new Movie("March of the Penguins", "soliders ", Genre.DOCUMENTARY, 0, true, "imgur.com/marchofthepenguins"),
+                        LocalDateTime.now().plusHours(11),
+                        true
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(12, "q1"),
+                                "Sal 17"
+                        ),
+                        new Movie("The Lord of the Rings: The Fellowship of the Ring", "damn a long name",Genre.FANTASY, 12, true, "imgur.com/lotrposter"),
+                        LocalDateTime.now().plusHours(12),
+                        false
+                )
+        );
+
+        showingRepository.save(
+                new Showing(
+                        new Theatre(
+                                new TheatreLayout(18, "r1"),
+                                "Sal 18"
+                        ),
+                        new Movie("Interstellar", "love this moive", Genre.SCIFI, 13, true, "imgur.com/interstellarposter"),
+                        LocalDateTime.now().plusHours(13),
+                        true
+                )
+        );
+
+
+    }
+
+    private void createBookings() {
+        bookingRepository.save(
+                new Booking(
+                        customerRepository.findById(1L).get(),
+                        showingRepository.findById(1L).get()
+                )
+        );
+        bookingRepository.save(
+                new Booking(
+                        customerRepository.findById(2L).get(),
+                        showingRepository.findById(2L).get()
+                )
+        );
+    }
+
+    private void createSeatBookings() {
+        seatBookingRepository.save(
+                new SeatBooking(
+                        bookingRepository.findById(1).get(),
+                        1,
+                        1
+                )
+        );
+        seatBookingRepository.save(
+                new SeatBooking(
+                        bookingRepository.findById(1).get(),
+                        2,
+                        1
+                )
+        );
+        seatBookingRepository.save(
+                new SeatBooking(
+                        bookingRepository.findById(2).get(),
+                        1,
+                        1
+                )
+        );
     }
 
 
@@ -142,6 +438,8 @@ public class TestDataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         createCostumers();
         createShowings();
+        createBookings();
+        createSeatBookings();
 
     }
 }

@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.customer;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import godevenner.cinemabackend.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Customer {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
+    @JsonManagedReference
     private User user;
 
     private String name;

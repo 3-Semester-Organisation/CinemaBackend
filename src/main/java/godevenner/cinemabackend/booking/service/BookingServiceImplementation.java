@@ -1,11 +1,14 @@
 package godevenner.cinemabackend.booking.service;
 
+import godevenner.cinemabackend.booking.dto.BookingCaS;
 import godevenner.cinemabackend.booking.dto.BookingRequest;
+import godevenner.cinemabackend.booking.mapper.BookingCaSMapper;
 import godevenner.cinemabackend.booking.mapper.BookingRequestMapper;
 import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
 import godevenner.cinemabackend.booking.repository.BookingRepository;
 import godevenner.cinemabackend.booking.repository.SeatBookingRepository;
+import godevenner.cinemabackend.showing.Showing;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +26,7 @@ public class BookingServiceImplementation implements BookingService {
     private final BookingRepository bookingRepository;
     private final SeatBookingRepository seatBookingRepository;
     private final BookingRequestMapper bookingRequestMapper;
-
+    private final BookingCaSMapper bookingCaSMapper;
 
 
 
@@ -42,8 +47,12 @@ public class BookingServiceImplementation implements BookingService {
     }
 
     @Override
-    public List<Booking> getAllBookingsByShowingId(long id){
-        return bookingRepository.findAllByShowingId(id);
+    public List<BookingCaS> getAllBookingsByShowingId(long id){
+        //return bookingRepository.findAllByShowingId(id);
+        List<Booking> bookings = bookingRepository.findAllByShowingId(id);
+        return bookings.stream()
+                .map(bookingCaSMapper)
+                .collect(Collectors.toList());
     }
 
     @Override

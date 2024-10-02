@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import godevenner.cinemabackend.customer.Customer;
 import godevenner.cinemabackend.employee.Employee;
 import jakarta.persistence.*;
@@ -18,9 +19,11 @@ public class User {
     private long id;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonBackReference
     private Customer customer;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonBackReference
     private Employee employee;
 
     private String username;
