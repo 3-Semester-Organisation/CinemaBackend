@@ -6,13 +6,32 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
+// this bit is only here to not crash the program
 @Component
-public class BookingRequestMapper implements Function<BookingRequest, Booking> {
-    @Override
-    public Booking apply(BookingRequest bookingRequest) {
-        return new Booking(
-                bookingRequest.customer(),
-                bookingRequest.showing()
-        );
+public class BookingRequestMapper {
+
+
+    public Booking apply(BookingRequest booking) {
+        return null;
     }
 }
+
+
+// commented out for now, can't call booking.getBookedSeats()
+/*
+@Component
+public class BookingRequestMapper implements Function<Booking, BookingRequest> {
+
+    @Override
+    public BookingRequest apply(Booking booking) {
+        return new BookingRequest(
+                booking.getShowing(),
+                booking.getCustomer(),
+                booking.getBookedSeats()
+        );
+    }
+
+ */
+
+
+

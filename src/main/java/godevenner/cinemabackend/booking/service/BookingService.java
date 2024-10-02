@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.booking.service;
 
+import godevenner.cinemabackend.booking.dto.BookingCaS;
 import godevenner.cinemabackend.booking.dto.BookingRequest;
 import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
@@ -11,7 +12,10 @@ import java.util.Optional;
 public interface BookingService {
 
     List<Booking> getBookings();
-    List<Booking> getAllBookingsByShowingId(long id);
+
+    // using DTO instead of model
+    List<BookingCaS> getAllBookingsByShowingId(long id);
+
     Optional<Booking> getBooking(long id);
     ResponseEntity<Booking> createBooking(Booking booking);
     ResponseEntity<Booking> updateBooking(long id, Booking booking);
