@@ -12,10 +12,14 @@ public class ShowingService {
 
     private final ShowingRepository showingRepository;
     private final ShowingMapper showingMapper;
+    private final RequestAllShowingsMapper requestAllShowingsMapper;
 
-    public ShowingService(ShowingRepository showingRepository, ShowingMapper showingMapper) {
+    public ShowingService(ShowingRepository showingRepository,
+                          ShowingMapper showingMapper,
+                          RequestAllShowingsMapper requestAllShowingsMapper) {
         this.showingRepository = showingRepository;
         this.showingMapper = showingMapper;
+        this.requestAllShowingsMapper = requestAllShowingsMapper;
     }
 
     public Set<ShowingDto> getAllShowingsByMovie(Movie movie) {
@@ -25,10 +29,10 @@ public class ShowingService {
                 .collect(Collectors.toSet());
     }
 
-    public List<ShowingDto> getAllShowings() {
+    public List<RequestAllShowings> getAllShowings() {
         List<Showing> showingList = showingRepository.findAll();
         return showingList.stream()
-                .map(showingMapper)
+                .map(requestAllShowingsMapper)
                 .collect(Collectors.toList());
     }
 }

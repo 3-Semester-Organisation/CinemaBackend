@@ -5,8 +5,9 @@ import godevenner.cinemabackend.theatre.Theatre;
 
 import java.time.LocalDateTime;
 
-public record ShowingDto(
+public record RequestAllShowings(
         Theatre theatre,
+        Movie movie,
         LocalDateTime startTime
-        ) {
+) {
 }
