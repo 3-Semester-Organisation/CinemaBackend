@@ -21,8 +21,8 @@ public class MovieController {
     public ResponseEntity<Set<MovieDto>> getMovies(
             @RequestParam(required = false) Genre genre,
             @RequestParam(required = false) Integer age,
-            @RequestParam(required = false) Boolean isActive) {
-        Set<MovieDto> movies = movieService.getFilteredMovies(genre, age, isActive);
+            @RequestParam(required = false) Boolean active) {
+        Set<MovieDto> movies = movieService.getFilteredMovies(genre, age, active);
 
         if (movies.isEmpty()) return ResponseEntity.noContent().build();
         else return ResponseEntity.ok(movies);
