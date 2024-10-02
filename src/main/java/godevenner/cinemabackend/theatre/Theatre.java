@@ -16,18 +16,17 @@ public class Theatre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+        // en biograf har ikke én showing, det har enten many to one relation, eller bare ikke en relation
+//    @OneToOne(mappedBy = "theatre")
+//    private Showing showing;
 
-    @OneToOne(mappedBy = "theatre")
-    private Showing showing;
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "theatre_layout_id")
     private TheatreLayout theatreLayout;
 
     private String name;
 
-    public Theatre(Showing showing, TheatreLayout theatreLayout, String name) {
-        this.showing = showing;
+    public Theatre(TheatreLayout theatreLayout, String name) {
         this.theatreLayout = theatreLayout;
         this.name = name;
     }

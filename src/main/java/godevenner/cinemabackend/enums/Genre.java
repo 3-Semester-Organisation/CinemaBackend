@@ -1,6 +1,7 @@
 package godevenner.cinemabackend.enums;
 
 public enum Genre {
+    ADVENTURE,
     HORROR,
     ROMANCE,
     ACTION,

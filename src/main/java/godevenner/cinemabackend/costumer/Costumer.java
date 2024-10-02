@@ -23,7 +23,15 @@ public class Costumer {
     private User user;
 
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private LocalDate dateOfBirth;
+
+    public Costumer(User user, String name, String phoneNumber, String email, LocalDate dateOfBirth) {
+        this.user = user;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+    }
 }

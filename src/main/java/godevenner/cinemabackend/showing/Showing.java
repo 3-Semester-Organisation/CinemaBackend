@@ -21,22 +21,21 @@ public class Showing {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "theatre_id")
     private Theatre theatre;
 
     @OneToMany(mappedBy = "showing", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Booking> booking;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id")
     private Movie movie;
     private LocalDateTime startTime; //LocalDateTime.of(1997,5,13,20,45);
     private boolean isCancelled;
 
-    public Showing(Theatre theatre, Set<Booking> booking, Movie movie, LocalDateTime startTime, boolean isCancelled) {
+    public Showing(Theatre theatre, Movie movie, LocalDateTime startTime, boolean isCancelled) {
         this.theatre = theatre;
-        this.booking = booking;
         this.movie = movie;
         this.startTime = startTime;
         this.isCancelled = isCancelled;
