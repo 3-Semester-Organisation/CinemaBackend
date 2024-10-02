@@ -22,6 +22,6 @@ public class SeatBooking {
     @JoinColumn(name = "booking_id")
     private Booking booking;
 
-    private int seatNumber;
-    private int rowNumber;
+    private int theatreRowNumber;
+    private int theatreSeatNumber;
 }
