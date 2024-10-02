@@ -10,6 +10,7 @@ public class RequestAllShowingsMapper implements Function<Showing, RequestAllSho
     @Override
     public RequestAllShowings apply(Showing showing) {
         return new RequestAllShowings(
+                showing.getId(),
                 showing.getTheatre(),
                 showing.getMovie(),
                 showing.getStartTime()
