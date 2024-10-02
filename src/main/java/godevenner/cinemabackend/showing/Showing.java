@@ -28,6 +28,7 @@ public class Showing {
     private Theatre theatre;
 
     @OneToMany(mappedBy = "showing", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Booking> booking;
 
     @ManyToOne(cascade = CascadeType.ALL)
