@@ -1,8 +1,5 @@
 package godevenner.cinemabackend.movie;
-
 import godevenner.cinemabackend.enums.Genre;
-import godevenner.cinemabackend.showing.ShowingMapper;
-import godevenner.cinemabackend.showing.ShowingRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
