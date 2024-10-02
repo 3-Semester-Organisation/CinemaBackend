@@ -21,4 +21,11 @@ public class SeatBooking {
 
     private int seatNumber;
     private int seatRowNumber;
+
+    public SeatBooking(Booking booking, int seatNumber, int seatRowNumber) {
+        this.booking = booking;
+        this.seatNumber = seatNumber;
+        this.seatRowNumber = seatRowNumber;
+    }
+
 }
