@@ -1,8 +1,5 @@
 package godevenner.cinemabackend.booking.model;
 
-import godevenner.cinemabackend.costumer.Costumer;
-import godevenner.cinemabackend.enums.SeatType;
-import godevenner.cinemabackend.showing.Showing;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

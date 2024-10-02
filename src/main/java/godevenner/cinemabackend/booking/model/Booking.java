@@ -1,7 +1,6 @@
 package godevenner.cinemabackend.booking.model;
 
-import godevenner.cinemabackend.costumer.Costumer;
-import godevenner.cinemabackend.enums.SeatType;
+import godevenner.cinemabackend.customer.Customer;
 import godevenner.cinemabackend.showing.Showing;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -19,10 +18,22 @@ public class Booking {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "costumer_id")
-    private Costumer costumer;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "showing_id")
     private Showing showing;
+
+    public Booking(Customer customer, Showing showing) {
+        this.customer = customer;
+        this.showing = showing;
+    }
+
+
+
+    public boolean ageRequirementMet() {
+        return customer.isOldEnough(showing.getMovieAgeLimit());
+    }
+
 }

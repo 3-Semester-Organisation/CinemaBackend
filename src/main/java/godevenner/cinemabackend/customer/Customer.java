@@ -23,9 +23,16 @@ public class Costumer {
     private User user;
 
     private String name;
-    private String phoneNumber;
+    private int phoneNumber;
     private String email;
     private LocalDate dateOfBirth;
+
+
+    public boolean isOldEnough(int requiredAge) {
+        LocalDate currentDate = LocalDate.now();
+        int age = Period.between(dateOfBirth, currentDate).getYears();
+        return age >= requiredAge;
+    }
 
     public Costumer(User user, String name, String phoneNumber, String email, LocalDate dateOfBirth) {
         this.user = user;

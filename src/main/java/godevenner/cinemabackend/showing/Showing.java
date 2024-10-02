@@ -40,4 +40,8 @@ public class Showing {
         this.startTime = startTime;
         this.isCancelled = isCancelled;
     }
+
+    public int getMovieAgeLimit() {
+        return movie.getAgeLimit();
+    }
 }
