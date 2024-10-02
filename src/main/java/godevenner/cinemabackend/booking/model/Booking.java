@@ -28,7 +28,7 @@ public class Booking {
 
 
     public boolean ageRequirementMet() {
-        return costumer.isOldEnough(showing.getMovieAgeLimit());
+        return customer.isOldEnough(showing.getMovieAgeLimit());
     }
 
 }
