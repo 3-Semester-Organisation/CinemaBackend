@@ -19,19 +19,8 @@ public class ShowingRestController {
     }
 
     @GetMapping("/showings")
-    public ResponseEntity<Set<ShowingDto>> getAllShowingsByMovie (@RequestBody Movie movie) {
-        Set<ShowingDto> showingSet = showingService.getAllShowingsByMovie(movie);
-
-        if (showingSet.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok().body(showingSet);
-    }
-
-    @GetMapping("/showingsbytitle")
-    public ResponseEntity<Set<ShowingDto>> getAllShowingsByTitle (@RequestParam String title) {
-        Set<ShowingDto> showingSet = showingService.getAllShowingsByTitle(title);
+    public ResponseEntity<Set<RequestShowingByMovieTitle>> getAllShowingsByMovieTitle (@RequestParam String title) {
+        Set<RequestShowingByMovieTitle> showingSet = showingService.getAllShowingsByMovieTitle(title);
 
         if (showingSet.isEmpty()) {
             return ResponseEntity.notFound().build();

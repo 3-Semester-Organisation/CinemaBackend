@@ -2,17 +2,14 @@ package godevenner.cinemabackend.showing;
 
 import org.springframework.stereotype.Component;
 
-import java.lang.annotation.Annotation;
-import java.util.Optional;
-import java.util.Set;
 import java.util.function.Function;
 
 @Component
-public class ShowingMapper implements Function<Showing, ShowingDto> {
+public class RequestShowingByMovieTitleMapper implements Function<Showing, RequestShowingByMovieTitle> {
 
     @Override
-    public ShowingDto apply(Showing showing) {
-        return new ShowingDto(
+    public RequestShowingByMovieTitle apply(Showing showing) {
+        return new RequestShowingByMovieTitle(
                 showing.getTheatre(),
                 showing.getStartTime()
         );

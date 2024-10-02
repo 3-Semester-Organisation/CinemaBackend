@@ -1,7 +1,5 @@
 package godevenner.cinemabackend.movie;
 
-import godevenner.cinemabackend.showing.Showing;
-import godevenner.cinemabackend.showing.ShowingDto;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;

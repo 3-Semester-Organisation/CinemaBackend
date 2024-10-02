@@ -1,6 +1,5 @@
 package godevenner.cinemabackend.showing;
 
-import godevenner.cinemabackend.movie.Movie;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,28 +10,21 @@ import java.util.stream.Collectors;
 public class ShowingService {
 
     private final ShowingRepository showingRepository;
-    private final ShowingMapper showingMapper;
+    private final RequestShowingByMovieTitleMapper requestShowingByMovieTitleMapper;
     private final RequestAllShowingsMapper requestAllShowingsMapper;
 
     public ShowingService(ShowingRepository showingRepository,
-                          ShowingMapper showingMapper,
+                          RequestShowingByMovieTitleMapper requestShowingByMovieTitleMapper,
                           RequestAllShowingsMapper requestAllShowingsMapper) {
         this.showingRepository = showingRepository;
-        this.showingMapper = showingMapper;
+        this.requestShowingByMovieTitleMapper = requestShowingByMovieTitleMapper;
         this.requestAllShowingsMapper = requestAllShowingsMapper;
     }
 
-    public Set<ShowingDto> getAllShowingsByMovie(Movie movie) {
-        Set<Showing> showingSet = showingRepository.getAllByMovie(movie);
+    public Set<RequestShowingByMovieTitle> getAllShowingsByMovieTitle(String movieTitle) {
+        Set<Showing> showingSet = showingRepository.getAllByMovieTitle(movieTitle);
         return showingSet.stream()
-                .map(showingMapper)
-                .collect(Collectors.toSet());
-    }
-
-    public Set<ShowingDto> getAllShowingsByTitle(String title) {
-        Set<Showing> showingSet = showingRepository.getAllByMovieTitle(title);
-        return showingSet.stream()
-                .map(showingMapper)
+                .map(requestShowingByMovieTitleMapper)
                 .collect(Collectors.toSet());
     }
 
