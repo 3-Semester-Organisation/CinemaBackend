@@ -23,4 +23,11 @@ public class TheatreLayout {
     private int seatRowNumber;
     private String seatNumber;
     private SeatType seatType;
+
+    public TheatreLayout(int seatRowNumber, String seatNumber) {
+
+        this.seatRowNumber = seatRowNumber;
+        this.seatNumber = seatNumber;
+
+    }
 }
