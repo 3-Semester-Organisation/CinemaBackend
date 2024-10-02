@@ -1,7 +1,6 @@
 package godevenner.cinemabackend.theatre;
 
-import godevenner.cinemabackend.showing.Showing;
-import godevenner.cinemabackend.theatrelayout.TheatreLayout;
+import godevenner.cinemabackend.theatrelayout.Layout;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,18 +16,17 @@ public class Theatre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(mappedBy = "theatre")
-    private Showing showing;
+//    @OneToOne(mappedBy = "theatre")
+//    private Showing showing;
 
-    @OneToOne
-    @JoinColumn(name = "theatre_layout_id")
-    private TheatreLayout theatreLayout;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Layout layout;
 
     private String name;
 
-    public Theatre(Showing showing, TheatreLayout theatreLayout, String name) {
-        this.showing = showing;
-        this.theatreLayout = theatreLayout;
+    public Theatre(Layout theatreLayout, String name) {
+//        this.showing = showing;
+        this.layout = layout;
         this.name = name;
     }
 }
