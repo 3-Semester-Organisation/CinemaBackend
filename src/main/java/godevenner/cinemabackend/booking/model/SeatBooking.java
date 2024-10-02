@@ -1,8 +1,5 @@
 package godevenner.cinemabackend.booking.model;
 
-import godevenner.cinemabackend.costumer.Costumer;
-import godevenner.cinemabackend.enums.SeatType;
-import godevenner.cinemabackend.showing.Showing;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,5 +20,5 @@ public class SeatBooking {
     private Booking booking;
 
     private int seatNumber;
-    private int rowNumber;
+    private int seatRowNumber;
 }

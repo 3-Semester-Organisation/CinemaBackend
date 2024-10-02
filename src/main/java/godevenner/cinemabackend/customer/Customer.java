@@ -1,4 +1,4 @@
-package godevenner.cinemabackend.costumer;
+package godevenner.cinemabackend.customer;
 
 import godevenner.cinemabackend.user.User;
 import jakarta.persistence.*;
@@ -13,7 +13,7 @@ import java.time.Period;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Costumer {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
