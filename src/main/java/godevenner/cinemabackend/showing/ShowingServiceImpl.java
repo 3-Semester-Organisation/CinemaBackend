@@ -3,6 +3,7 @@ package godevenner.cinemabackend.showing;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,11 +12,13 @@ public class ShowingServiceImpl implements ShowingService{
 
     private final ShowingRepository showingRepository;
     private final RequestShowingsMapper requestShowingsMapper;
+    private final PostShowingMapper postShowingMapper;
 
     public ShowingServiceImpl(ShowingRepository showingRepository,
-                              RequestShowingsMapper requestShowingsMapper) {
+                              RequestShowingsMapper requestShowingsMapper, PostShowingMapper postShowingMapper) {
         this.showingRepository = showingRepository;
         this.requestShowingsMapper = requestShowingsMapper;
+        this.postShowingMapper = postShowingMapper;
     }
 
     @Override
@@ -32,5 +35,13 @@ public class ShowingServiceImpl implements ShowingService{
         return showingList.stream()
                 .map(requestShowingsMapper)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public RequestShowings createShowing(PostShowing showing) {
+        Showing newShowing = postShowingMapper.apply(showing);
+        Showing createdShowing = showingRepository.save(newShowing);
+
+        return requestShowingsMapper.apply(createdShowing);
     }
 }
