@@ -9,7 +9,7 @@ import java.util.Set;
 
 @RestController
 @CrossOrigin
-@RequestMapping("api/v1/movies")
+@RequestMapping("/api/v1/movies")
 public class MovieController {
 
     private final MovieService movieService;
