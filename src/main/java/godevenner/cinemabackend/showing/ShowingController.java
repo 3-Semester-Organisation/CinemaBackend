@@ -3,6 +3,7 @@ package godevenner.cinemabackend.showing;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -39,4 +40,15 @@ public class ShowingController {
         return ResponseEntity.ok().body(showingList);
     }
 
+    @PostMapping("/showing")
+    public ResponseEntity<RequestShowings> createShowing(@RequestBody PostShowing showing) {
+
+        boolean doesExist = showingService.doesExist(showing);
+        if (doesExist) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        RequestShowings postedShowing = showingService.createShowing(showing);
+        return ResponseEntity.ok(postedShowing);
+    }
 }
