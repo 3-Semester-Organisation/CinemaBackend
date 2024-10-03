@@ -1,6 +1,5 @@
 package godevenner.cinemabackend.showing;
 
-import godevenner.cinemabackend.movie.Movie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,11 +9,11 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin
-public class ShowingRestController {
+public class ShowingController {
 
     private final ShowingService showingService;
 
-    public ShowingRestController(ShowingService showingService) {
+    public ShowingController(ShowingServiceImpl showingService) {
         this.showingService = showingService;
     }
 
@@ -39,4 +38,5 @@ public class ShowingRestController {
 
         return ResponseEntity.ok().body(showingList);
     }
+
 }
