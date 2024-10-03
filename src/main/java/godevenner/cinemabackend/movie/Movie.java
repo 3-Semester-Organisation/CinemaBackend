@@ -30,7 +30,10 @@ public class Movie {
     private int ageLimit;
     private boolean isActive;
     private String thumbnail;
-    private String rating;
+
+    // cool variables from omdb that could be used later
+    private String runtime;
+    private String Rated;
 
     public Movie(String title, String description, Genre genre, int ageLimit, boolean isActive, String thumbnail) {
         this.title = title;
@@ -39,14 +42,6 @@ public class Movie {
         this.ageLimit = ageLimit;
         this.isActive = isActive;
         this.thumbnail = thumbnail;
-    }
-
-    public Movie(String title, String description, Genre genre, String thumbnail, String rating) {
-        this.title = title;
-        this.description = description;
-        this.genre = genre;
-        this.thumbnail = thumbnail;
-        this.rating = rating;
     }
 
     public Movie(String title, String description, Genre genre, int ageLimit, String thumbnail) {

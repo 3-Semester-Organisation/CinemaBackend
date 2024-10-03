@@ -1,7 +1,6 @@
 package godevenner.cinemabackend.movie;
 
 import godevenner.cinemabackend.enums.Genre;
-import godevenner.cinemabackend.movie.dto.MovieDto;
 import godevenner.cinemabackend.movie.dto.PostMovie;
 import godevenner.cinemabackend.movie.dto.RequestMovie;
 import org.springframework.http.ResponseEntity;
