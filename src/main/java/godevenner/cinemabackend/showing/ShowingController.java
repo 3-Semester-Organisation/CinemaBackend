@@ -1,9 +1,10 @@
 package godevenner.cinemabackend.showing;
 
+import godevenner.cinemabackend.showing.dto.PostShowing;
+import godevenner.cinemabackend.showing.dto.RequestShowings;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 

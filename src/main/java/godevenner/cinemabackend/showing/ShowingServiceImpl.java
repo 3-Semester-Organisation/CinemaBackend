@@ -1,9 +1,12 @@
 package godevenner.cinemabackend.showing;
 
+import godevenner.cinemabackend.showing.dto.PostShowing;
+import godevenner.cinemabackend.showing.dto.RequestShowings;
+import godevenner.cinemabackend.showing.mapper.PostShowingMapper;
+import godevenner.cinemabackend.showing.mapper.RequestShowingsMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
