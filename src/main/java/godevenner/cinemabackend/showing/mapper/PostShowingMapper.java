@@ -1,6 +1,8 @@
-package godevenner.cinemabackend.showing;
+package godevenner.cinemabackend.showing.mapper;
 
 import godevenner.cinemabackend.movie.Movie;
+import godevenner.cinemabackend.showing.Showing;
+import godevenner.cinemabackend.showing.dto.PostShowing;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
