@@ -25,13 +25,15 @@ public class Movie {
     private Set<Showing> showingSet;
 
     private String title;
+    private String description;
     private Genre genre;
     private int ageLimit;
     private boolean isActive;
     private String thumbnail;
 
-    public Movie(String title, Genre genre, int ageLimit, boolean isActive, String thumbnail) {
+    public Movie(String title, String description, Genre genre, int ageLimit, boolean isActive, String thumbnail) {
         this.title = title;
+        this.description = description;
         this.genre = genre;
         this.ageLimit = ageLimit;
         this.isActive = isActive;

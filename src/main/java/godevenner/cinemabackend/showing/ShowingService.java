@@ -10,28 +10,25 @@ import java.util.stream.Collectors;
 public class ShowingService {
 
     private final ShowingRepository showingRepository;
-    private final RequestShowingByMovieTitleMapper requestShowingByMovieTitleMapper;
-    private final RequestAllShowingsMapper requestAllShowingsMapper;
+    private final RequestShowingsMapper requestShowingsMapper;
 
     public ShowingService(ShowingRepository showingRepository,
-                          RequestShowingByMovieTitleMapper requestShowingByMovieTitleMapper,
-                          RequestAllShowingsMapper requestAllShowingsMapper) {
+                          RequestShowingsMapper requestShowingsMapper) {
         this.showingRepository = showingRepository;
-        this.requestShowingByMovieTitleMapper = requestShowingByMovieTitleMapper;
-        this.requestAllShowingsMapper = requestAllShowingsMapper;
+        this.requestShowingsMapper = requestShowingsMapper;
     }
 
-    public Set<RequestShowingByMovieTitle> getAllShowingsByMovieTitle(String movieTitle) {
+    public Set<RequestShowings> getAllShowingsByMovieTitle(String movieTitle) {
         Set<Showing> showingSet = showingRepository.getAllByMovieTitle(movieTitle);
         return showingSet.stream()
-                .map(requestShowingByMovieTitleMapper)
+                .map(requestShowingsMapper)
                 .collect(Collectors.toSet());
     }
 
-    public List<RequestAllShowings> getAllShowings() {
+    public List<RequestShowings> getAllShowings() {
         List<Showing> showingList = showingRepository.findAll();
         return showingList.stream()
-                .map(requestAllShowingsMapper)
+                .map(requestShowingsMapper)
                 .collect(Collectors.toList());
     }
 }
