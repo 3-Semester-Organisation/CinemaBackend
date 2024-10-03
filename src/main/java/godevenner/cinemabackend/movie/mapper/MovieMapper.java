@@ -15,7 +15,7 @@ import java.util.function.Function;
                     movie.getId(),
                     movie.getTitle(),
                     movie.getDescription(),
-                    movie.getGenre(),
+                    movie.getGenreList(),
                     movie.getAgeLimit(),
                     movie.getThumbnail()
             );

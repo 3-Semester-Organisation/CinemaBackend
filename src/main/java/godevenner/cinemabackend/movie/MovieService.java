@@ -9,6 +9,7 @@ import godevenner.cinemabackend.movie.mapper.PostMovieMapper;
 import godevenner.cinemabackend.movie.mapper.RequestMovieMapper;
 import godevenner.cinemabackend.showing.Showing;
 import godevenner.cinemabackend.showing.dto.PostShowing;
+import godevenner.cinemabackend.util.GenreConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,7 +54,7 @@ public class MovieService {
         List<Movie> movies = getActiveMovies();
 
         return movies.stream()
-                .filter(movie -> genre == null || movie.getGenre() == genre)
+                .filter(movie -> genre == null || movie.getGenreList().stream().anyMatch(g -> g == genre))
                 .filter(movie -> maxAgeLimit == null || movie.getAgeLimit() <= maxAgeLimit)
                 .map(movieMapper)
                 .collect(Collectors.toSet());
@@ -61,6 +62,8 @@ public class MovieService {
 
     public Set<Genre> getAllGenres() {
         List<Movie> movies = getActiveMovies();
-        return movies.stream().map(movie -> movie.getGenre()).collect(Collectors.toSet());
+        return movies.stream()
+                .flatMap(movie -> movie.getGenreList().stream())
+                .collect(Collectors.toSet());
     }
 }
