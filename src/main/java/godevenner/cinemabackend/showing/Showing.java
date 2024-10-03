@@ -22,7 +22,7 @@ public class Showing {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "theatre_id")
     @JsonManagedReference
     private Theatre theatre;
