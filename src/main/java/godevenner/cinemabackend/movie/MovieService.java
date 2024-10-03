@@ -1,6 +1,14 @@
 package godevenner.cinemabackend.movie;
 
 import godevenner.cinemabackend.enums.Genre;
+import godevenner.cinemabackend.movie.dto.MovieDto;
+import godevenner.cinemabackend.movie.dto.PostMovie;
+import godevenner.cinemabackend.movie.dto.RequestMovie;
+import godevenner.cinemabackend.movie.mapper.MovieMapper;
+import godevenner.cinemabackend.movie.mapper.PostMovieMapper;
+import godevenner.cinemabackend.movie.mapper.RequestMovieMapper;
+import godevenner.cinemabackend.showing.Showing;
+import godevenner.cinemabackend.showing.dto.PostShowing;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +20,22 @@ public class MovieService {
 
     private final MovieRepository movieRepository;
     private final MovieMapper movieMapper;
+    private final PostMovieMapper postMovieMapper;
+    private final RequestMovieMapper requestMovieMapper;
 
-    public MovieService(MovieRepository movieRepository, MovieMapper movieMapper) {
+    public MovieService(MovieRepository movieRepository, MovieMapper movieMapper, PostMovieMapper postMovieMapper, RequestMovieMapper requestMovieMapper) {
         this.movieRepository = movieRepository;
         this.movieMapper = movieMapper;
+        this.postMovieMapper = postMovieMapper;
+        this.requestMovieMapper = requestMovieMapper;
+    }
+
+    public RequestMovie addMovie(PostMovie movie) {
+        Movie newMovie = postMovieMapper.apply(movie);
+        newMovie.setActive(true); //TODO skal fjernes!! Men inactive movies vises ikke under Movies-tab
+        Movie createdMovie = movieRepository.save(newMovie);
+
+        return requestMovieMapper.apply(createdMovie);
     }
 
     private List<Movie> getActiveMovies() {

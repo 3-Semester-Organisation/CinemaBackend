@@ -1,5 +1,7 @@
-package godevenner.cinemabackend.movie;
+package godevenner.cinemabackend.movie.mapper;
 
+import godevenner.cinemabackend.movie.Movie;
+import godevenner.cinemabackend.movie.dto.MovieDto;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
