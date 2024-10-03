@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public record PostShowing(
         Theatre theatre,
-        MovieDto movie,
+        long movieId,
         LocalDateTime scheduledStart
 ) {
 }
