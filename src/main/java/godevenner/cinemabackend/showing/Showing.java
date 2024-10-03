@@ -53,6 +53,7 @@ public class Showing {
         this.isCancelled = false;
     }
 
+    //Hvorfor ligger den metode herinde?
     public int getMovieAgeLimit() {
         return movie.getAgeLimit();
     }
