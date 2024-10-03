@@ -7,4 +7,5 @@ import java.util.Set;
 
 public interface ShowingRepository extends JpaRepository<Showing, Long> {
     Set<Showing> getAllByMovieTitle(String title);
+    boolean existsByTheatreAndMovieAndStartTimeAndCancelled(Showing showing);
 }
