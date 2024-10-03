@@ -9,6 +9,6 @@ public record MovieDto(long id,
                        String title,
                        String description,
                        Genre genre,
-                       int AgeLimit,
+                       int ageLimit,
                        String thumbnail) {
 }
