@@ -1,4 +1,5 @@
 package godevenner.cinemabackend.movie;
+
 import godevenner.cinemabackend.enums.Genre;
 import org.springframework.stereotype.Service;
 
@@ -17,19 +18,29 @@ public class MovieService {
         this.movieMapper = movieMapper;
     }
 
-    public Set<MovieDto> getAllMovies() {
+    private List<Movie> getActiveMovies() {
         List<Movie> movies = movieRepository.findAll();
+        movies.removeIf(movie -> !movie.isActive());
+        return movies;
+    }
+
+    public Set<MovieDto> getAllMovies() {
+        List<Movie> movies = getActiveMovies();
         return movies.stream().map(movieMapper).collect(Collectors.toSet());
     }
 
-    public Set<MovieDto> getFilteredMovies(Genre genre, Integer maxAgeLimit, Boolean isActive) {
-        List<Movie> movies = movieRepository.findAll();
+    public Set<MovieDto> getFilteredMovies(Genre genre, Integer maxAgeLimit) {
+        List<Movie> movies = getActiveMovies();
 
         return movies.stream()
                 .filter(movie -> genre == null || movie.getGenre() == genre)
                 .filter(movie -> maxAgeLimit == null || movie.getAgeLimit() <= maxAgeLimit)
-                .filter(movie -> isActive == null || movie.isActive() == isActive)
                 .map(movieMapper)
                 .collect(Collectors.toSet());
+    }
+
+    public Set<Genre> getAllGenres() {
+        List<Movie> movies = getActiveMovies();
+        return movies.stream().map(movie -> movie.getGenre()).collect(Collectors.toSet());
     }
 }

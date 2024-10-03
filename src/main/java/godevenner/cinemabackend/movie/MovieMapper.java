@@ -10,11 +10,11 @@ import java.util.function.Function;
         @Override
         public MovieDto apply(Movie movie) {
             return new MovieDto(
+                    movie.getId(),
                     movie.getTitle(),
+                    movie.getDescription(),
                     movie.getGenre(),
                     movie.getAgeLimit(),
-                    movie.getShowingSet(),
-                    movie.isActive(),
                     movie.getThumbnail()
             );
         }
