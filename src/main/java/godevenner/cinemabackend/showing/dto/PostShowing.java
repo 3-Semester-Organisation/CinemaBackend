@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 public record PostShowing(
         Theatre theatre,
         long movieId,
-        LocalDateTime scheduledStart,
-        boolean isCanceled
+        LocalDateTime scheduledStart
 ) {
 }
