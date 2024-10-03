@@ -39,4 +39,9 @@ public class Movie {
         this.isActive = isActive;
         this.thumbnail = thumbnail;
     }
+
+    //used for posting a showing.
+    public Movie(long id) {
+        this.id = id;
+    }
 }

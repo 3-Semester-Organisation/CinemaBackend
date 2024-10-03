@@ -1,4 +1,4 @@
-package godevenner.cinemabackend.showing;
+package godevenner.cinemabackend.showing.dto;
 
 import godevenner.cinemabackend.movie.Movie;
 import godevenner.cinemabackend.theatre.Theatre;
