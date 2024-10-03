@@ -32,6 +32,7 @@ public class MovieService {
 
     public RequestMovie addMovie(PostMovie movie) {
         Movie newMovie = postMovieMapper.apply(movie);
+        newMovie.setActive(true); //TODO skal fjernes!! Men inactive movies vises ikke under Movies-tab
         Movie createdMovie = movieRepository.save(newMovie);
 
         return requestMovieMapper.apply(createdMovie);
