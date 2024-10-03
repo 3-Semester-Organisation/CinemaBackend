@@ -1,6 +1,5 @@
-package godevenner.cinemabackend.showing;
+package godevenner.cinemabackend.showing.dto;
 
-import godevenner.cinemabackend.movie.MovieDto;
 import godevenner.cinemabackend.theatre.Theatre;
 
 import java.time.LocalDateTime;
