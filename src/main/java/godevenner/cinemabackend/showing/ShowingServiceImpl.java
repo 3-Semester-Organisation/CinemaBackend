@@ -53,6 +53,6 @@ public class ShowingServiceImpl implements ShowingService{
         Showing needsCheck = postShowingMapper.apply(showing);
 
         return showingRepository.existsByTheatreAndMovieAndStartTime(
-                needsCheck.getTheatre(),needsCheck.getMovie(),needsCheck.getStartTime());
+                needsCheck.getTheatre(), needsCheck.getMovie(), needsCheck.getStartTime());
     }
 }
