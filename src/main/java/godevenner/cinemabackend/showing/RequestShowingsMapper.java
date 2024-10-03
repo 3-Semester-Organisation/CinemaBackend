@@ -5,12 +5,14 @@ import org.springframework.stereotype.Component;
 import java.util.function.Function;
 
 @Component
-public class RequestShowingByMovieTitleMapper implements Function<Showing, RequestShowingByMovieTitle> {
+public class RequestShowingsMapper implements Function<Showing, RequestShowings> {
 
     @Override
-    public RequestShowingByMovieTitle apply(Showing showing) {
-        return new RequestShowingByMovieTitle(
+    public RequestShowings apply(Showing showing) {
+        return new RequestShowings(
+                showing.getId(),
                 showing.getTheatre(),
+                showing.getMovie(),
                 showing.getStartTime()
         );
     }
