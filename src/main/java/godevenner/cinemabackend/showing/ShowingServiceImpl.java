@@ -44,4 +44,11 @@ public class ShowingServiceImpl implements ShowingService{
 
         return requestShowingsMapper.apply(createdShowing);
     }
+
+    @Override
+    public boolean doesExist(PostShowing showing) {
+        Showing needsCheck = postShowingMapper.apply(showing);
+
+        return showingRepository.existsByTheatreAndMovieAndStartTimeAndCancelled(needsCheck);
+    }
 }
