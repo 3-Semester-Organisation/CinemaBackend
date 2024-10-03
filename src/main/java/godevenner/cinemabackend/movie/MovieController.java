@@ -9,6 +9,7 @@ import java.util.Set;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/movies")
 public class MovieController {
 
     private final MovieService movieService;
@@ -17,15 +18,21 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/movies")
+    @GetMapping("")
     public ResponseEntity<Set<MovieDto>> getMovies(
             @RequestParam(required = false) Genre genre,
-            @RequestParam(required = false) Integer age,
-            @RequestParam(required = false) Boolean active) {
-        Set<MovieDto> movies = movieService.getFilteredMovies(genre, age, active);
+            @RequestParam(required = false) Integer age) {
+        Set<MovieDto> movies = movieService.getFilteredMovies(genre, age);
 
         if (movies.isEmpty()) return ResponseEntity.noContent().build();
         else return ResponseEntity.ok(movies);
+    }
+
+    @GetMapping("/genres")
+    public ResponseEntity<Set<Genre>> getGenres() {
+        Set<Genre> genres = movieService.getAllGenres();
+        if (genres.isEmpty()) return ResponseEntity.noContent().build();
+        else return ResponseEntity.ok(genres);
     }
 
 }
