@@ -8,4 +8,6 @@ public interface ShowingService {
     Set<RequestShowings> getAllShowingsByMovieTitle(String movieTitle);
 
     RequestShowings createShowing(PostShowing showing);
+
+    boolean doesExist(PostShowing showing);
 }
