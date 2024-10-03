@@ -1,6 +1,9 @@
 package godevenner.cinemabackend.movie;
 
 import godevenner.cinemabackend.enums.Genre;
+import godevenner.cinemabackend.movie.dto.MovieDto;
+import godevenner.cinemabackend.movie.dto.PostMovie;
+import godevenner.cinemabackend.movie.dto.RequestMovie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +36,13 @@ public class MovieController {
         Set<Genre> genres = movieService.getAllGenres();
         if (genres.isEmpty()) return ResponseEntity.noContent().build();
         else return ResponseEntity.ok(genres);
+    }
+
+    @PostMapping("/addmovie")
+    public ResponseEntity<RequestMovie> addMovieFromOmdb(@RequestBody PostMovie movie) {
+        movieService.addMovie(movie);
+        RequestMovie postedMovie = movieService.addMovie(movie);
+        return ResponseEntity.ok(postedMovie);
     }
 
 }

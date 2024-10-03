@@ -1,4 +1,4 @@
-package godevenner.cinemabackend.movie;
+package godevenner.cinemabackend.movie.dto;
 
 import godevenner.cinemabackend.enums.Genre;
 

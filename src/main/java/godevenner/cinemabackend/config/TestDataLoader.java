@@ -88,7 +88,7 @@ public class TestDataLoader implements CommandLineRunner {
                                 new TheatreLayout(10, "a3"),
                                 "Sal 1"
                         ),
-                        new Movie("Alien", "scary aliens", Genre.HORROR, 15, true, "imgur.com/alienposter"),
+                        new Movie("Alien", "scary aliens", Genre.HORROR, 15, true, "https://m.media-amazon.com/images/M/MV5BOGQzZTBjMjQtOTVmMS00NGE5LWEyYmMtOGQ1ZGZjNmRkYjFhXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX300.jpg"),
                         LocalDateTime.now().plusHours(14),
                         false
                 )
