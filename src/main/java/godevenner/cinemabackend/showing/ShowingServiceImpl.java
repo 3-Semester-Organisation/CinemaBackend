@@ -10,32 +10,27 @@ import java.util.stream.Collectors;
 public class ShowingServiceImpl implements ShowingService{
 
     private final ShowingRepository showingRepository;
-    private final ShowingService showingService;
-    private final RequestShowingByMovieTitleMapper requestShowingByMovieTitleMapper;
-    private final RequestAllShowingsMapper requestAllShowingsMapper;
+    private final RequestShowingsMapper requestShowingsMapper;
 
-    public ShowingServiceImpl(ShowingRepository showingRepository, ShowingService showingService,
-                              RequestShowingByMovieTitleMapper requestShowingByMovieTitleMapper,
-                              RequestAllShowingsMapper requestAllShowingsMapper) {
+    public ShowingServiceImpl(ShowingRepository showingRepository,
+                              RequestShowingsMapper requestShowingsMapper) {
         this.showingRepository = showingRepository;
-        this.showingService = showingService;
-        this.requestShowingByMovieTitleMapper = requestShowingByMovieTitleMapper;
-        this.requestAllShowingsMapper = requestAllShowingsMapper;
+        this.requestShowingsMapper = requestShowingsMapper;
     }
 
     @Override
-    public Set<RequestShowingByMovieTitle> getAllShowingsByMovieTitle(String movieTitle) {
+    public Set<RequestShowings> getAllShowingsByMovieTitle(String movieTitle) {
         Set<Showing> showingSet = showingRepository.getAllByMovieTitle(movieTitle);
         return showingSet.stream()
-                .map(requestShowingByMovieTitleMapper)
+                .map(requestShowingsMapper)
                 .collect(Collectors.toSet());
     }
 
     @Override
-    public List<RequestAllShowings> getAllShowings() {
+    public List<RequestShowings> getAllShowings() {
         List<Showing> showingList = showingRepository.findAll();
         return showingList.stream()
-                .map(requestAllShowingsMapper)
+                .map(requestShowingsMapper)
                 .collect(Collectors.toList());
     }
 }
