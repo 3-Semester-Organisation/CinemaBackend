@@ -1,7 +1,6 @@
 package godevenner.cinemabackend.movie;
 
 import godevenner.cinemabackend.enums.Genre;
-import godevenner.cinemabackend.movie.dto.MovieDto;
 import godevenner.cinemabackend.movie.dto.PostMovie;
 import godevenner.cinemabackend.movie.dto.RequestMovie;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +21,10 @@ public class MovieController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Set<MovieDto>> getMovies(
+    public ResponseEntity<Set<RequestMovie>> getMovies(
             @RequestParam(required = false) Genre genre,
             @RequestParam(required = false) Integer age) {
-        Set<MovieDto> movies = movieService.getFilteredMovies(genre, age);
+        Set<RequestMovie> movies = movieService.getFilteredMovies(genre, age);
 
         if (movies.isEmpty()) return ResponseEntity.noContent().build();
         else return ResponseEntity.ok(movies);
