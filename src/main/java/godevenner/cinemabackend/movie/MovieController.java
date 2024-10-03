@@ -40,7 +40,6 @@ public class MovieController {
 
     @PostMapping("/addmovie")
     public ResponseEntity<RequestMovie> addMovieFromOmdb(@RequestBody PostMovie movie) {
-        movieService.addMovie(movie);
         RequestMovie postedMovie = movieService.addMovie(movie);
         return ResponseEntity.ok(postedMovie);
     }
