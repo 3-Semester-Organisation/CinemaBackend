@@ -17,8 +17,7 @@ public class PostShowingMapper implements Function<PostShowing, Showing> {
 
                 new Movie(postShowing.movieId()),
 
-                postShowing.scheduledStart(),
-                postShowing.isCanceled()
+                postShowing.scheduledStart()
         );
     }
 }
