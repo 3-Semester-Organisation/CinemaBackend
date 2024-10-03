@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 
 @RequiredArgsConstructor
 @Component
@@ -82,14 +83,15 @@ public class TestDataLoader implements CommandLineRunner {
     }
 
     private void createShowings() {
+        LocalDateTime specificDateTime = LocalDateTime.of(2023, Month.APRIL, 15, 10, 30, 0);
         showingRepository.save(
                 new Showing(
                         new Theatre(
                                 new TheatreLayout(10, "a3"),
                                 "Sal 1"
                         ),
-                        new Movie("Alien", "scary aliens", Genre.HORROR, 15, true, "https://m.media-amazon.com/images/M/MV5BOGQzZTBjMjQtOTVmMS00NGE5LWEyYmMtOGQ1ZGZjNmRkYjFhXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX300.jpg"),
-                        LocalDateTime.now().plusHours(14),
+                        new Movie("Alien", "scary aliens", Genre.HORROR, 15, true, "imgur.com/alienposter"),
+                        specificDateTime,
                         false
                 )
         );

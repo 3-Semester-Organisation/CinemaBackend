@@ -22,7 +22,7 @@ public class Showing {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "theatre_id")
     @JsonManagedReference
     private Theatre theatre;
@@ -45,6 +45,15 @@ public class Showing {
         this.isCancelled = isCancelled;
     }
 
+    //used when posting a new showing to db
+    public Showing(Theatre theatre, Movie movie, LocalDateTime startTime) {
+        this.theatre = theatre;
+        this.movie = movie;
+        this.startTime = startTime;
+        this.isCancelled = false;
+    }
+
+    //Hvorfor ligger den metode herinde?
     public int getMovieAgeLimit() {
         return movie.getAgeLimit();
     }
