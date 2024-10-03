@@ -49,6 +49,14 @@ public class Movie {
         this.rating = rating;
     }
 
+    public Movie(String title, String description, Genre genre, int ageLimit, String thumbnail) {
+        this.title = title;
+        this.description = description;
+        this.genre = genre;
+        this.ageLimit = ageLimit;
+        this.thumbnail = thumbnail;
+    }
+
     //used for posting a showing.
     public Movie(long id) {
         this.id = id;

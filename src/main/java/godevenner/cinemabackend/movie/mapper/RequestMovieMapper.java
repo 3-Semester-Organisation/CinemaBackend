@@ -12,11 +12,12 @@ public class RequestMovieMapper implements Function<Movie, RequestMovie> {
     @Override
     public RequestMovie apply(Movie movie) {
         return new RequestMovie(
+                movie.getId(),
                 movie.getTitle(),
                 movie.getDescription(),
                 movie.getGenre(),
-                movie.getThumbnail(),
-                movie.getRating()
+                movie.getAgeLimit(),
+                movie.getThumbnail()
         );
     }
 

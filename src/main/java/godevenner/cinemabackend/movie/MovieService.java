@@ -44,23 +44,27 @@ public class MovieService {
         return movies;
     }
 
-    public Set<MovieDto> getAllMovies() {
+    public Set<RequestMovie> getAllMovies() {
         List<Movie> movies = getActiveMovies();
-        return movies.stream().map(movieMapper).collect(Collectors.toSet());
+        return movies.stream()
+                .map(requestMovieMapper)
+                .collect(Collectors.toSet());
     }
 
-    public Set<MovieDto> getFilteredMovies(Genre genre, Integer maxAgeLimit) {
+    public Set<RequestMovie> getFilteredMovies(Genre genre, Integer maxAgeLimit) {
         List<Movie> movies = getActiveMovies();
 
         return movies.stream()
                 .filter(movie -> genre == null || movie.getGenre() == genre)
                 .filter(movie -> maxAgeLimit == null || movie.getAgeLimit() <= maxAgeLimit)
-                .map(movieMapper)
+                .map(requestMovieMapper)
                 .collect(Collectors.toSet());
     }
 
     public Set<Genre> getAllGenres() {
         List<Movie> movies = getActiveMovies();
-        return movies.stream().map(movie -> movie.getGenre()).collect(Collectors.toSet());
+        return movies.stream()
+                .map(movie -> movie.getGenre())
+                .collect(Collectors.toSet());
     }
 }

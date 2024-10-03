@@ -15,8 +15,8 @@ public class PostMovieMapper implements Function<PostMovie, Movie> {
                 movie.title(),
                 movie.description(),
                 movie.genre(),
-                movie.thumbnail(),
-                movie.rating()
+                movie.ageLimit(),
+                movie.thumbnail()
         );
     }
 }

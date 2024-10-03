@@ -8,7 +8,7 @@ public record PostMovie(
         String title,
         String description,
         Genre genre,
-        String thumbnail,
-        String rating
+        int ageLimit,
+        String thumbnail
 ) {
 }
