@@ -45,6 +45,14 @@ public class Showing {
         this.isCancelled = isCancelled;
     }
 
+    //used when posting a new showing to db
+    public Showing(Theatre theatre, Movie movie, LocalDateTime startTime) {
+        this.theatre = theatre;
+        this.movie = movie;
+        this.startTime = startTime;
+        this.isCancelled = false;
+    }
+
     public int getMovieAgeLimit() {
         return movie.getAgeLimit();
     }
