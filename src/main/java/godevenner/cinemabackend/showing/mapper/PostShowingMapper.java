@@ -1,23 +1,39 @@
 package godevenner.cinemabackend.showing.mapper;
 
 import godevenner.cinemabackend.movie.Movie;
+import godevenner.cinemabackend.movie.MovieRepository;
 import godevenner.cinemabackend.showing.Showing;
 import godevenner.cinemabackend.showing.dto.PostShowing;
+import godevenner.cinemabackend.theatre.Theatre;
+import godevenner.cinemabackend.theatre.TheatreRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 @Component
 public class PostShowingMapper implements Function<PostShowing, Showing> {
 
+    private final MovieRepository movieRepository;
+    private final TheatreRepository theatreRepository;
+    public PostShowingMapper(MovieRepository movieRepository, TheatreRepository theatreRepository) {
+        this.movieRepository = movieRepository;
+        this.theatreRepository = theatreRepository;
+    }
+
     @Override
     public Showing apply(PostShowing postShowing) {
+        //solves the detached entity problem
+        Optional<Movie> optionalMovie = movieRepository.findById(postShowing.movieId());
+        Movie movie = optionalMovie.get();
+
+        Optional<Theatre> optionalTheatre = theatreRepository.findById(postShowing.theatre().getId());
+        Theatre theatre = optionalTheatre.get();
+
         return new Showing(
-                postShowing.theatre(),
-
-                new Movie(postShowing.movieId()),
-
-                postShowing.scheduledStart()
+                theatre,
+                movie,
+                postShowing.startTime()
         );
     }
 }
