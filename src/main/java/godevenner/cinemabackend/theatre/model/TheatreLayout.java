@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.theatre.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class TheatreLayout {
     private long id;
 
     @ManyToOne
+    @JsonBackReference
     Theatre theatre;
 
     private int theatreRow;
