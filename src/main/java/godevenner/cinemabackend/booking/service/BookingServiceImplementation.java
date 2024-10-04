@@ -108,6 +108,11 @@ public class BookingServiceImplementation implements BookingService {
     }
 
     @Override
+    public List<SeatBooking> getAllSeatBookingsByShowingId(long id){
+        return seatBookingRepository.findAllByBookingShowingId(id);
+    }
+
+    @Override
     public Optional<SeatBooking> getSeatBooking(long id){
         return seatBookingRepository.findById((int) id);
     }
