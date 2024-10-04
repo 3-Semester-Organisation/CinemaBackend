@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface ShowingService {
     List<RequestShowings> getAllShowings();
-    Set<RequestShowings> getAllShowingsByMovieTitle(String movieTitle);
+    Set<RequestShowings> getAllShowingsByMovieId(long id);
 
     RequestShowings createShowing(PostShowing showing);
 

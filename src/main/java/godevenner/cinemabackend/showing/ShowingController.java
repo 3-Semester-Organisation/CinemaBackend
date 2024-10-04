@@ -20,8 +20,8 @@ public class ShowingController {
     }
 
     @GetMapping("/showings")
-    public ResponseEntity<Set<RequestShowings>> getAllShowingsByMovieTitle (@RequestParam String title) {
-        Set<RequestShowings> showingSet = showingService.getAllShowingsByMovieTitle(title);
+    public ResponseEntity<Set<RequestShowings>> getAllShowingsByMovieId (@RequestParam long movieId) {
+        Set<RequestShowings> showingSet = showingService.getAllShowingsByMovieId(movieId);
 
         if (showingSet.isEmpty()) {
             return ResponseEntity.notFound().build();
