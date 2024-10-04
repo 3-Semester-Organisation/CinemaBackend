@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/showing")
 @CrossOrigin
 public class ShowingController {
 
@@ -19,7 +19,7 @@ public class ShowingController {
         this.showingService = showingService;
     }
 
-    @GetMapping("/showings")
+    @GetMapping("s")
     public ResponseEntity<Set<RequestShowings>> getAllShowingsByMovieTitle (@RequestParam String title) {
         Set<RequestShowings> showingSet = showingService.getAllShowingsByMovieTitle(title);
 
@@ -30,7 +30,7 @@ public class ShowingController {
         return ResponseEntity.ok().body(showingSet);
     }
 
-    @GetMapping("/allshowings")
+    @GetMapping("s/all")
     public ResponseEntity<List<RequestShowings>> getAllShowings() {
         List<RequestShowings> showingList = showingService.getAllShowings();
 
@@ -41,7 +41,7 @@ public class ShowingController {
         return ResponseEntity.ok().body(showingList);
     }
 
-    @PostMapping("/showing")
+    @PostMapping("")
     public ResponseEntity<RequestShowings> createShowing(@RequestBody PostShowing showing) {
 
         boolean doesExist = showingService.doesExist(showing);
