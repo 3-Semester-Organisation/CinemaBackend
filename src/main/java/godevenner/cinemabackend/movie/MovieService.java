@@ -1,10 +1,8 @@
 package godevenner.cinemabackend.movie;
 
 import godevenner.cinemabackend.enums.Genre;
-import godevenner.cinemabackend.movie.dto.MovieDto;
 import godevenner.cinemabackend.movie.dto.PostMovie;
 import godevenner.cinemabackend.movie.dto.RequestMovie;
-import godevenner.cinemabackend.movie.mapper.MovieMapper;
 import godevenner.cinemabackend.movie.mapper.PostMovieMapper;
 import godevenner.cinemabackend.movie.mapper.RequestMovieMapper;
 import godevenner.cinemabackend.showing.Showing;
@@ -20,13 +18,11 @@ import java.util.stream.Collectors;
 public class MovieService {
 
     private final MovieRepository movieRepository;
-    private final MovieMapper movieMapper;
     private final PostMovieMapper postMovieMapper;
     private final RequestMovieMapper requestMovieMapper;
 
-    public MovieService(MovieRepository movieRepository, MovieMapper movieMapper, PostMovieMapper postMovieMapper, RequestMovieMapper requestMovieMapper) {
+    public MovieService(MovieRepository movieRepository, PostMovieMapper postMovieMapper, RequestMovieMapper requestMovieMapper) {
         this.movieRepository = movieRepository;
-        this.movieMapper = movieMapper;
         this.postMovieMapper = postMovieMapper;
         this.requestMovieMapper = requestMovieMapper;
     }
@@ -45,18 +41,21 @@ public class MovieService {
         return movies;
     }
 
-    public Set<MovieDto> getAllMovies() {
+    // not used??
+    public Set<RequestMovie> getAllMovies() {
         List<Movie> movies = getActiveMovies();
-        return movies.stream().map(movieMapper).collect(Collectors.toSet());
+        return movies.stream()
+                .map(requestMovieMapper)
+                .collect(Collectors.toSet());
     }
 
-    public Set<MovieDto> getFilteredMovies(Genre genre, Integer maxAgeLimit) {
+    public Set<RequestMovie> getFilteredMovies(Genre genre, Integer maxAgeLimit) {
         List<Movie> movies = getActiveMovies();
 
         return movies.stream()
                 .filter(movie -> genre == null || movie.getGenreList().stream().anyMatch(g -> g == genre))
                 .filter(movie -> maxAgeLimit == null || movie.getAgeLimit() <= maxAgeLimit)
-                .map(movieMapper)
+                .map(requestMovieMapper)
                 .collect(Collectors.toSet());
     }
 

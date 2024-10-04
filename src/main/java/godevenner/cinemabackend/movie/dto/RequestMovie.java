@@ -5,10 +5,11 @@ import godevenner.cinemabackend.enums.Genre;
 import java.util.List;
 
 public record RequestMovie(
+        long id,
         String title,
         String description,
         List<Genre> genre,
-        String thumbnail,
-        String rating
+        int ageLimit,
+        String thumbnail
 ) {
 }

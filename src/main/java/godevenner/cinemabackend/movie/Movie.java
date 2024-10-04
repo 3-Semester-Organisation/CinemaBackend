@@ -34,7 +34,10 @@ public class Movie {
     private int ageLimit;
     private boolean isActive;
     private String thumbnail;
-    private String rating;
+
+    // cool variables from omdb that could be used later
+    private String runtime;
+    private String Rated;
 
     public Movie(String title, String description, List<Genre> genreList, int ageLimit, boolean isActive, String thumbnail) {
         this.title = title;
