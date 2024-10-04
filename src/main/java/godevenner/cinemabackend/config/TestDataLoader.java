@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,17 @@ public class TestDataLoader implements CommandLineRunner {
     private final BookingRepository bookingRepository;
     private final SeatBookingRepository seatBookingRepository;
     private final TheatreRepository theatreRepository;
+
+
+    private List<TheatreSeat> createSeatsByRowsAndSeasts(int rows, int seats) {
+        List<TheatreSeat> theatreSeats = new ArrayList<>();
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= seats; j++) {
+                theatreSeats.add(new TheatreSeat(i,j,SeatType.STANDARD));
+            }
+        }
+        return theatreSeats;
+    }
 
     private void createCostumers() {
         customerRepository.save(
@@ -437,6 +449,7 @@ public class TestDataLoader implements CommandLineRunner {
                     new TheatreLayout(0,7),
                     new TheatreLayout(5,0)
             ));
+            theatre.addSeat(createSeatsByRowsAndSeasts(10,10));
         }
 
     }
