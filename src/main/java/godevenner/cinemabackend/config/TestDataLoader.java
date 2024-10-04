@@ -434,8 +434,9 @@ public class TestDataLoader implements CommandLineRunner {
             ));
             theatre.addTheatreLayout(List.of(
                     new TheatreLayout(0,3),
-                    new TheatreLayout(0,13))
-            );
+                    new TheatreLayout(0,7),
+                    new TheatreLayout(5,0)
+            ));
         }
 
     }
