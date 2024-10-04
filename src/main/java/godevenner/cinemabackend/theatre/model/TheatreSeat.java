@@ -1,6 +1,7 @@
 package godevenner.cinemabackend.theatre.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import godevenner.cinemabackend.theatre.SeatType;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class TheatreSeat {
     private long id;
 
     @ManyToOne
+    @JsonBackReference
     private Theatre theatre;
 
     private int theatreSeatNumber;
