@@ -11,7 +11,6 @@ import godevenner.cinemabackend.movie.Movie;
 import godevenner.cinemabackend.showing.Showing;
 import godevenner.cinemabackend.showing.ShowingRepository;
 import godevenner.cinemabackend.theatre.Theatre;
-import godevenner.cinemabackend.theatre.TheatreRepository;
 import godevenner.cinemabackend.theatrelayout.TheatreLayout;
 import godevenner.cinemabackend.user.User;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,6 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Component
