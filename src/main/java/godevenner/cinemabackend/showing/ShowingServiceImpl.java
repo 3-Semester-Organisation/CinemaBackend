@@ -25,8 +25,8 @@ public class ShowingServiceImpl implements ShowingService{
     }
 
     @Override
-    public Set<RequestShowings> getAllShowingsByMovieTitle(String movieTitle) {
-        Set<Showing> showingSet = showingRepository.getAllByMovieTitle(movieTitle);
+    public Set<RequestShowings> getAllShowingsByMovieId(long movieId) {
+        Set<Showing> showingSet = showingRepository.getAllByMovieId(movieId);
         return showingSet.stream()
                 .map(requestShowingsMapper)
                 .collect(Collectors.toSet());

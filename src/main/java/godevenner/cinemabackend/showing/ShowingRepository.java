@@ -8,6 +8,6 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public interface ShowingRepository extends JpaRepository<Showing, Long> {
-    Set<Showing> getAllByMovieTitle(String title);
+    Set<Showing> getAllByMovieId(long id);
     boolean existsByTheatreAndStartTime(Theatre theatre, LocalDateTime startTime);
 }
