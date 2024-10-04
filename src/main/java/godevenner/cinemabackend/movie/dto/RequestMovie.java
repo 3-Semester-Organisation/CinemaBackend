@@ -8,7 +8,7 @@ public record RequestMovie(
         long id,
         String title,
         String description,
-        List<Genre> genre,
+        List<Genre> genreList,
         int ageLimit,
         String thumbnail
 ) {
