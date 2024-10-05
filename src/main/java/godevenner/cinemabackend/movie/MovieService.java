@@ -7,8 +7,6 @@ import godevenner.cinemabackend.movie.dto.RequestMovie;
 import godevenner.cinemabackend.movie.mapper.MovieMapper;
 import godevenner.cinemabackend.movie.mapper.PostMovieMapper;
 import godevenner.cinemabackend.movie.mapper.RequestMovieMapper;
-import godevenner.cinemabackend.showing.Showing;
-import godevenner.cinemabackend.showing.dto.PostShowing;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
