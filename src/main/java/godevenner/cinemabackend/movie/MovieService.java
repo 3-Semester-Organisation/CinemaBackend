@@ -41,7 +41,7 @@ public class MovieService {
         return movies;
     }
 
-    // not used??
+    // not used?? //now in use 05-10-2024
     public Set<RequestMovie> getAllMovies() {
         List<Movie> movies = getActiveMovies();
         return movies.stream()
