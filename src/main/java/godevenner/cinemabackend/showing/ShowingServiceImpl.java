@@ -1,7 +1,7 @@
 package godevenner.cinemabackend.showing;
 
 import godevenner.cinemabackend.showing.dto.PostShowing;
-import godevenner.cinemabackend.showing.dto.RequestShowings;
+import godevenner.cinemabackend.showing.dto.RequestShowing;
 import godevenner.cinemabackend.showing.mapper.PostShowingMapper;
 import godevenner.cinemabackend.showing.mapper.RequestShowingsMapper;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class ShowingServiceImpl implements ShowingService{
     }
 
     @Override
-    public Set<RequestShowings> getAllShowingsByMovieId(long movieId) {
+    public Set<RequestShowing> getAllShowingsByMovieId(long movieId) {
         Set<Showing> showingSet = showingRepository.getAllByMovieId(movieId);
         return showingSet.stream()
                 .map(requestShowingsMapper)
@@ -33,7 +33,7 @@ public class ShowingServiceImpl implements ShowingService{
     }
 
     @Override
-    public List<RequestShowings> getAllShowings() {
+    public List<RequestShowing> getAllShowings() {
         List<Showing> showingList = showingRepository.findAll();
         return showingList.stream()
                 .map(requestShowingsMapper)
@@ -41,7 +41,7 @@ public class ShowingServiceImpl implements ShowingService{
     }
 
     @Override
-    public RequestShowings createShowing(PostShowing showing) {
+    public RequestShowing createShowing(PostShowing showing) {
         Showing newShowing = postShowingMapper.apply(showing);
         Showing createdShowing = showingRepository.save(newShowing);
 

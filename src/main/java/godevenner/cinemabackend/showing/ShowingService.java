@@ -1,16 +1,16 @@
 package godevenner.cinemabackend.showing;
 
 import godevenner.cinemabackend.showing.dto.PostShowing;
-import godevenner.cinemabackend.showing.dto.RequestShowings;
+import godevenner.cinemabackend.showing.dto.RequestShowing;
 
 import java.util.List;
 import java.util.Set;
 
 public interface ShowingService {
-    List<RequestShowings> getAllShowings();
-    Set<RequestShowings> getAllShowingsByMovieId(long id);
+    List<RequestShowing> getAllShowings();
+    Set<RequestShowing> getAllShowingsByMovieId(long id);
 
-    RequestShowings createShowing(PostShowing showing);
+    RequestShowing createShowing(PostShowing showing);
 
     boolean doesExist(PostShowing showing);
 }
