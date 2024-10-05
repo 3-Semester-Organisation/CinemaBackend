@@ -1,4 +1,4 @@
-package godevenner.cinemabackend.showing;
+package godevenner.cinemabackend.showing.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import godevenner.cinemabackend.booking.model.Booking;
