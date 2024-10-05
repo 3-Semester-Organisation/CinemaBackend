@@ -33,7 +33,7 @@ public class MovieController {
     }
 
     @GetMapping
-    public ResponseEntity<Set<RequestMovie>> getAllMovies() {
+    public ResponseEntity<Set<RequestMovie>> getAllActiveMovies() {
 
         Set<RequestMovie> movies = movieService.getAllMovies();
         if (movies.isEmpty()) {

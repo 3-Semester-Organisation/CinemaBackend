@@ -35,13 +35,14 @@ public class MovieService {
         return requestMovieMapper.apply(createdMovie);
     }
 
+    //maybe this method should be public
     private List<Movie> getActiveMovies() {
         List<Movie> movies = movieRepository.findAll();
         movies.removeIf(movie -> !movie.isActive());
         return movies;
     }
 
-    // not used?? //now in use 05-10-2024
+    // not used?? //now in use 05-10-2024 //and this method should be actually getting all movies (also none active for admins and what not)?
     public Set<RequestMovie> getAllMovies() {
         List<Movie> movies = getActiveMovies();
         return movies.stream()
