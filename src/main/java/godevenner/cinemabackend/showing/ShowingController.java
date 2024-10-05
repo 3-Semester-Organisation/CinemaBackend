@@ -19,6 +19,20 @@ public class ShowingController {
         this.showingService = showingService;
     }
 
+
+
+    @GetMapping("/showing")
+    public ResponseEntity<RequestShowing> getLatestShowingByTheatreId(@RequestParam long theatreId) {
+        RequestShowing latestShowing = showingService.getLatestShowingByTheatreId(theatreId);
+
+        if (latestShowing == null) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(latestShowing);
+    }
+
+
     @GetMapping("/showings")
     public ResponseEntity<Set<RequestShowing>> getAllShowingsByMovieId (@RequestParam long movieId) {
         Set<RequestShowing> showingSet = showingService.getAllShowingsByMovieId(movieId);
@@ -30,6 +44,7 @@ public class ShowingController {
         return ResponseEntity.ok().body(showingSet);
     }
 
+
     @GetMapping("/showings/all")
     public ResponseEntity<List<RequestShowing>> getAllShowings() {
         List<RequestShowing> showingList = showingService.getAllShowings();
@@ -40,6 +55,11 @@ public class ShowingController {
 
         return ResponseEntity.ok().body(showingList);
     }
+
+
+
+
+
 
     @PostMapping("/showing")
     public ResponseEntity<RequestShowing> createShowing(@RequestBody PostShowing showing) {
