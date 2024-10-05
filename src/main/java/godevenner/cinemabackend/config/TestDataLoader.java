@@ -9,7 +9,7 @@ import godevenner.cinemabackend.customer.CustomerRepository;
 import godevenner.cinemabackend.enums.Genre;
 import godevenner.cinemabackend.theatre.SeatType;
 import godevenner.cinemabackend.movie.Movie;
-import godevenner.cinemabackend.showing.Showing;
+import godevenner.cinemabackend.showing.model.Showing;
 import godevenner.cinemabackend.showing.ShowingRepository;
 import godevenner.cinemabackend.theatre.TheatreRepository;
 import godevenner.cinemabackend.theatre.model.Theatre;
@@ -44,7 +44,11 @@ public class TestDataLoader implements CommandLineRunner {
         List<TheatreSeat> theatreSeats = new ArrayList<>();
         for (int i = 1; i <= rows; i++) {
             for (int j = 1; j <= seats; j++) {
-                theatreSeats.add(new TheatreSeat(i,j,SeatType.STANDARD));
+                if(i == 1 && (j == 1 || j == seats)) {
+                    theatreSeats.add(new TheatreSeat(j,i,SeatType.WHEELCHAIR));
+                } else {
+                    theatreSeats.add(new TheatreSeat(j,i,SeatType.STANDARD));
+                }
             }
         }
         return theatreSeats;
