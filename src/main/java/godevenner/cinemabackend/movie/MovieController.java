@@ -32,7 +32,7 @@ public class MovieController {
         else return ResponseEntity.ok(movies);
     }
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<Set<RequestMovie>> getAllActiveMovies() {
 
         Set<RequestMovie> movies = movieService.getAllMovies();
