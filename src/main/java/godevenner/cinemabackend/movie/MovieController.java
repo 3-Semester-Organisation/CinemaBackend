@@ -20,6 +20,8 @@ public class MovieController {
         this.movieService = movieService;
     }
 
+
+
     @GetMapping("/filter")
     public ResponseEntity<Set<RequestMovie>> getFilteredMovies(
             @RequestParam(required = false) Genre genre,
@@ -30,12 +32,27 @@ public class MovieController {
         else return ResponseEntity.ok(movies);
     }
 
+    @GetMapping
+    public ResponseEntity<Set<RequestMovie>> getAllMovies() {
+
+        Set<RequestMovie> movies = movieService.getAllMovies();
+        if (movies.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(movies);
+    }
+
+
     @GetMapping("/genres")
     public ResponseEntity<Set<Genre>> getGenres() {
         Set<Genre> genres = movieService.getAllGenres();
         if (genres.isEmpty()) return ResponseEntity.noContent().build();
         else return ResponseEntity.ok(genres);
     }
+
+
+
 
     @PostMapping("/addmovie")
     public ResponseEntity<RequestMovie> addMovieFromOmdb(@RequestBody PostMovie movie) {
