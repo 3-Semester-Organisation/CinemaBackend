@@ -2,7 +2,7 @@ package godevenner.cinemabackend.booking.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import godevenner.cinemabackend.customer.Customer;
-import godevenner.cinemabackend.showing.Showing;
+import godevenner.cinemabackend.showing.model.Showing;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
