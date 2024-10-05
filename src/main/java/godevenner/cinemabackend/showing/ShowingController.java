@@ -41,7 +41,7 @@ public class ShowingController {
         return ResponseEntity.ok().body(showingList);
     }
 
-    @PostMapping("showing")
+    @PostMapping("/showing")
     public ResponseEntity<RequestShowings> createShowing(@RequestBody PostShowing showing) {
 
         boolean doesExist = showingService.doesExist(showing);
