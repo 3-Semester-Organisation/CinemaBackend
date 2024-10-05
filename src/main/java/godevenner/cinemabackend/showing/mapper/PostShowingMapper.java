@@ -2,7 +2,7 @@ package godevenner.cinemabackend.showing.mapper;
 
 import godevenner.cinemabackend.movie.Movie;
 import godevenner.cinemabackend.movie.MovieRepository;
-import godevenner.cinemabackend.showing.Showing;
+import godevenner.cinemabackend.showing.model.Showing;
 import godevenner.cinemabackend.showing.dto.PostShowing;
 import godevenner.cinemabackend.theatre.model.Theatre;
 import godevenner.cinemabackend.theatre.TheatreRepository;
