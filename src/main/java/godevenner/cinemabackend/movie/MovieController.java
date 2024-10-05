@@ -21,7 +21,7 @@ public class MovieController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Set<RequestMovie>> getMovies(
+    public ResponseEntity<Set<RequestMovie>> getFilteredMovies(
             @RequestParam(required = false) Genre genre,
             @RequestParam(required = false) Integer age) {
         Set<RequestMovie> movies = movieService.getFilteredMovies(genre, age);
