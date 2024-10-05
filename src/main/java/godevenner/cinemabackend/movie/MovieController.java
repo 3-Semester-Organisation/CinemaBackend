@@ -20,7 +20,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping("")
+    @GetMapping("/filter")
     public ResponseEntity<Set<RequestMovie>> getFilteredMovies(
             @RequestParam(required = false) Genre genre,
             @RequestParam(required = false) Integer age) {
