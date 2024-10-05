@@ -20,14 +20,14 @@ public class TheatreController {
     }
 
     @GetMapping("/theatres/all")
-    public ResponseEntity<Set<Theatre>> getAllTheatres() {
-        Optional<Set<Theatre>> theatresOptional = theatreService.getAllTheatres();
+    public ResponseEntity<Set<RequestTheatre>> getAllTheatres() {
+        Optional<Set<RequestTheatre>> theatresOptional = theatreService.getAllTheatres();
 
         if (theatresOptional.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
 
-        Set<Theatre> theatresSet = theatresOptional.get();
+        Set<RequestTheatre> theatresSet = theatresOptional.get();
         return ResponseEntity.ok(theatresSet);
     }
 }
