@@ -7,7 +7,6 @@ import godevenner.cinemabackend.showing.mapper.RequestShowingMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,12 +28,12 @@ public class ShowingServiceImpl implements ShowingService{
     @Override
     public RequestShowing getLatestShowingByTheatreId(long theatreId) {
 
-        Optional<List<Showing>> optionalShowings = showingRepository.findLatestShowingByTheatreId(theatreId);
-        if (optionalShowings.isEmpty()) {
+        List<Showing> showingsList = showingRepository.findLatestShowingByTheatreId(theatreId);
+        if (showingsList.isEmpty()) {
             return null;
         }
 
-        Showing latestShowing = optionalShowings.get().getFirst();
+        Showing latestShowing = showingsList.getFirst();
         return requestShowingMapper.apply(latestShowing);
     }
 
