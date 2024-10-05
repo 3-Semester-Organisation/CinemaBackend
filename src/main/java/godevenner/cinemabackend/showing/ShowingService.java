@@ -13,4 +13,6 @@ public interface ShowingService {
     RequestShowing createShowing(PostShowing showing);
 
     boolean doesExist(PostShowing showing);
+
+    RequestShowing getLatestShowingByTheatreId(long theatreId);
 }
