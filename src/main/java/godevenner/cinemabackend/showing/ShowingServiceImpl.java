@@ -3,7 +3,7 @@ package godevenner.cinemabackend.showing;
 import godevenner.cinemabackend.showing.dto.PostShowing;
 import godevenner.cinemabackend.showing.dto.RequestShowing;
 import godevenner.cinemabackend.showing.mapper.PostShowingMapper;
-import godevenner.cinemabackend.showing.mapper.RequestShowingsMapper;
+import godevenner.cinemabackend.showing.mapper.RequestShowingMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 public class ShowingServiceImpl implements ShowingService{
 
     private final ShowingRepository showingRepository;
-    private final RequestShowingsMapper requestShowingsMapper;
+    private final RequestShowingMapper requestShowingMapper;
     private final PostShowingMapper postShowingMapper;
 
     public ShowingServiceImpl(ShowingRepository showingRepository,
-                              RequestShowingsMapper requestShowingsMapper, PostShowingMapper postShowingMapper) {
+                              RequestShowingMapper requestShowingMapper, PostShowingMapper postShowingMapper) {
         this.showingRepository = showingRepository;
-        this.requestShowingsMapper = requestShowingsMapper;
+        this.requestShowingMapper = requestShowingMapper;
         this.postShowingMapper = postShowingMapper;
     }
 
@@ -28,7 +28,7 @@ public class ShowingServiceImpl implements ShowingService{
     public Set<RequestShowing> getAllShowingsByMovieId(long movieId) {
         Set<Showing> showingSet = showingRepository.getAllByMovieId(movieId);
         return showingSet.stream()
-                .map(requestShowingsMapper)
+                .map(requestShowingMapper)
                 .collect(Collectors.toSet());
     }
 
@@ -36,7 +36,7 @@ public class ShowingServiceImpl implements ShowingService{
     public List<RequestShowing> getAllShowings() {
         List<Showing> showingList = showingRepository.findAll();
         return showingList.stream()
-                .map(requestShowingsMapper)
+                .map(requestShowingMapper)
                 .collect(Collectors.toList());
     }
 
@@ -45,7 +45,7 @@ public class ShowingServiceImpl implements ShowingService{
         Showing newShowing = postShowingMapper.apply(showing);
         Showing createdShowing = showingRepository.save(newShowing);
 
-        return requestShowingsMapper.apply(createdShowing);
+        return requestShowingMapper.apply(createdShowing);
     }
 
     @Override

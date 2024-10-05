@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.function.Function;
 
 @Component
-public class RequestShowingsMapper implements Function<Showing, RequestShowing> {
+public class RequestShowingMapper implements Function<Showing, RequestShowing> {
 
     @Override
     public RequestShowing apply(Showing showing) {
