@@ -1,6 +1,6 @@
 package godevenner.cinemabackend.theatre;
 
-public record RequestTheatres(
+public record RequestTheatre(
         long id,
         String name
 ) {

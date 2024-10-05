@@ -5,11 +5,11 @@ import org.springframework.stereotype.Component;
 import java.util.function.Function;
 
 @Component
-public class RequestTheatresMapper implements Function<Theatre, RequestTheatres> {
+public class RequestTheatresMapper implements Function<Theatre, RequestTheatre> {
 
     @Override
-    public RequestTheatres apply(Theatre theatre) {
-        return new RequestTheatres(
+    public RequestTheatre apply(Theatre theatre) {
+        return new RequestTheatre(
                 theatre.getId(),
                 theatre.getName()
         );

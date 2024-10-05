@@ -20,7 +20,7 @@ public class TheatreServiceImpl implements TheatreService {
 
 
     @Override
-    public Optional<Set<RequestTheatres>> getAllTheatres() {
+    public Optional<Set<RequestTheatre>> getAllTheatres() {
         List<Theatre> theatreList = theatreRepository.findAll();
         return Optional.of(
                 theatreList
