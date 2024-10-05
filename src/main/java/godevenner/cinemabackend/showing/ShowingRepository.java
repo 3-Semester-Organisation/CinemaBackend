@@ -15,6 +15,7 @@ public interface ShowingRepository extends JpaRepository<Showing, Long> {
     boolean existsByTheatreAndStartTime(Theatre theatre, LocalDateTime startTime);
 
 
+    //not the best method since a theatre can have aloooooot of showings over a larger time frame, might refactor later.
     @Query("SELECT s FROM Showing s WHERE s.theatre.id = :theatreId ORDER BY s.startTime DESC")
     Optional<List<Showing>> findLatestShowingByTheatreId(long theatreId);
 }
