@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 public class TheatreServiceImpl implements TheatreService {
 
     private final TheatreRepository theatreRepository;
-    private final RequestTheatresMapper requestTheatresMapper;
+    private final RequestTheatreMapper requestTheatreMapper;
 
-    public TheatreServiceImpl(TheatreRepository theatreRepository, RequestTheatresMapper requestTheatresMapper) {
+    public TheatreServiceImpl(TheatreRepository theatreRepository, RequestTheatreMapper requestTheatreMapper) {
         this.theatreRepository = theatreRepository;
-        this.requestTheatresMapper = requestTheatresMapper;
+        this.requestTheatreMapper = requestTheatreMapper;
     }
 
 
@@ -25,7 +25,7 @@ public class TheatreServiceImpl implements TheatreService {
         return Optional.of(
                 theatreList
                         .stream()
-                        .map(requestTheatresMapper)
+                        .map(requestTheatreMapper)
                         .collect(Collectors.toSet()));
     }
 }
