@@ -6,7 +6,7 @@ import godevenner.cinemabackend.theatre.Theatre;
 import java.time.LocalDateTime;
 
 public record PostShowing(
-        Theatre theatre,
+        long theatreId,
         long movieId,
         LocalDateTime startTime
 ) {
