@@ -4,5 +4,5 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface TheatreService {
-    Optional<Set<Theatre>> getAllTheatre();
+    Optional<Set<RequestTheatres>> getAllTheatres();
 }
