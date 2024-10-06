@@ -1,7 +1,7 @@
 package godevenner.cinemabackend.showing;
 
 import godevenner.cinemabackend.showing.dto.PostShowing;
-import godevenner.cinemabackend.showing.dto.RequestShowings;
+import godevenner.cinemabackend.showing.dto.RequestShowing;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +19,23 @@ public class ShowingController {
         this.showingService = showingService;
     }
 
+
+
+    @GetMapping("/showing")
+    public ResponseEntity<RequestShowing> getLatestShowingByTheatreId(@RequestParam long theatreId) {
+        RequestShowing latestShowing = showingService.getLatestShowingByTheatreId(theatreId);
+
+        if (latestShowing == null) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(latestShowing);
+    }
+
+
     @GetMapping("/showings")
-    public ResponseEntity<Set<RequestShowings>> getAllShowingsByMovieId (@RequestParam long movieId) {
-        Set<RequestShowings> showingSet = showingService.getAllShowingsByMovieId(movieId);
+    public ResponseEntity<Set<RequestShowing>> getAllShowingsByMovieId (@RequestParam long movieId) {
+        Set<RequestShowing> showingSet = showingService.getAllShowingsByMovieId(movieId);
 
         if (showingSet.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -30,9 +44,10 @@ public class ShowingController {
         return ResponseEntity.ok().body(showingSet);
     }
 
+
     @GetMapping("/showings/all")
-    public ResponseEntity<List<RequestShowings>> getAllShowings() {
-        List<RequestShowings> showingList = showingService.getAllShowings();
+    public ResponseEntity<List<RequestShowing>> getAllShowings() {
+        List<RequestShowing> showingList = showingService.getAllShowings();
 
         if (showingList.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -41,15 +56,20 @@ public class ShowingController {
         return ResponseEntity.ok().body(showingList);
     }
 
-    @PostMapping("showing")
-    public ResponseEntity<RequestShowings> createShowing(@RequestBody PostShowing showing) {
+
+
+
+
+
+    @PostMapping("/showing")
+    public ResponseEntity<RequestShowing> createShowing(@RequestBody PostShowing showing) {
 
         boolean doesExist = showingService.doesExist(showing);
         if (doesExist) {
             return ResponseEntity.badRequest().build();
         }
 
-        RequestShowings postedShowing = showingService.createShowing(showing);
+        RequestShowing postedShowing = showingService.createShowing(showing);
         return ResponseEntity.ok(postedShowing);
     }
 }

@@ -1,9 +1,9 @@
 package godevenner.cinemabackend.showing;
 
 import godevenner.cinemabackend.showing.dto.PostShowing;
-import godevenner.cinemabackend.showing.dto.RequestShowings;
+import godevenner.cinemabackend.showing.dto.RequestShowing;
 import godevenner.cinemabackend.showing.mapper.PostShowingMapper;
-import godevenner.cinemabackend.showing.mapper.RequestShowingsMapper;
+import godevenner.cinemabackend.showing.mapper.RequestShowingMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,38 +14,52 @@ import java.util.stream.Collectors;
 public class ShowingServiceImpl implements ShowingService{
 
     private final ShowingRepository showingRepository;
-    private final RequestShowingsMapper requestShowingsMapper;
+    private final RequestShowingMapper requestShowingMapper;
     private final PostShowingMapper postShowingMapper;
 
     public ShowingServiceImpl(ShowingRepository showingRepository,
-                              RequestShowingsMapper requestShowingsMapper, PostShowingMapper postShowingMapper) {
+                              RequestShowingMapper requestShowingMapper, PostShowingMapper postShowingMapper) {
         this.showingRepository = showingRepository;
-        this.requestShowingsMapper = requestShowingsMapper;
+        this.requestShowingMapper = requestShowingMapper;
         this.postShowingMapper = postShowingMapper;
     }
 
+
     @Override
-    public Set<RequestShowings> getAllShowingsByMovieId(long movieId) {
+    public RequestShowing getLatestShowingByTheatreId(long theatreId) {
+
+        List<Showing> showingsList = showingRepository.findLatestShowingByTheatreId(theatreId);
+        if (showingsList.isEmpty()) {
+            return null;
+        }
+
+        Showing latestShowing = showingsList.getFirst();
+        return requestShowingMapper.apply(latestShowing);
+    }
+
+
+    @Override
+    public Set<RequestShowing> getAllShowingsByMovieId(long movieId) {
         Set<Showing> showingSet = showingRepository.getAllByMovieId(movieId);
         return showingSet.stream()
-                .map(requestShowingsMapper)
+                .map(requestShowingMapper)
                 .collect(Collectors.toSet());
     }
 
     @Override
-    public List<RequestShowings> getAllShowings() {
+    public List<RequestShowing> getAllShowings() {
         List<Showing> showingList = showingRepository.findAll();
         return showingList.stream()
-                .map(requestShowingsMapper)
+                .map(requestShowingMapper)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public RequestShowings createShowing(PostShowing showing) {
+    public RequestShowing createShowing(PostShowing showing) {
         Showing newShowing = postShowingMapper.apply(showing);
         Showing createdShowing = showingRepository.save(newShowing);
 
-        return requestShowingsMapper.apply(createdShowing);
+        return requestShowingMapper.apply(createdShowing);
     }
 
     @Override
