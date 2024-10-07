@@ -1,7 +1,6 @@
 package godevenner.cinemabackend.showing.mapper;
 
 import godevenner.cinemabackend.showing.model.Showing;
-import godevenner.cinemabackend.showing.dto.RequestShowings;
 import godevenner.cinemabackend.showing.dto.RequestShowing;
 import org.springframework.stereotype.Component;
 

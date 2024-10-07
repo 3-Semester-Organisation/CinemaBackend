@@ -1,5 +1,6 @@
 package godevenner.cinemabackend.theatre;
 
+import godevenner.cinemabackend.theatre.model.Theatre;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;

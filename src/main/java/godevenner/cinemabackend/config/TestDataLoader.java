@@ -136,7 +136,7 @@ public class TestDataLoader implements CommandLineRunner {
                         new Theatre(
                                 "Sal 1"
                         ),
-                        new Movie("Inception", "inception, inception,inception,inception,inception,inception,", Genre.SCIFI, 13, true, "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"),
+                        new Movie("Inception", "inception, inception,inception,inception,inception,inception,", List.of(Genre.SCIFI), 13, true, "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"),
                         LocalDateTime.now().plusHours(4),
                         false
                 )
@@ -147,7 +147,6 @@ public class TestDataLoader implements CommandLineRunner {
                         new Theatre(
                                 "Sal 1"
                         ),
-                        new Movie("The Shining", "scary shit man", Genre.HORROR, 16, false, "https://m.media-amazon.com/images/M/MV5BZWFlYmY2MGEtZjVkYS00YzU4LTg0YjQtYzY1ZGE3NTA5NGQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"),
                         new Movie("The Shining", "A family heads to an isolated hotel for the winter, where a sinister presence influences the father into violence. At the same time, his psychic son sees horrifying forebodings from both the past and the future.", List.of(Genre.HORROR, Genre.THRILLER), 16, false, "https://m.media-amazon.com/images/M/MV5BZWFlYmY2MGEtZjVkYS00YzU4LTg0YjQtYzY1ZGE3NTA5NGQxXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"),
                         LocalDateTime.now().plusHours(12),
                         true

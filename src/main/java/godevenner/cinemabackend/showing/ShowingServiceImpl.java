@@ -6,7 +6,6 @@ import godevenner.cinemabackend.showing.dto.PostShowing;
 import godevenner.cinemabackend.showing.dto.RequestShowing;
 import godevenner.cinemabackend.showing.mapper.PostShowingMapper;
 import godevenner.cinemabackend.showing.mapper.RequestShowingMapper;
-import godevenner.cinemabackend.showing.mapper.RequestShowingsMapper;
 import godevenner.cinemabackend.showing.model.SeatMap;
 import godevenner.cinemabackend.showing.model.Showing;
 import godevenner.cinemabackend.theatre.TheatreService;

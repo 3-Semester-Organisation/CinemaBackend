@@ -1,7 +1,6 @@
 package godevenner.cinemabackend.showing;
 
 import godevenner.cinemabackend.showing.dto.PostShowing;
-import godevenner.cinemabackend.showing.dto.RequestShowings;
 import godevenner.cinemabackend.showing.model.SeatMap;
 import godevenner.cinemabackend.showing.dto.RequestShowing;
 

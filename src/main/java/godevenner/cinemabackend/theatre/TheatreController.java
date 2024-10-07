@@ -15,7 +15,6 @@ import java.util.Set;
 
 @RequiredArgsConstructor
 @CrossOrigin
-@RequestMapping("/api/v1")
 @RestController
 @RequestMapping("/api/v1")
 public class TheatreController {
