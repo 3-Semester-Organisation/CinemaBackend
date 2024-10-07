@@ -2,16 +2,17 @@ package godevenner.cinemabackend.showing.mapper;
 
 import godevenner.cinemabackend.showing.model.Showing;
 import godevenner.cinemabackend.showing.dto.RequestShowings;
+import godevenner.cinemabackend.showing.dto.RequestShowing;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
 @Component
-public class RequestShowingsMapper implements Function<Showing, RequestShowings> {
+public class RequestShowingMapper implements Function<Showing, RequestShowing> {
 
     @Override
-    public RequestShowings apply(Showing showing) {
-        return new RequestShowings(
+    public RequestShowing apply(Showing showing) {
+        return new RequestShowing(
                 showing.getId(),
                 showing.getTheatre(),
                 showing.getMovie(),

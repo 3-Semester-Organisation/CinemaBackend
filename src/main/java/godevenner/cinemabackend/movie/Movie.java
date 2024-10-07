@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -26,27 +27,33 @@ public class Movie {
 
     private String title;
     private String description;
-    private Genre genre;
+
+    @ElementCollection
+    private List<Genre> genreList;
+
     private int ageLimit;
     private boolean isActive;
     private String thumbnail;
-    private String rating;
 
-    public Movie(String title, String description, Genre genre, int ageLimit, boolean isActive, String thumbnail) {
+    // cool variables from omdb that could be used later
+    private String runtime;
+    private String Rated;
+
+    public Movie(String title, String description, List<Genre> genreList, int ageLimit, boolean isActive, String thumbnail) {
         this.title = title;
         this.description = description;
-        this.genre = genre;
+        this.genreList = genreList;
         this.ageLimit = ageLimit;
         this.isActive = isActive;
         this.thumbnail = thumbnail;
     }
 
-    public Movie(String title, String description, Genre genre, String thumbnail, String rating) {
+    public Movie(String title, String description, List<Genre> genreList, int ageLimit, String thumbnail) {
         this.title = title;
         this.description = description;
-        this.genre = genre;
+        this.genreList = genreList;
+        this.ageLimit = ageLimit;
         this.thumbnail = thumbnail;
-        this.rating = rating;
     }
 
     //used for posting a showing.

@@ -1,7 +1,6 @@
 package godevenner.cinemabackend.movie;
 
 import godevenner.cinemabackend.enums.Genre;
-import godevenner.cinemabackend.movie.dto.MovieDto;
 import godevenner.cinemabackend.movie.dto.PostMovie;
 import godevenner.cinemabackend.movie.dto.RequestMovie;
 import org.springframework.http.ResponseEntity;
@@ -21,15 +20,29 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping("")
-    public ResponseEntity<Set<MovieDto>> getMovies(
+
+
+    @GetMapping("/filter")
+    public ResponseEntity<Set<RequestMovie>> getFilteredMovies(
             @RequestParam(required = false) Genre genre,
             @RequestParam(required = false) Integer age) {
-        Set<MovieDto> movies = movieService.getFilteredMovies(genre, age);
+        Set<RequestMovie> movies = movieService.getFilteredMovies(genre, age);
 
         if (movies.isEmpty()) return ResponseEntity.noContent().build();
         else return ResponseEntity.ok(movies);
     }
+
+    @GetMapping("")
+    public ResponseEntity<Set<RequestMovie>> getAllActiveMovies() {
+
+        Set<RequestMovie> movies = movieService.getAllMovies();
+        if (movies.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(movies);
+    }
+
 
     @GetMapping("/genres")
     public ResponseEntity<Set<Genre>> getGenres() {
@@ -37,6 +50,9 @@ public class MovieController {
         if (genres.isEmpty()) return ResponseEntity.noContent().build();
         else return ResponseEntity.ok(genres);
     }
+
+
+
 
     @PostMapping("/addmovie")
     public ResponseEntity<RequestMovie> addMovieFromOmdb(@RequestBody PostMovie movie) {

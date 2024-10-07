@@ -27,7 +27,7 @@ public class PostShowingMapper implements Function<PostShowing, Showing> {
         Optional<Movie> optionalMovie = movieRepository.findById(postShowing.movieId());
         Movie movie = optionalMovie.get();
 
-        Optional<Theatre> optionalTheatre = theatreRepository.findById(postShowing.theatre().getId());
+        Optional<Theatre> optionalTheatre = theatreRepository.findById(postShowing.theatreId());
         Theatre theatre = optionalTheatre.get();
 
         return new Showing(

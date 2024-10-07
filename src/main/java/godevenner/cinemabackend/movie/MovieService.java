@@ -1,12 +1,13 @@
 package godevenner.cinemabackend.movie;
 
 import godevenner.cinemabackend.enums.Genre;
-import godevenner.cinemabackend.movie.dto.MovieDto;
 import godevenner.cinemabackend.movie.dto.PostMovie;
 import godevenner.cinemabackend.movie.dto.RequestMovie;
-import godevenner.cinemabackend.movie.mapper.MovieMapper;
 import godevenner.cinemabackend.movie.mapper.PostMovieMapper;
 import godevenner.cinemabackend.movie.mapper.RequestMovieMapper;
+import godevenner.cinemabackend.showing.Showing;
+import godevenner.cinemabackend.showing.dto.PostShowing;
+import godevenner.cinemabackend.util.GenreConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,13 +18,11 @@ import java.util.stream.Collectors;
 public class MovieService {
 
     private final MovieRepository movieRepository;
-    private final MovieMapper movieMapper;
     private final PostMovieMapper postMovieMapper;
     private final RequestMovieMapper requestMovieMapper;
 
-    public MovieService(MovieRepository movieRepository, MovieMapper movieMapper, PostMovieMapper postMovieMapper, RequestMovieMapper requestMovieMapper) {
+    public MovieService(MovieRepository movieRepository, PostMovieMapper postMovieMapper, RequestMovieMapper requestMovieMapper) {
         this.movieRepository = movieRepository;
-        this.movieMapper = movieMapper;
         this.postMovieMapper = postMovieMapper;
         this.requestMovieMapper = requestMovieMapper;
     }
@@ -36,29 +35,35 @@ public class MovieService {
         return requestMovieMapper.apply(createdMovie);
     }
 
+    //maybe this method should be public
     private List<Movie> getActiveMovies() {
         List<Movie> movies = movieRepository.findAll();
         movies.removeIf(movie -> !movie.isActive());
         return movies;
     }
 
-    public Set<MovieDto> getAllMovies() {
+    // not used?? //now in use 05-10-2024 //and this method should be actually getting all movies (also none active for admins and what not)?
+    public Set<RequestMovie> getAllMovies() {
         List<Movie> movies = getActiveMovies();
-        return movies.stream().map(movieMapper).collect(Collectors.toSet());
+        return movies.stream()
+                .map(requestMovieMapper)
+                .collect(Collectors.toSet());
     }
 
-    public Set<MovieDto> getFilteredMovies(Genre genre, Integer maxAgeLimit) {
+    public Set<RequestMovie> getFilteredMovies(Genre genre, Integer maxAgeLimit) {
         List<Movie> movies = getActiveMovies();
 
         return movies.stream()
-                .filter(movie -> genre == null || movie.getGenre() == genre)
+                .filter(movie -> genre == null || movie.getGenreList().stream().anyMatch(g -> g == genre))
                 .filter(movie -> maxAgeLimit == null || movie.getAgeLimit() <= maxAgeLimit)
-                .map(movieMapper)
+                .map(requestMovieMapper)
                 .collect(Collectors.toSet());
     }
 
     public Set<Genre> getAllGenres() {
         List<Movie> movies = getActiveMovies();
-        return movies.stream().map(movie -> movie.getGenre()).collect(Collectors.toSet());
+        return movies.stream()
+                .flatMap(movie -> movie.getGenreList().stream())
+                .collect(Collectors.toSet());
     }
 }

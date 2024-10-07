@@ -6,14 +6,18 @@ import godevenner.cinemabackend.theatre.model.TheatreSeat;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class TheatreServiceImpl implements TheatreService {
 
     private final TheatreRepository theatreRepository;
+    private final RequestTheatreMapper requestTheatreMapper;
+
 
     @Override
     public Set<TheatreSeat> getSeatsByTheatreId(long id) {
@@ -33,5 +37,15 @@ public class TheatreServiceImpl implements TheatreService {
             return theatre.getTheatreLayouts();
         }
         throw new RuntimeException("There is no theatre with id " + id);
+    }
+
+
+    public Optional<Set<RequestTheatre>> getAllTheatres() {
+        List<Theatre> theatreList = theatreRepository.findAll();
+        return Optional.of(
+                theatreList
+                        .stream()
+                        .map(requestTheatreMapper)
+                        .collect(Collectors.toSet()));
     }
 }

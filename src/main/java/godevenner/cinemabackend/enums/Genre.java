@@ -12,5 +12,6 @@ public enum Genre {
     ANIMATION,
     DOCUMENTARY,
     FANTASY,
-    SCIFI
+    SCIFI,
+    MUSIC
 }
