@@ -1,9 +1,9 @@
-package godevenner.cinemabackend.showing;
+package godevenner.cinemabackend.showing.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.movie.Movie;
-import godevenner.cinemabackend.theatre.Theatre;
+import godevenner.cinemabackend.theatre.model.Theatre;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

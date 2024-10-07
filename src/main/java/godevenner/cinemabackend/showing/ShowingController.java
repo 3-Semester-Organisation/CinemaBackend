@@ -1,6 +1,7 @@
 package godevenner.cinemabackend.showing;
 
 import godevenner.cinemabackend.showing.dto.PostShowing;
+import godevenner.cinemabackend.showing.model.SeatMap;
 import godevenner.cinemabackend.showing.dto.RequestShowing;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -56,10 +57,10 @@ public class ShowingController {
         return ResponseEntity.ok().body(showingList);
     }
 
-
-
-
-
+    @GetMapping("/showing/{id}/seatmap")
+    public ResponseEntity<SeatMap> getShowingSeatMap(@PathVariable int id) {
+        return ResponseEntity.ok(showingService.getSeatMap(id));
+    }
 
     @PostMapping("/showing")
     public ResponseEntity<RequestShowing> createShowing(@RequestBody PostShowing showing) {

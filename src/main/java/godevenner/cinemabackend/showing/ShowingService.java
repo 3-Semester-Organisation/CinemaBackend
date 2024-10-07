@@ -1,6 +1,7 @@
 package godevenner.cinemabackend.showing;
 
 import godevenner.cinemabackend.showing.dto.PostShowing;
+import godevenner.cinemabackend.showing.model.SeatMap;
 import godevenner.cinemabackend.showing.dto.RequestShowing;
 
 import java.util.List;
@@ -13,6 +14,8 @@ public interface ShowingService {
     RequestShowing createShowing(PostShowing showing);
 
     boolean doesExist(PostShowing showing);
+
+    SeatMap getSeatMap(long showingId);
 
     RequestShowing getLatestShowingByTheatreId(long theatreId);
 }

@@ -26,6 +26,7 @@ public interface BookingService {
     Booking createSeatBooking(BookingRequest booking);
     ResponseEntity<SeatBooking> updateSeatBooking(long id, SeatBooking seatBooking);
     ResponseEntity<Void> deleteSeatBooking(long id);
+    List<SeatBooking> getAllSeatBookingsByShowingId(long id);
 
 
 }

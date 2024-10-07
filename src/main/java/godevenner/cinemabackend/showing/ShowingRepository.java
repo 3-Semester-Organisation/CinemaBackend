@@ -1,7 +1,7 @@
 package godevenner.cinemabackend.showing;
 
-import godevenner.cinemabackend.movie.Movie;
-import godevenner.cinemabackend.theatre.Theatre;
+import godevenner.cinemabackend.showing.model.Showing;
+import godevenner.cinemabackend.theatre.model.Theatre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
