@@ -39,25 +39,22 @@ public class Movie {
     private String runtime;
     private String Rated;
 
-    public Movie(String title, String description, List<Genre> genreList, int ageLimit, boolean isActive, String thumbnail) {
+    public Movie(String title, String description, List<Genre> genreList, int ageLimit, boolean isActive, String thumbnail, String runtime) {
         this.title = title;
         this.description = description;
         this.genreList = genreList;
         this.ageLimit = ageLimit;
         this.isActive = isActive;
         this.thumbnail = thumbnail;
+        this.runtime = runtime;
     }
 
-    public Movie(String title, String description, List<Genre> genreList, int ageLimit, String thumbnail) {
+    public Movie(String title, String description, List<Genre> genreList, int ageLimit, String thumbnail, String runtime) {
         this.title = title;
         this.description = description;
         this.genreList = genreList;
         this.ageLimit = ageLimit;
         this.thumbnail = thumbnail;
-    }
-
-    //used for posting a showing.
-    public Movie(long id) {
-        this.id = id;
+        this.runtime = runtime;
     }
 }
