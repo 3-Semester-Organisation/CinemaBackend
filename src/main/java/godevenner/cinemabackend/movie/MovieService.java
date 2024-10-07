@@ -5,9 +5,6 @@ import godevenner.cinemabackend.movie.dto.PostMovie;
 import godevenner.cinemabackend.movie.dto.RequestMovie;
 import godevenner.cinemabackend.movie.mapper.PostMovieMapper;
 import godevenner.cinemabackend.movie.mapper.RequestMovieMapper;
-import godevenner.cinemabackend.showing.model.Showing;
-import godevenner.cinemabackend.showing.dto.PostShowing;
-import godevenner.cinemabackend.util.GenreConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -65,5 +62,9 @@ public class MovieService {
         return movies.stream()
                 .flatMap(movie -> movie.getGenreList().stream())
                 .collect(Collectors.toSet());
+    }
+
+    public void deleteMovie(Long id) {
+        movieRepository.deleteById(id);
     }
 }
