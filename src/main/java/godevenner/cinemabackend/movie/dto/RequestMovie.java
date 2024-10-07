@@ -10,6 +10,7 @@ public record RequestMovie(
         String description,
         List<Genre> genreList,
         int ageLimit,
-        String thumbnail
+        String thumbnail,
+        String runtime
 ) {
 }
