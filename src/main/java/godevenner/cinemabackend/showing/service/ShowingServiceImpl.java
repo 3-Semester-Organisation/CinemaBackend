@@ -1,7 +1,8 @@
-package godevenner.cinemabackend.showing;
+package godevenner.cinemabackend.showing.service;
 
 import godevenner.cinemabackend.booking.model.SeatBooking;
 import godevenner.cinemabackend.booking.service.BookingService;
+import godevenner.cinemabackend.showing.ShowingRepository;
 import godevenner.cinemabackend.showing.dto.PostShowing;
 import godevenner.cinemabackend.showing.dto.RequestShowing;
 import godevenner.cinemabackend.showing.mapper.PostShowingMapper;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class ShowingServiceImpl implements ShowingService{
+public class ShowingServiceImpl implements ShowingService {
 
     private final ShowingRepository showingRepository;
     private final RequestShowingMapper requestShowingMapper;

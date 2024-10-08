@@ -3,6 +3,8 @@ package godevenner.cinemabackend.showing;
 import godevenner.cinemabackend.showing.dto.PostShowing;
 import godevenner.cinemabackend.showing.model.SeatMap;
 import godevenner.cinemabackend.showing.dto.RequestShowing;
+import godevenner.cinemabackend.showing.service.ShowingService;
+import godevenner.cinemabackend.showing.service.ShowingServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
