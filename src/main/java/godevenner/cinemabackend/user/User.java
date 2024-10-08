@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 //@Table(name = "_user") if using postgres db, one would need to name the user table something else, since there is automatically already a user table.
-public class User implements UserDetails {
+public class User implements UserDetails { //for making costume user a SpringUser ensuring our class has the same methods a SpringUser would have
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
