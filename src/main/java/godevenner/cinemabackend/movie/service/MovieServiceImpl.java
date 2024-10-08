@@ -1,6 +1,8 @@
-package godevenner.cinemabackend.movie;
+package godevenner.cinemabackend.movie.service;
 
 import godevenner.cinemabackend.enums.Genre;
+import godevenner.cinemabackend.movie.Movie;
+import godevenner.cinemabackend.movie.MovieRepository;
 import godevenner.cinemabackend.movie.dto.PostMovie;
 import godevenner.cinemabackend.movie.dto.RequestMovie;
 import godevenner.cinemabackend.movie.mapper.PostMovieMapper;
