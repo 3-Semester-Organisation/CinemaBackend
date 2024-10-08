@@ -20,7 +20,7 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
+public class JwtAuthenticationFilter extends OncePerRequestFilter {//means every request needs to be authenticated, the session should not be stored on server ie, stateless
 
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
