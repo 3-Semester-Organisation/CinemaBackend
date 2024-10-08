@@ -2,6 +2,7 @@ package godevenner.cinemabackend.theatre;
 
 import godevenner.cinemabackend.theatre.model.TheatreLayout;
 import godevenner.cinemabackend.theatre.model.TheatreSeat;
+import godevenner.cinemabackend.theatre.service.TheatreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 

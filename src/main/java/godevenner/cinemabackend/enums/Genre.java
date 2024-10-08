@@ -13,5 +13,14 @@ public enum Genre {
     DOCUMENTARY,
     FANTASY,
     SCIFI,
-    MUSIC
+    MUSIC,
+    MUSICAL,
+    CRIME,
+    WAR,
+    WESTERN,
+    HISTORY,
+    BIOGRAPHY,
+    SPORT,
+    FAMILY,
+    SHORT,
 }
