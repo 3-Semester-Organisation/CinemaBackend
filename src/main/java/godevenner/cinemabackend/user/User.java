@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import godevenner.cinemabackend.customer.Customer;
 import godevenner.cinemabackend.employee.Employee;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
+//@Table(name = "_user") if using postgres db, one would need to name the user table something else, since there is automatically already a user table.
 public class User {
 
     @Id
