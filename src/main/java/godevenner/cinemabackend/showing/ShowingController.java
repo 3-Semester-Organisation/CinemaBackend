@@ -18,7 +18,7 @@ public class ShowingController {
 
     private final ShowingService showingService;
 
-    public ShowingController(ShowingServiceImpl showingService) {
+    public ShowingController(ShowingService showingService) {
         this.showingService = showingService;
     }
 
