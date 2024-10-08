@@ -21,6 +21,7 @@ public class PostMovieMapper implements Function<PostMovie, Movie> {
                 genres,
                 movie.ageLimit(),
                 movie.thumbnail(),
+                movie.runtime(),
                 movie.imdbId()
         );
     }

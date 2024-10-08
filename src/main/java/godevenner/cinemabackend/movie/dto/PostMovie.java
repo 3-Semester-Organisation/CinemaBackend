@@ -6,6 +6,7 @@ public record PostMovie(
         String genres,
         int ageLimit,
         String thumbnail,
+        String runtime,
         String imdbId
 ) {
 }

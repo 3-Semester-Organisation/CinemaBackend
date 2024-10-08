@@ -17,7 +17,8 @@ public class RequestMovieMapper implements Function<Movie, RequestMovie> {
                 movie.getDescription(),
                 movie.getGenreList(),
                 movie.getAgeLimit(),
-                movie.getThumbnail()
+                movie.getThumbnail(),
+                movie.getRuntime()
         );
     }
 
