@@ -35,7 +35,8 @@ public class Movie {
     private boolean isActive;
     private String thumbnail;
     @Column(unique = true)
-    private String imdbId;
+    private String imdbId; // udelukker duplicates
+
     // cool variables from omdb that could be used later
     private String runtime;
     private String Rated;
