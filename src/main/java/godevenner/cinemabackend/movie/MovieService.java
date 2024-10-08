@@ -7,6 +7,10 @@ import godevenner.cinemabackend.movie.mapper.PostMovieMapper;
 import godevenner.cinemabackend.movie.mapper.RequestMovieMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,53 +22,66 @@ public class MovieService {
     private final PostMovieMapper postMovieMapper;
     private final RequestMovieMapper requestMovieMapper;
 
+    private List<Movie> activeMovies = new ArrayList<>();
+    private LocalDateTime lastMovieUpdate;
+
+
     public MovieService(MovieRepository movieRepository, PostMovieMapper postMovieMapper, RequestMovieMapper requestMovieMapper) {
         this.movieRepository = movieRepository;
         this.postMovieMapper = postMovieMapper;
         this.requestMovieMapper = requestMovieMapper;
     }
 
-    public RequestMovie addMovie(PostMovie movie) {
-        Movie newMovie = postMovieMapper.apply(movie);
-        newMovie.setActive(true); //TODO skal fjernes!! Men inactive movies vises ikke under Movies-tab
-        Movie createdMovie = movieRepository.save(newMovie);
-
-        return requestMovieMapper.apply(createdMovie);
+    private void cacheActiveMoviesIfNeeded() {
+        if (lastMovieUpdate == null || Duration.between(lastMovieUpdate, LocalDateTime.now()).toMinutes() > 15) {
+            activeMovies = movieRepository.findAllByIsActiveTrueOrderByTitle();
+            lastMovieUpdate = LocalDateTime.now();
+        }
+    }
+    private void cacheActiveMovies() { //Bruges efter add() og delete()
+        activeMovies = movieRepository.findAllByIsActiveTrueOrderByTitle();
     }
 
-    //maybe this method should be public
-    private List<Movie> getActiveMovies() {
-        List<Movie> movies = movieRepository.findAll();
-        movies.removeIf(movie -> !movie.isActive());
-        return movies;
-    }
-
-    // not used?? //now in use 05-10-2024 //and this method should be actually getting all movies (also none active for admins and what not)?
-    public Set<RequestMovie> getAllMovies() {
-        List<Movie> movies = getActiveMovies();
-        return movies.stream()
+    public List<RequestMovie> getActiveMovies() {
+        cacheActiveMoviesIfNeeded();
+        return activeMovies.stream()
                 .map(requestMovieMapper)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
-    public Set<RequestMovie> getFilteredMovies(Genre genre, Integer maxAgeLimit) {
-        List<Movie> movies = getActiveMovies();
 
-        return movies.stream()
-                .filter(movie -> genre == null || movie.getGenreList().stream().anyMatch(g -> g == genre))
-                .filter(movie -> maxAgeLimit == null || movie.getAgeLimit() <= maxAgeLimit)
-                .map(requestMovieMapper)
-                .collect(Collectors.toSet());
-    }
+
 
     public Set<Genre> getAllGenres() {
-        List<Movie> movies = getActiveMovies();
-        return movies.stream()
+        cacheActiveMoviesIfNeeded();
+        return activeMovies.stream()
                 .flatMap(movie -> movie.getGenreList().stream())
                 .collect(Collectors.toSet());
     }
 
+
+    public List<RequestMovie> getFilteredMovies(Genre genre, Integer maxAgeLimit) {
+        cacheActiveMoviesIfNeeded();
+
+        return activeMovies.stream()
+                .filter(movie -> genre == null || movie.getGenreList().stream().anyMatch(g -> g == genre))
+                .filter(movie -> maxAgeLimit == null || movie.getAgeLimit() <= maxAgeLimit)
+                .map(requestMovieMapper)
+                .collect(Collectors.toList());
+    }
+
+
+    public RequestMovie addMovie(PostMovie movie) {
+        Movie newMovie = postMovieMapper.apply(movie);
+        newMovie.setActive(true); //TODO skal fjernes!! Men inactive movies vises ikke under Movies-tab
+        Movie createdMovie = movieRepository.save(newMovie);
+        cacheActiveMovies();
+        return requestMovieMapper.apply(createdMovie);
+    }
+
     public void deleteMovie(Long id) {
         movieRepository.deleteById(id);
+        cacheActiveMovies();
     }
+
 }
