@@ -17,7 +17,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private final static String SECRET_KEY = "secret";
+    private final static String SECRET_KEY = "FB381A725FBB1ECEF86A3B4CE2755FB381A725FBB1ECEF86A3B4CE2755";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject); //when you call the getSubject you normally refer to the sub: field in the jwt, which can contain an id or just the username
@@ -66,7 +66,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + (24 * 60 * 60 * 1000)))
                 .signWith(SignatureAlgorithm.HS256, getSignInKey())
                 .compact();
     }
