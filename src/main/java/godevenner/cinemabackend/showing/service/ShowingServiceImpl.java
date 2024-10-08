@@ -9,7 +9,7 @@ import godevenner.cinemabackend.showing.mapper.PostShowingMapper;
 import godevenner.cinemabackend.showing.mapper.RequestShowingMapper;
 import godevenner.cinemabackend.showing.model.SeatMap;
 import godevenner.cinemabackend.showing.model.Showing;
-import godevenner.cinemabackend.theatre.TheatreService;
+import godevenner.cinemabackend.theatre.service.TheatreService;
 import godevenner.cinemabackend.theatre.model.TheatreSeat;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
