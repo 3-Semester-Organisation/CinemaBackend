@@ -3,6 +3,8 @@ package godevenner.cinemabackend.showing;
 import godevenner.cinemabackend.showing.dto.PostShowing;
 import godevenner.cinemabackend.showing.model.SeatMap;
 import godevenner.cinemabackend.showing.dto.RequestShowing;
+import godevenner.cinemabackend.showing.service.ShowingService;
+import godevenner.cinemabackend.showing.service.ShowingServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +18,7 @@ public class ShowingController {
 
     private final ShowingService showingService;
 
-    public ShowingController(ShowingServiceImpl showingService) {
+    public ShowingController(ShowingService showingService) {
         this.showingService = showingService;
     }
 

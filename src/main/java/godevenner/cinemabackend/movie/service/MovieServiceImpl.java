@@ -1,6 +1,8 @@
-package godevenner.cinemabackend.movie;
+package godevenner.cinemabackend.movie.service;
 
 import godevenner.cinemabackend.enums.Genre;
+import godevenner.cinemabackend.movie.Movie;
+import godevenner.cinemabackend.movie.MovieRepository;
 import godevenner.cinemabackend.movie.dto.PostMovie;
 import godevenner.cinemabackend.movie.dto.RequestMovie;
 import godevenner.cinemabackend.movie.mapper.PostMovieMapper;
@@ -12,13 +14,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class MovieService {
+public class MovieServiceImpl implements MovieService {
 
     private final MovieRepository movieRepository;
     private final PostMovieMapper postMovieMapper;
     private final RequestMovieMapper requestMovieMapper;
 
-    public MovieService(MovieRepository movieRepository, PostMovieMapper postMovieMapper, RequestMovieMapper requestMovieMapper) {
+    public MovieServiceImpl(MovieRepository movieRepository, PostMovieMapper postMovieMapper, RequestMovieMapper requestMovieMapper) {
         this.movieRepository = movieRepository;
         this.postMovieMapper = postMovieMapper;
         this.requestMovieMapper = requestMovieMapper;
@@ -33,7 +35,7 @@ public class MovieService {
     }
 
     //maybe this method should be public
-    private List<Movie> getActiveMovies() {
+    public List<Movie> getActiveMovies() {
         List<Movie> movies = movieRepository.findAll();
         movies.removeIf(movie -> !movie.isActive());
         return movies;

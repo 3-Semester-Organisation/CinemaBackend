@@ -1,14 +1,15 @@
-package godevenner.cinemabackend.showing;
+package godevenner.cinemabackend.showing.service;
 
 import godevenner.cinemabackend.booking.model.SeatBooking;
 import godevenner.cinemabackend.booking.service.BookingService;
+import godevenner.cinemabackend.showing.ShowingRepository;
 import godevenner.cinemabackend.showing.dto.PostShowing;
 import godevenner.cinemabackend.showing.dto.RequestShowing;
 import godevenner.cinemabackend.showing.mapper.PostShowingMapper;
 import godevenner.cinemabackend.showing.mapper.RequestShowingMapper;
 import godevenner.cinemabackend.showing.model.SeatMap;
 import godevenner.cinemabackend.showing.model.Showing;
-import godevenner.cinemabackend.theatre.TheatreService;
+import godevenner.cinemabackend.theatre.service.TheatreService;
 import godevenner.cinemabackend.theatre.model.TheatreSeat;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class ShowingServiceImpl implements ShowingService{
+public class ShowingServiceImpl implements ShowingService {
 
     private final ShowingRepository showingRepository;
     private final RequestShowingMapper requestShowingMapper;
