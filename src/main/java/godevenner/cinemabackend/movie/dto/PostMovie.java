@@ -5,6 +5,7 @@ public record PostMovie(
         String description,
         String genres,
         int ageLimit,
-        String thumbnail
+        String thumbnail,
+        String runtime
 ) {
 }
