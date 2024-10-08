@@ -1,5 +1,6 @@
-package godevenner.cinemabackend.theatre;
+package godevenner.cinemabackend.theatre.service;
 
+import godevenner.cinemabackend.theatre.RequestTheatre;
 import godevenner.cinemabackend.theatre.model.TheatreLayout;
 import godevenner.cinemabackend.theatre.model.TheatreSeat;
 
