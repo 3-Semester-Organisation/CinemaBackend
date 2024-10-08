@@ -51,6 +51,12 @@ public class MovieServiceImpl implements MovieService {
     }
 
 
+    public List<RequestMovie> getAllMovies() {
+        List<Movie> movies = movieRepository.findAll();
+        return movies.stream()
+                .map(requestMovieMapper)
+                .collect(Collectors.toList());
+    }
 
 
     public Set<Genre> getAllGenres() {
