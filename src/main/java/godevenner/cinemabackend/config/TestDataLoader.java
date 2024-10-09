@@ -50,7 +50,7 @@ public class TestDataLoader implements CommandLineRunner {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User admin = User.builder()
                 .username("admin")
-                .password(passwordEncoder.encode("password"))
+                .password(passwordEncoder.encode("'"))
                 .role(Role.ROLE_ADMIN)
                 .build();
         userRepository.save(admin);
