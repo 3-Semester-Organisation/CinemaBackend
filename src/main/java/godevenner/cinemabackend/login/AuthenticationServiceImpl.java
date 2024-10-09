@@ -10,6 +10,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -27,9 +30,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                .password(passwordEncoder.encode(registerRequest.password()))
                .role(Role.USER)
                .build();
-       userRepository.save(registerUser);
+       User registedUser = userRepository.save(registerUser);
 
-       return generatedAuthenticationResponse(registerUser);
+       return generatedAuthenticationResponse(registedUser);
     }
 
     @Override
@@ -48,7 +51,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     private AuthenticationResponse generatedAuthenticationResponse(User user) {
-        String token = jwtService.generateToken(user);
+        Map<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("role", user.getRole());
+        String token = jwtService.generateToken(extraClaims, user);
         return new AuthenticationResponse(token);
     }
 }
