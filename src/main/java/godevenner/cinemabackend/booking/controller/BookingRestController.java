@@ -58,7 +58,7 @@ public class BookingRestController {
 
 
     //SEATBOOKINGS
-    @GetMapping("/seatbookings")
+    @GetMapping("/seatbooking")
     public List<SeatBooking> getSeatBookings(@RequestParam long bookingId){
         return bookingService.getAllSeatBookingsByBookingId(bookingId);
     }
@@ -70,9 +70,8 @@ public class BookingRestController {
 
     @PostMapping("/seatbooking")
     public ResponseEntity<Booking> createSeatBooking(@RequestBody BookingRequest bookingRequest) {
-        Booking bookedSeats = bookingService.createSeatBooking(bookingRequest);
-
-        return ResponseEntity.ok(bookedSeats);
+        bookingService.saveBookingFromRequest(bookingRequest);
+        return ResponseEntity.ok().build();
     }
 
 

@@ -30,4 +30,9 @@ public class SeatBooking {
         this.seatRowNumber = seatRowNumber;
     }
 
+    public SeatBooking(int seatNumber, int seatRowNumber) {
+        this.seatNumber = seatNumber;
+        this.seatRowNumber = seatRowNumber;
+    }
+
 }
