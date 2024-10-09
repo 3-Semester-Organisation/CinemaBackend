@@ -32,14 +32,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
 
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/api/v1/showing").authenticated()
-                    .requestMatchers("/api/v1/seatbookings").authenticated()
-                    .requestMatchers("/api/v1/bookings").authenticated()
-                    .requestMatchers("/api/v1/movies/addmovie").authenticated()
-                    .requestMatchers("/api/v1/movies/delete").authenticated()
+//                    .requestMatchers("/api/v1/showing").authenticated()
+//                    .requestMatchers("/api/v1/seatbookings").authenticated()
+//                    .requestMatchers("/api/v1/bookings").authenticated()
+//                    .requestMatchers("/api/v1/movies/addmovie").authenticated()
+//                    .requestMatchers("/api/v1/movies/delete").authenticated()
                     .anyRequest().permitAll())
 
                 .sessionManagement(session -> session
@@ -47,15 +48,6 @@ public class SecurityConfig {
 
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
-//                // Enable CORS with the custom configuration source
-//                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-//                // Disable CSRF (if your application doesn't need it)
-//                .csrf(AbstractHttpConfigurer::disable)
-//                // Configure authorization
-//                .authorizeHttpRequests(auth -> auth
-//                        .anyRequest().permitAll() // Adjust based on your security requirements
-//                );
 
         return http.build();
     }
