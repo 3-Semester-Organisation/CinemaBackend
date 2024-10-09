@@ -22,7 +22,6 @@ import java.util.List;
 public class BookingRestController {
 
     private final BookingService bookingService;
-    private final SeatBookingRepository seatBookingRepository;
 
     //BOOKING
 
