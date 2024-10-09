@@ -28,7 +28,7 @@ public class BookingController {
     /*
     @GetMapping("/bookings")
     public List<Booking> getBookings(@RequestParam long showingId){
-        return bookingService.getAllBookingsByShowingId(showingId);
+        return bookingService.getAllBookingsByShowingId(showingId); g
     }
     */
 
