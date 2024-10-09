@@ -2,12 +2,18 @@ package godevenner.cinemabackend.booking.service;
 
 import godevenner.cinemabackend.booking.dto.BookingCaS;
 import godevenner.cinemabackend.booking.dto.BookingRequest;
+import godevenner.cinemabackend.booking.dto.SeatRowData;
 import godevenner.cinemabackend.booking.mapper.BookingCaSMapper;
-import godevenner.cinemabackend.booking.mapper.BookingRequestMapper;
+//import godevenner.cinemabackend.booking.mapper.BookingRequestMapper;
 import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
 import godevenner.cinemabackend.booking.repository.BookingRepository;
 import godevenner.cinemabackend.booking.repository.SeatBookingRepository;
+import godevenner.cinemabackend.customer.Customer;
+import godevenner.cinemabackend.customer.CustomerRepository;
+import godevenner.cinemabackend.showing.ShowingRepository;
+import godevenner.cinemabackend.showing.model.Showing;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,10 +28,10 @@ public class BookingServiceImpl implements BookingService {
 
     private final BookingRepository bookingRepository;
     private final SeatBookingRepository seatBookingRepository;
-    private final BookingRequestMapper bookingRequestMapper;
+//    private final BookingRequestMapper bookingRequestMapper;
     private final BookingCaSMapper bookingCaSMapper;
-
-
+    private final ShowingRepository showingRepository;
+    private final CustomerRepository customerRepository;
 
 
     private void saveBookings(List<Booking> bookings){
@@ -55,6 +61,35 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Optional<Booking> getBooking(long id){
         return bookingRepository.findById((int) id);
+    }
+
+    @Transactional
+    public void saveBookingFromRequest(BookingRequest bookingRequest){
+        Long showingId = bookingRequest.showingId();
+        String email = bookingRequest.email();
+        List<SeatRowData> seats = bookingRequest.bookedSeats();
+        Customer customer = null;
+        Showing showing = null;
+        Optional<Customer> customerOptional = customerRepository.findByEmail(email);
+        if(customerOptional.isPresent()){
+            customer = customerOptional.get();
+        } else {
+            Customer newCustomer = new Customer(email);
+            customerRepository.save(newCustomer);
+            customer = newCustomer;
+        }
+        Optional<Showing> showingOptional = showingRepository.findById(showingId);
+        if (showingOptional.isPresent()){
+            showing = showingOptional.get();
+        } else {
+            throw new RuntimeException("Showing not found");
+        }
+        Booking booking = new Booking(customer, showing);
+        bookingRepository.save(booking);
+        for (SeatRowData seat : seats) {
+            seatBookingRepository.save(new SeatBooking(booking,seat.seat(),seat.row()));
+        }
+
     }
 
     @Override
@@ -114,20 +149,20 @@ public class BookingServiceImpl implements BookingService {
         return seatBookingRepository.findById((int) id);
     }
 
-    @Override
-    public Booking createSeatBooking(BookingRequest requestedBooking){
-        Booking booking = bookingRequestMapper.apply(requestedBooking);
-        Booking savedBooking = bookingRepository.save(booking);
-
-        List<SeatBooking> bookedSeats = requestedBooking.bookedSeats();
-
-        for (SeatBooking seatBooking : bookedSeats) {
-            seatBooking.setBooking(savedBooking);
-        }
-        seatBookingRepository.saveAll(bookedSeats);
-
-        return savedBooking;
-    }
+//    @Override
+//    public Booking createSeatBooking(BookingRequest requestedBooking){
+//        Booking booking = bookingRequestMapper.apply(requestedBooking);
+//        Booking savedBooking = bookingRepository.save(booking);
+//
+//        List<SeatBooking> bookedSeats = requestedBooking.bookedSeats();
+//
+//        for (SeatBooking seatBooking : bookedSeats) {
+//            seatBooking.setBooking(savedBooking);
+//        }
+//        seatBookingRepository.saveAll(bookedSeats);
+//
+//        return savedBooking;
+//    }
 
     @Override
     public ResponseEntity<SeatBooking> updateSeatBooking(long id, SeatBooking seatBooking){
