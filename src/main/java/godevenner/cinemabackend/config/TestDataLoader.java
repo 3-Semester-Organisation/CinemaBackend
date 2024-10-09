@@ -51,7 +51,7 @@ public class TestDataLoader implements CommandLineRunner {
         User admin = User.builder()
                 .username("admin")
                 .password(passwordEncoder.encode("password"))
-                .role(Role.ADMIN)
+                .role(Role.ROLE_ADMIN)
                 .build();
         userRepository.save(admin);
     }
