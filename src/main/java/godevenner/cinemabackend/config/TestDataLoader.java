@@ -15,10 +15,14 @@ import godevenner.cinemabackend.theatre.TheatreRepository;
 import godevenner.cinemabackend.theatre.model.Theatre;
 import godevenner.cinemabackend.theatre.model.TheatreLayout;
 import godevenner.cinemabackend.theatre.model.TheatreSeat;
+import godevenner.cinemabackend.user.Role;
 import godevenner.cinemabackend.user.User;
+import godevenner.cinemabackend.user.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -33,6 +37,7 @@ import java.util.Optional;
 @Component
 public class TestDataLoader implements CommandLineRunner {
 
+    private final UserRepository userRepository;
     private final CustomerRepository customerRepository;
     private final ShowingRepository showingRepository;
     private final BookingRepository bookingRepository;
@@ -40,18 +45,15 @@ public class TestDataLoader implements CommandLineRunner {
     private final TheatreRepository theatreRepository;
 
 
-    private List<TheatreSeat> createSeatsByRowsAndSeats(int rows, int seats) {
-        List<TheatreSeat> theatreSeats = new ArrayList<>();
-        for (int i = 1; i <= rows; i++) {
-            for (int j = 1; j <= seats; j++) {
-                if(i == 1 && (j == 1 || j == seats)) {
-                    theatreSeats.add(new TheatreSeat(j,i,SeatType.WHEELCHAIR));
-                } else {
-                    theatreSeats.add(new TheatreSeat(j,i,SeatType.STANDARD));
-                }
-            }
-        }
-        return theatreSeats;
+
+    private void createAdminUser() {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        User admin = User.builder()
+                .username("admin")
+                .password(passwordEncoder.encode("password"))
+                .role(Role.ADMIN)
+                .build();
+        userRepository.save(admin);
     }
 
     private void createCostumers() {
@@ -439,17 +441,32 @@ public class TestDataLoader implements CommandLineRunner {
             ));
             theatre.addSeat(createSeatsByRowsAndSeats(10,10));
         }
-
     }
+
+
+    private List<TheatreSeat> createSeatsByRowsAndSeats(int rows, int seats) {
+        List<TheatreSeat> theatreSeats = new ArrayList<>();
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= seats; j++) {
+                if(i == 1 && (j == 1 || j == seats)) {
+                    theatreSeats.add(new TheatreSeat(j,i,SeatType.WHEELCHAIR));
+                } else {
+                    theatreSeats.add(new TheatreSeat(j,i,SeatType.STANDARD));
+                }
+            }
+        }
+        return theatreSeats;
+    }
+
+
 
     @Override
     public void run(String... args) throws Exception {
+        createAdminUser();
         createCostumers();
         createShowings();
         createBookings();
         createSeatBookings();
         createTheatreLayout();
-
     }
-
 }
