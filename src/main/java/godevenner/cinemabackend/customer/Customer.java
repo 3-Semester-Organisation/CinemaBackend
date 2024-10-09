@@ -44,4 +44,8 @@ public class Customer {
         this.email = email;
         this.dateOfBirth = dateOfBirth;
     }
+
+    public Customer(String email) {
+        this.email = email;
+    }
 }

@@ -7,8 +7,8 @@ import godevenner.cinemabackend.showing.model.Showing;
 import java.util.List;
 
 public record BookingRequest(
-        Showing showing,
-        Customer customer,
-        List<SeatBooking> bookedSeats
+        Long showingId,
+        String email,
+        List<SeatRowData> bookedSeats
 ) {
 }
