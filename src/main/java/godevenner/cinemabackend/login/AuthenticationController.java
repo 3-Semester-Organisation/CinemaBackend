@@ -36,6 +36,9 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest loginRequest) {
 
        AuthenticationResponse authResponse = authenticationService.authenticate(loginRequest);
+
+       //TODO implement feature to tell user wrong credentials if inputed wrong username or password.
+
        return ResponseEntity.ok(authResponse);
     }
 }
