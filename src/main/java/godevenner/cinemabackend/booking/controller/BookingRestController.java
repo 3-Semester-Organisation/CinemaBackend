@@ -10,6 +10,7 @@ import godevenner.cinemabackend.booking.service.BookingService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,6 @@ import java.util.List;
 public class BookingRestController {
 
     private final BookingService bookingService;
-    private final SeatBookingRepository seatBookingRepository;
 
     //BOOKING
 
@@ -33,6 +33,7 @@ public class BookingRestController {
     }
     */
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/bookings")
     public List<BookingCaS> getBookings(@RequestParam long showingId){
         return bookingService.getAllBookingsByShowingId(showingId);
@@ -58,6 +59,7 @@ public class BookingRestController {
 
 
     //SEATBOOKINGS
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/seatbookings")
     public List<SeatBooking> getSeatBookings(@RequestParam long bookingId){
         return bookingService.getAllSeatBookingsByBookingId(bookingId);
