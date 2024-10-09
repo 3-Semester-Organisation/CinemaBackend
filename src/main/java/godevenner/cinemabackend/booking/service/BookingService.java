@@ -16,6 +16,9 @@ public interface BookingService {
     // using DTO instead of model
     List<BookingCaS> getAllBookingsByShowingId(long id);
 
+
+    void saveBookingFromRequest(BookingRequest bookingRequest);
+
     Optional<Booking> getBooking(long id);
     ResponseEntity<Booking> createBooking(Booking booking);
     ResponseEntity<Booking> updateBooking(long id, Booking booking);
@@ -23,7 +26,7 @@ public interface BookingService {
     List<SeatBooking> getSeatBookings();
     List<SeatBooking> getAllSeatBookingsByBookingId(long id);
     Optional<SeatBooking> getSeatBooking(long id);
-    Booking createSeatBooking(BookingRequest booking);
+//    Booking createSeatBooking(BookingRequest booking);
     ResponseEntity<SeatBooking> updateSeatBooking(long id, SeatBooking seatBooking);
     ResponseEntity<Void> deleteSeatBooking(long id);
     List<SeatBooking> getAllSeatBookingsByShowingId(long id);
