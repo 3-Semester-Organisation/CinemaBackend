@@ -36,6 +36,10 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/api/v1/showing").authenticated()
+                    .requestMatchers("/api/v1/seatbookings").authenticated()
+                    .requestMatchers("/api/v1/bookings").authenticated()
+                    .requestMatchers("/api/v1/movies/addmovie").authenticated()
+                    .requestMatchers("/api/v1/movies/delete").authenticated()
                     .anyRequest().permitAll())
 
                 .sessionManagement(session -> session
