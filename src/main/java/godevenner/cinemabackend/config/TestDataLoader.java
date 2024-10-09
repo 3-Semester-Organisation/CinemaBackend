@@ -26,7 +26,6 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -41,7 +40,7 @@ public class TestDataLoader implements CommandLineRunner {
     private final TheatreRepository theatreRepository;
 
 
-    private List<TheatreSeat> createSeatsByRowsAndSeasts(int rows, int seats) {
+    private List<TheatreSeat> createSeatsByRowsAndSeats(int rows, int seats) {
         List<TheatreSeat> theatreSeats = new ArrayList<>();
         for (int i = 1; i <= rows; i++) {
             for (int j = 1; j <= seats; j++) {
@@ -438,7 +437,7 @@ public class TestDataLoader implements CommandLineRunner {
                     new TheatreLayout(0,7),
                     new TheatreLayout(5,0)
             ));
-            theatre.addSeat(createSeatsByRowsAndSeasts(10,10));
+            theatre.addSeat(createSeatsByRowsAndSeats(10,10));
         }
 
     }
