@@ -1,10 +1,9 @@
-package godevenner.cinemabackend.booking.controller;
+package godevenner.cinemabackend.booking;
 
 import godevenner.cinemabackend.booking.dto.BookingCaS;
 import godevenner.cinemabackend.booking.dto.BookingRequest;
 import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
-import godevenner.cinemabackend.booking.repository.SeatBookingRepository;
 import godevenner.cinemabackend.booking.service.BookingService;
 
 import lombok.RequiredArgsConstructor;
