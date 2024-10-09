@@ -28,18 +28,20 @@ public class Movie {
     private String title;
     private String description;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<Genre> genreList;
 
     private int ageLimit;
     private boolean isActive;
     private String thumbnail;
+    @Column(unique = true)
+    private String imdbId; // udelukker duplicates
 
     // cool variables from omdb that could be used later
     private String runtime;
     private String Rated;
 
-    public Movie(String title, String description, List<Genre> genreList, int ageLimit, boolean isActive, String thumbnail, String runtime) {
+    public Movie(String title, String description, List<Genre> genreList, int ageLimit, boolean isActive, String thumbnail, String runtime, String imdbId) {
         this.title = title;
         this.description = description;
         this.genreList = genreList;
@@ -47,14 +49,21 @@ public class Movie {
         this.isActive = isActive;
         this.thumbnail = thumbnail;
         this.runtime = runtime;
+        this.imdbId = imdbId;
     }
 
-    public Movie(String title, String description, List<Genre> genreList, int ageLimit, String thumbnail, String runtime) {
+    public Movie(String title, String description, List<Genre> genreList, int ageLimit, String thumbnail, String runtime, String imdbId) {
         this.title = title;
         this.description = description;
         this.genreList = genreList;
         this.ageLimit = ageLimit;
         this.thumbnail = thumbnail;
         this.runtime = runtime;
+        this.imdbId = imdbId;
+    }
+
+    //used for posting a showing.
+    public Movie(long id) {
+        this.id = id;
     }
 }
