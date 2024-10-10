@@ -20,6 +20,8 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
     private final UserService userService;
 
+
+    //creates normal costumer user, not admin
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest registerRequest) {
 
