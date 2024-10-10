@@ -6,6 +6,7 @@ import godevenner.cinemabackend.showing.dto.RequestShowing;
 import godevenner.cinemabackend.showing.service.ShowingService;
 import godevenner.cinemabackend.showing.service.ShowingServiceImpl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -59,11 +60,18 @@ public class ShowingController {
         return ResponseEntity.ok().body(showingList);
     }
 
+
     @GetMapping("/showing/{id}/seatmap")
     public ResponseEntity<SeatMap> getShowingSeatMap(@PathVariable int id) {
         return ResponseEntity.ok(showingService.getSeatMap(id));
     }
 
+
+
+
+
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/showing")
     public ResponseEntity<RequestShowing> createShowing(@RequestBody PostShowing showing) {
 
