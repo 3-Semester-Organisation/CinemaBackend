@@ -1,9 +1,6 @@
 package godevenner.cinemabackend.showing;
 
 
-import godevenner.cinemabackend.booking.repository.BookingRepository;
-import godevenner.cinemabackend.booking.repository.SeatBookingRepository;
-import godevenner.cinemabackend.customer.CustomerRepository;
 import godevenner.cinemabackend.enums.Genre;
 import godevenner.cinemabackend.movie.Movie;
 import godevenner.cinemabackend.theatre.Theatre;
@@ -13,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDateTime;
 import java.time.Month;

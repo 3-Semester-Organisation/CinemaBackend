@@ -1,7 +1,7 @@
 package godevenner.cinemabackend.booking.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import godevenner.cinemabackend.customer.Customer;
+import godevenner.cinemabackend.costumer.Costumer;
 import godevenner.cinemabackend.showing.model.Showing;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -20,22 +20,22 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private Costumer costumer;
 
     @ManyToOne
     @JoinColumn(name = "showing_id")
     @JsonBackReference
     private Showing showing;
 
-    public Booking(Customer customer, Showing showing) {
-        this.customer = customer;
+    public Booking(Costumer costumer, Showing showing) {
+        this.costumer = costumer;
         this.showing = showing;
     }
 
 
 
     public boolean ageRequirementMet() {
-        return customer.isOldEnough(showing.getMovieAgeLimit());
+        return costumer.isOldEnough(showing.getMovieAgeLimit());
     }
 
 }
