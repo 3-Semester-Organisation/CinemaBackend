@@ -62,11 +62,13 @@ public class TestDataLoader implements CommandLineRunner {
     }
 
     private void createCostumers() {
-        User jdoe = new User("jdoe", "password1");
-        User asmith = new User("asmith", "password2");
-        User bwayne = new User("bwayne", "batman123");
-        User ckent = new User("ckent", "superman456");
-        User dprince = new User("dprince", "wonder789");
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        User jdoe = User.builder().username("jdoe").password(passwordEncoder.encode("password1")).role(Role.ROLE_USER).build();
+        User asmith = User.builder().username("asmith").password(passwordEncoder.encode("password2")).role(Role.ROLE_USER).build();
+        User bwayne = User.builder().username("bwayne").password(passwordEncoder.encode("batman123")).role(Role.ROLE_USER).build();
+        User ckent = User.builder().username("ckent").password(passwordEncoder.encode("superman456")).role(Role.ROLE_USER).build();
+        User dprince = User.builder().username("dprince").password(passwordEncoder.encode("wonder789")).role(Role.ROLE_USER).build();
+
         userRepository.save(jdoe); userRepository.save(asmith); userRepository.save(bwayne); userRepository.save(ckent);
         userRepository.save(dprince);
 
