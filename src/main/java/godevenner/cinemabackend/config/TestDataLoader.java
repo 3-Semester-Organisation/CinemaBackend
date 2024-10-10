@@ -62,9 +62,17 @@ public class TestDataLoader implements CommandLineRunner {
     }
 
     private void createCostumers() {
+        User jdoe = new User("jdoe", "password1");
+        User asmith = new User("asmith", "password2");
+        User bwayne = new User("bwayne", "batman123");
+        User ckent = new User("ckent", "superman456");
+        User dprince = new User("dprince", "wonder789");
+        userRepository.save(jdoe); userRepository.save(asmith); userRepository.save(bwayne); userRepository.save(ckent);
+        userRepository.save(dprince);
+
         customerRepository.save(
                 new Customer(
-                        new User("jdoe", "password1"),
+                        jdoe,
                         "John Doe",
                         "+1(555) 555-1111",
                         "johndoe@example.com",
@@ -74,7 +82,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         customerRepository.save(
                 new Customer(
-                        new User("asmith", "password2"),
+                        asmith,
                         "Alice Smith",
                         "+1(555) 555-2222",
                         "alicesmith@example.com",
@@ -84,7 +92,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         customerRepository.save(
                 new Customer(
-                        new User("bwayne", "batman123"),
+                        bwayne,
                         "Bruce Wayne",
                         "+1(555) 555-3333",
                         "brucewayne@wayne.com",
@@ -94,7 +102,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         customerRepository.save(
                 new Customer(
-                        new User("ckent", "superman456"),
+                        ckent,
                         "Clark Kent",
                         "+1(555) 555-4444",
                         "clarkkent@dailyplanet.com",
@@ -104,7 +112,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         customerRepository.save(
                 new Customer(
-                        new User("dprince", "wonder789"),
+                        dprince,
                         "Diana Prince",
                         "+1(555) 555-5555",
                         "dianaprince@themyscira.com",
