@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,23 +30,30 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public AuthenticationResponse register(RegisterRequest registerRequest) {
-       User registerUser = User.builder()
-               .username(registerRequest.username())
-               .password(passwordEncoder.encode(registerRequest.password()))
-               .role(Role.ROLE_USER)
-               .build();
-       User registedUser = userRepository.save(registerUser);
 
-       Costumer newCostumer = new Costumer(
-               registedUser,
-               registerRequest.fullName(),
-               registerRequest.phoneNumber(),
-               registerRequest.email(),
-               LocalDate.parse(registerRequest.birthDate())
-       );
-       costumerRepository.save(newCostumer);
+        try {
+            User registerUser = User.builder()
+                    .username(registerRequest.username())
+                    .password(passwordEncoder.encode(registerRequest.password()))
+                    .role(Role.ROLE_USER)
+                    .build();
+            User registedUser = userRepository.save(registerUser);
 
-       return generatedAuthenticationResponse(registedUser);
+            Costumer newCostumer = new Costumer(
+                    registedUser,
+                    registerRequest.fullName(),
+                    registerRequest.phoneNumber(),
+                    registerRequest.email(),
+                    LocalDate.parse(registerRequest.birthDate())
+            );
+            costumerRepository.save(newCostumer);
+
+            return generatedAuthenticationResponse(registedUser);
+
+        } catch (DateTimeParseException e) {
+            // Handle parsing errors (invalid date format)
+            throw new IllegalArgumentException("Invalid date format for birthDate: " + registerRequest.birthDate(), e);
+        }
     }
 
     @Override
