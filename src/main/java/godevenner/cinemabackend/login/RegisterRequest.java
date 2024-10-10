@@ -8,7 +8,7 @@ public record RegisterRequest(
         String fullName,
         String phoneNumber,
         String email,
-        LocalDate birthDate
+        String birthDate
         //add other information such as first- and last name, birthday and phone number, email
 ) {
 }

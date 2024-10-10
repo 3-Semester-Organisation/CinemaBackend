@@ -12,6 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +41,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                registerRequest.fullName(),
                registerRequest.phoneNumber(),
                registerRequest.email(),
-               registerRequest.birthDate()
+               LocalDate.parse(registerRequest.birthDate())
        );
        costumerRepository.save(newCostumer);
 
