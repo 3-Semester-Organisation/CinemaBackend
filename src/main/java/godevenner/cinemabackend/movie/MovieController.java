@@ -54,7 +54,12 @@ public class MovieController {
     }
 
 
-
+    @GetMapping("/all")
+    public ResponseEntity<List<RequestMovie>> getAllMovies() {
+        List<RequestMovie> movies = movieService.getAllMovies();
+        if (movies.isEmpty()) return ResponseEntity.noContent().build();
+        else return ResponseEntity.ok(movies);
+    }
 
 
 
