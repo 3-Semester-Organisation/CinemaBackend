@@ -54,7 +54,12 @@ public class MovieController {
     }
 
 
-
+    @GetMapping("/all")
+    public ResponseEntity<List<RequestMovie>> getAllMovies() {
+        List<RequestMovie> movies = movieService.getAllMovies();
+        if (movies.isEmpty()) return ResponseEntity.noContent().build();
+        else return ResponseEntity.ok(movies);
+    }
 
 
 
@@ -74,6 +79,13 @@ public class MovieController {
     @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteMovie(@RequestParam Long id) {
         movieService.deleteMovie(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/setactive")
+    public ResponseEntity<Void> setActive(@RequestParam Long id, @RequestParam boolean isActive) {
+        movieService.setActive(id, isActive);
         return ResponseEntity.noContent().build();
     }
 

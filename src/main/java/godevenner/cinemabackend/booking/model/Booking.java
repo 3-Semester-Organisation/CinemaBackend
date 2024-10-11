@@ -22,7 +22,7 @@ public class Booking {
     @JoinColumn(name = "customer_id")
     private Costumer costumer;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "showing_id")
     @JsonBackReference
     private Showing showing;
