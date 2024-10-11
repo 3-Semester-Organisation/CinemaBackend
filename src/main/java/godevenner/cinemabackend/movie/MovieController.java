@@ -77,4 +77,11 @@ public class MovieController {
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/setactive")
+    public ResponseEntity<Void> setActive(@RequestParam Long id, @RequestParam boolean isActive) {
+        movieService.setActive(id, isActive);
+        return ResponseEntity.noContent().build();
+    }
+
 }

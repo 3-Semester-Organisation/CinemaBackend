@@ -79,7 +79,6 @@ public class MovieServiceImpl implements MovieService {
 
     public RequestMovie addMovie(PostMovie movie) {
         Movie newMovie = postMovieMapper.apply(movie);
-        newMovie.setActive(true); //TODO skal fjernes!! Men inactive movies vises ikke under Movies-tab
         Movie createdMovie = movieRepository.save(newMovie);
         cacheActiveMovies();
         return requestMovieMapper.apply(createdMovie);
@@ -88,5 +87,14 @@ public class MovieServiceImpl implements MovieService {
     public void deleteMovie(Long id) {
         movieRepository.deleteById(id);
         cacheActiveMovies();
+    }
+
+    // sets a new movie to active after adding a showing to it
+    public void setActive(Long id, boolean active) {
+        Movie movie = movieRepository.findById(id).orElse(null);
+        if (movie != null) {
+            movie.setActive(active);
+            movieRepository.save(movie);
+        }
     }
 }

@@ -24,4 +24,6 @@ public interface MovieService {
     Set<Genre> getAllGenres();
 
     void deleteMovie(Long id);
+
+    void setActive(Long id, boolean active);
 }
