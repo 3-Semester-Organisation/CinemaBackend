@@ -4,8 +4,8 @@ import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
 import godevenner.cinemabackend.booking.repository.BookingRepository;
 import godevenner.cinemabackend.booking.repository.SeatBookingRepository;
-import godevenner.cinemabackend.customer.Customer;
-import godevenner.cinemabackend.customer.CustomerRepository;
+import godevenner.cinemabackend.costumer.Costumer;
+import godevenner.cinemabackend.costumer.CostumerRepository;
 import godevenner.cinemabackend.enums.Genre;
 import godevenner.cinemabackend.theatre.SeatType;
 import godevenner.cinemabackend.movie.Movie;
@@ -15,10 +15,14 @@ import godevenner.cinemabackend.theatre.TheatreRepository;
 import godevenner.cinemabackend.theatre.model.Theatre;
 import godevenner.cinemabackend.theatre.model.TheatreLayout;
 import godevenner.cinemabackend.theatre.model.TheatreSeat;
+import godevenner.cinemabackend.user.Role;
 import godevenner.cinemabackend.user.User;
+import godevenner.cinemabackend.user.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -26,7 +30,6 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -34,25 +37,23 @@ import java.util.Optional;
 @Component
 public class TestDataLoader implements CommandLineRunner {
 
-    private final CustomerRepository customerRepository;
+    private final UserRepository userRepository;
+    private final CostumerRepository costumerRepository;
     private final ShowingRepository showingRepository;
     private final BookingRepository bookingRepository;
     private final SeatBookingRepository seatBookingRepository;
     private final TheatreRepository theatreRepository;
 
 
-    private List<TheatreSeat> createSeatsByRowsAndSeasts(int rows, int seats) {
-        List<TheatreSeat> theatreSeats = new ArrayList<>();
-        for (int i = 1; i <= rows; i++) {
-            for (int j = 1; j <= seats; j++) {
-                if(i == 1 && (j == 1 || j == seats)) {
-                    theatreSeats.add(new TheatreSeat(j,i,SeatType.WHEELCHAIR));
-                } else {
-                    theatreSeats.add(new TheatreSeat(j,i,SeatType.STANDARD));
-                }
-            }
-        }
-        return theatreSeats;
+
+    private void createAdminUser() {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        User admin = User.builder()
+                .username("admin")
+                .password(passwordEncoder.encode("'"))
+                .role(Role.ROLE_ADMIN)
+                .build();
+        userRepository.save(admin);
     }
 
     private void CreateTheatres() {
@@ -61,9 +62,19 @@ public class TestDataLoader implements CommandLineRunner {
     }
 
     private void createCostumers() {
-        customerRepository.save(
-                new Customer(
-                        new User("jdoe", "password1"),
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        User jdoe = User.builder().username("jdoe").password(passwordEncoder.encode("password1")).role(Role.ROLE_USER).build();
+        User asmith = User.builder().username("asmith").password(passwordEncoder.encode("password2")).role(Role.ROLE_USER).build();
+        User bwayne = User.builder().username("bwayne").password(passwordEncoder.encode("batman123")).role(Role.ROLE_USER).build();
+        User ckent = User.builder().username("ckent").password(passwordEncoder.encode("superman456")).role(Role.ROLE_USER).build();
+        User dprince = User.builder().username("dprince").password(passwordEncoder.encode("wonder789")).role(Role.ROLE_USER).build();
+
+        userRepository.save(jdoe); userRepository.save(asmith); userRepository.save(bwayne); userRepository.save(ckent);
+        userRepository.save(dprince);
+
+        costumerRepository.save(
+                new Costumer(
+                        jdoe,
                         "John Doe",
                         "+1(555) 555-1111",
                         "johndoe@example.com",
@@ -71,9 +82,9 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        customerRepository.save(
-                new Customer(
-                        new User("asmith", "password2"),
+        costumerRepository.save(
+                new Costumer(
+                        asmith,
                         "Alice Smith",
                         "+1(555) 555-2222",
                         "alicesmith@example.com",
@@ -81,9 +92,9 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        customerRepository.save(
-                new Customer(
-                        new User("bwayne", "batman123"),
+        costumerRepository.save(
+                new Costumer(
+                        bwayne,
                         "Bruce Wayne",
                         "+1(555) 555-3333",
                         "brucewayne@wayne.com",
@@ -91,9 +102,9 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        customerRepository.save(
-                new Customer(
-                        new User("ckent", "superman456"),
+        costumerRepository.save(
+                new Costumer(
+                        ckent,
                         "Clark Kent",
                         "+1(555) 555-4444",
                         "clarkkent@dailyplanet.com",
@@ -101,9 +112,9 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        customerRepository.save(
-                new Customer(
-                        new User("dprince", "wonder789"),
+        costumerRepository.save(
+                new Costumer(
+                        dprince,
                         "Diana Prince",
                         "+1(555) 555-5555",
                         "dianaprince@themyscira.com",
@@ -325,13 +336,13 @@ public class TestDataLoader implements CommandLineRunner {
     private void createBookings() {
         bookingRepository.save(
                 new Booking(
-                        customerRepository.findById(1L).get(),
+                        costumerRepository.findById(1L).get(),
                         showingRepository.findById(1L).get()
                 )
         );
         bookingRepository.save(
                 new Booking(
-                        customerRepository.findById(2L).get(),
+                        costumerRepository.findById(2L).get(),
                         showingRepository.findById(2L).get()
                 )
         );
@@ -381,20 +392,35 @@ public class TestDataLoader implements CommandLineRunner {
                     new TheatreLayout(0,7),
                     new TheatreLayout(5,0)
             ));
-            theatre.addSeat(createSeatsByRowsAndSeasts(10,10));
+            theatre.addSeat(createSeatsByRowsAndSeats(10,10));
         }
-
     }
+
+
+    private List<TheatreSeat> createSeatsByRowsAndSeats(int rows, int seats) {
+        List<TheatreSeat> theatreSeats = new ArrayList<>();
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= seats; j++) {
+                if(i == 1 && (j == 1 || j == seats)) {
+                    theatreSeats.add(new TheatreSeat(j,i,SeatType.WHEELCHAIR));
+                } else {
+                    theatreSeats.add(new TheatreSeat(j,i,SeatType.STANDARD));
+                }
+            }
+        }
+        return theatreSeats;
+    }
+
+
 
     @Override
     public void run(String... args) throws Exception {
+        createAdminUser();
         createCostumers();
         CreateTheatres();
         createShowings();
         createBookings();
         createSeatBookings();
         createTheatreLayout();
-
     }
-
 }

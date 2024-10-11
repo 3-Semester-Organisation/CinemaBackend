@@ -1,15 +1,15 @@
-package godevenner.cinemabackend.booking.controller;
+package godevenner.cinemabackend.booking;
 
 import godevenner.cinemabackend.booking.dto.BookingCaS;
 import godevenner.cinemabackend.booking.dto.BookingRequest;
 import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
-import godevenner.cinemabackend.booking.repository.SeatBookingRepository;
 import godevenner.cinemabackend.booking.service.BookingService;
 
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,10 +18,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
-public class BookingRestController {
+public class BookingController {
 
     private final BookingService bookingService;
-    private final SeatBookingRepository seatBookingRepository;
 
     //BOOKING
 
@@ -29,10 +28,11 @@ public class BookingRestController {
     /*
     @GetMapping("/bookings")
     public List<Booking> getBookings(@RequestParam long showingId){
-        return bookingService.getAllBookingsByShowingId(showingId);
+        return bookingService.getAllBookingsByShowingId(showingId); g
     }
     */
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/bookings")
     public List<BookingCaS> getBookings(@RequestParam long showingId){
         return bookingService.getAllBookingsByShowingId(showingId);
@@ -58,6 +58,7 @@ public class BookingRestController {
 
 
     //SEATBOOKINGS
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/seatbooking")
     public List<SeatBooking> getSeatBookings(@RequestParam long bookingId){
         return bookingService.getAllSeatBookingsByBookingId(bookingId);

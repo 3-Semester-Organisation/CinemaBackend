@@ -9,8 +9,8 @@ import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
 import godevenner.cinemabackend.booking.repository.BookingRepository;
 import godevenner.cinemabackend.booking.repository.SeatBookingRepository;
-import godevenner.cinemabackend.customer.Customer;
-import godevenner.cinemabackend.customer.CustomerRepository;
+import godevenner.cinemabackend.costumer.Costumer;
+import godevenner.cinemabackend.costumer.CostumerRepository;
 import godevenner.cinemabackend.showing.ShowingRepository;
 import godevenner.cinemabackend.showing.model.Showing;
 import jakarta.transaction.Transactional;
@@ -31,7 +31,7 @@ public class BookingServiceImpl implements BookingService {
 //    private final BookingRequestMapper bookingRequestMapper;
     private final BookingCaSMapper bookingCaSMapper;
     private final ShowingRepository showingRepository;
-    private final CustomerRepository customerRepository;
+    private final CostumerRepository costumerRepository;
 
 
     private void saveBookings(List<Booking> bookings){
@@ -68,15 +68,15 @@ public class BookingServiceImpl implements BookingService {
         Long showingId = bookingRequest.showingId();
         String email = bookingRequest.email();
         List<SeatRowData> seats = bookingRequest.bookedSeats();
-        Customer customer = null;
+        Costumer costumer = null;
         Showing showing = null;
-        Optional<Customer> customerOptional = customerRepository.findByEmail(email);
+        Optional<Costumer> customerOptional = costumerRepository.findByEmail(email);
         if(customerOptional.isPresent()){
-            customer = customerOptional.get();
+            costumer = customerOptional.get();
         } else {
-            Customer newCustomer = new Customer(email);
-            customerRepository.save(newCustomer);
-            customer = newCustomer;
+            Costumer newCostumer = new Costumer(email);
+            costumerRepository.save(newCostumer);
+            costumer = newCostumer;
         }
         Optional<Showing> showingOptional = showingRepository.findById(showingId);
         if (showingOptional.isPresent()){
@@ -84,7 +84,7 @@ public class BookingServiceImpl implements BookingService {
         } else {
             throw new RuntimeException("Showing not found");
         }
-        Booking booking = new Booking(customer, showing);
+        Booking booking = new Booking(costumer, showing);
         bookingRepository.save(booking);
         for (SeatRowData seat : seats) {
             seatBookingRepository.save(new SeatBooking(booking,seat.seat(),seat.row()));

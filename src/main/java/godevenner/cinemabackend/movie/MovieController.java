@@ -5,6 +5,7 @@ import godevenner.cinemabackend.movie.dto.PostMovie;
 import godevenner.cinemabackend.movie.dto.RequestMovie;
 import godevenner.cinemabackend.movie.service.MovieService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -33,6 +34,7 @@ public class MovieController {
         else return ResponseEntity.ok(movies);
     }
 
+
     @GetMapping("")
     public ResponseEntity<List<RequestMovie>> getAllActiveMovies() {
 
@@ -43,6 +45,7 @@ public class MovieController {
         return ResponseEntity.ok(movies);
     }
 
+
     @GetMapping("/genres")
     public ResponseEntity<Set<Genre>> getGenres() {
         Set<Genre> genres = movieService.getAllGenres();
@@ -50,12 +53,24 @@ public class MovieController {
         else return ResponseEntity.ok(genres);
     }
 
+
+
+
+
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addmovie")
     public ResponseEntity<RequestMovie> addMovieFromOmdb(@RequestBody PostMovie movie) {
         RequestMovie postedMovie = movieService.addMovie(movie);
         return ResponseEntity.ok(postedMovie);
     }
 
+
+
+
+
+
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteMovie(@RequestParam Long id) {
         movieService.deleteMovie(id);
