@@ -1,7 +1,7 @@
 package godevenner.cinemabackend.user;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import godevenner.cinemabackend.costumer.Costumer;
+import godevenner.cinemabackend.customer.Customer;
 import godevenner.cinemabackend.employee.Employee;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,7 +26,7 @@ public class User implements UserDetails { //for making costume user a SpringUse
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonBackReference
-    private Costumer costumer;
+    private Customer customer;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonBackReference

@@ -1,8 +1,8 @@
 package godevenner.cinemabackend.login;
 
 import godevenner.cinemabackend.config.JwtService;
-import godevenner.cinemabackend.costumer.Costumer;
-import godevenner.cinemabackend.costumer.CostumerRepository;
+import godevenner.cinemabackend.customer.Customer;
+import godevenner.cinemabackend.customer.CustomerRepository;
 import godevenner.cinemabackend.user.Role;
 import godevenner.cinemabackend.user.User;
 import godevenner.cinemabackend.user.UserRepository;
@@ -23,7 +23,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
-    private final CostumerRepository costumerRepository;
+    private final CustomerRepository costumerRepository;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
@@ -39,7 +39,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                     .build();
             User registedUser = userRepository.save(registerUser);
 
-            Costumer newCostumer = new Costumer(
+            Customer newCostumer = new Customer(
                     registedUser,
                     registerRequest.fullName(),
                     registerRequest.phoneNumber(),

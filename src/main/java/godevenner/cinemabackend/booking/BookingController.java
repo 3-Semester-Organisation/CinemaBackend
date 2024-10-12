@@ -32,7 +32,7 @@ public class BookingController {
     }
     */
 
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/bookings")
     public List<BookingCaS> getBookings(@RequestParam long showingId){
         return bookingService.getAllBookingsByShowingId(showingId);
@@ -58,7 +58,7 @@ public class BookingController {
 
 
     //SEATBOOKINGS
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/seatbooking")
     public List<SeatBooking> getSeatBookings(@RequestParam long bookingId){
         return bookingService.getAllSeatBookingsByBookingId(bookingId);

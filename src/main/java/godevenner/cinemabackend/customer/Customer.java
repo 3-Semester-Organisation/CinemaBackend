@@ -1,4 +1,4 @@
-package godevenner.cinemabackend.costumer;
+package godevenner.cinemabackend.customer;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import godevenner.cinemabackend.user.User;
@@ -14,7 +14,7 @@ import java.time.Period;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Costumer {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ public class Costumer {
         return age >= requiredAge;
     }
 
-    public Costumer(User user, String name, String phoneNumber, String email, LocalDate dateOfBirth) {
+    public Customer(User user, String name, String phoneNumber, String email, LocalDate dateOfBirth) {
         this.user = user;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -45,7 +45,7 @@ public class Costumer {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Costumer(String email) {
+    public Customer(String email) {
         this.email = email;
     }
 }

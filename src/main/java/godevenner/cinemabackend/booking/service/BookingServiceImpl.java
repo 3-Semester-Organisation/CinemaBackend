@@ -9,8 +9,8 @@ import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
 import godevenner.cinemabackend.booking.repository.BookingRepository;
 import godevenner.cinemabackend.booking.repository.SeatBookingRepository;
-import godevenner.cinemabackend.costumer.Costumer;
-import godevenner.cinemabackend.costumer.CostumerRepository;
+import godevenner.cinemabackend.customer.Customer;
+import godevenner.cinemabackend.customer.CustomerRepository;
 import godevenner.cinemabackend.showing.ShowingRepository;
 import godevenner.cinemabackend.showing.model.Showing;
 import jakarta.transaction.Transactional;
@@ -31,7 +31,7 @@ public class BookingServiceImpl implements BookingService {
 //    private final BookingRequestMapper bookingRequestMapper;
     private final BookingCaSMapper bookingCaSMapper;
     private final ShowingRepository showingRepository;
-    private final CostumerRepository costumerRepository;
+    private final CustomerRepository costumerRepository;
 
 
     private void saveBookings(List<Booking> bookings){
@@ -68,13 +68,13 @@ public class BookingServiceImpl implements BookingService {
         Long showingId = bookingRequest.showingId();
         String email = bookingRequest.email();
         List<SeatRowData> seats = bookingRequest.bookedSeats();
-        Costumer costumer = null;
+        Customer costumer = null;
         Showing showing = null;
-        Optional<Costumer> customerOptional = costumerRepository.findByEmail(email);
+        Optional<Customer> customerOptional = costumerRepository.findByEmail(email);
         if(customerOptional.isPresent()){
             costumer = customerOptional.get();
         } else {
-            Costumer newCostumer = new Costumer(email);
+            Customer newCostumer = new Customer(email);
             costumerRepository.save(newCostumer);
             costumer = newCostumer;
         }

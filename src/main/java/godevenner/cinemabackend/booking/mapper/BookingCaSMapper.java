@@ -14,7 +14,7 @@ public class BookingCaSMapper implements Function<Booking, BookingCaS> {
         return new BookingCaS(
                 booking.getId(),
                 booking.getShowing(),
-                booking.getCostumer()
+                booking.getCustomer()
         );
     }
 }

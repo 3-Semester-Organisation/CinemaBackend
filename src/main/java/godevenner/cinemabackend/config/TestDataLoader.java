@@ -4,8 +4,8 @@ import godevenner.cinemabackend.booking.model.Booking;
 import godevenner.cinemabackend.booking.model.SeatBooking;
 import godevenner.cinemabackend.booking.repository.BookingRepository;
 import godevenner.cinemabackend.booking.repository.SeatBookingRepository;
-import godevenner.cinemabackend.costumer.Costumer;
-import godevenner.cinemabackend.costumer.CostumerRepository;
+import godevenner.cinemabackend.customer.Customer;
+import godevenner.cinemabackend.customer.CustomerRepository;
 import godevenner.cinemabackend.enums.Genre;
 import godevenner.cinemabackend.theatre.SeatType;
 import godevenner.cinemabackend.movie.Movie;
@@ -38,7 +38,7 @@ import java.util.Optional;
 public class TestDataLoader implements CommandLineRunner {
 
     private final UserRepository userRepository;
-    private final CostumerRepository costumerRepository;
+    private final CustomerRepository customerRepository;
     private final ShowingRepository showingRepository;
     private final BookingRepository bookingRepository;
     private final SeatBookingRepository seatBookingRepository;
@@ -72,8 +72,8 @@ public class TestDataLoader implements CommandLineRunner {
         userRepository.save(jdoe); userRepository.save(asmith); userRepository.save(bwayne); userRepository.save(ckent);
         userRepository.save(dprince);
 
-        costumerRepository.save(
-                new Costumer(
+        customerRepository.save(
+                new Customer(
                         jdoe,
                         "John Doe",
                         "+1(555) 555-1111",
@@ -82,8 +82,8 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        costumerRepository.save(
-                new Costumer(
+        customerRepository.save(
+                new Customer(
                         asmith,
                         "Alice Smith",
                         "+1(555) 555-2222",
@@ -92,8 +92,8 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        costumerRepository.save(
-                new Costumer(
+        customerRepository.save(
+                new Customer(
                         bwayne,
                         "Bruce Wayne",
                         "+1(555) 555-3333",
@@ -102,8 +102,8 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        costumerRepository.save(
-                new Costumer(
+        customerRepository.save(
+                new Customer(
                         ckent,
                         "Clark Kent",
                         "+1(555) 555-4444",
@@ -112,8 +112,8 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-        costumerRepository.save(
-                new Costumer(
+        customerRepository.save(
+                new Customer(
                         dprince,
                         "Diana Prince",
                         "+1(555) 555-5555",
@@ -328,27 +328,31 @@ public class TestDataLoader implements CommandLineRunner {
                 )
         );
 
-
-
-
     }
 
     private void createBookings() {
         bookingRepository.save(
                 new Booking(
-                        costumerRepository.findById(1L).get(),
+                        customerRepository.findById(1L).get(),
                         showingRepository.findById(1L).get()
                 )
         );
         bookingRepository.save(
                 new Booking(
-                        costumerRepository.findById(2L).get(),
+                        customerRepository.findById(2L).get(),
                         showingRepository.findById(2L).get()
+                )
+        );
+        bookingRepository.save(
+                new Booking(
+                        customerRepository.findById(3L).get(),
+                        showingRepository.findById(3L).get()
                 )
         );
     }
 
     private void createSeatBookings() {
+        System.out.println("SEATBOOKING");
         seatBookingRepository.save(
                 new SeatBooking(
                         bookingRepository.findById(1).get(),
@@ -368,6 +372,20 @@ public class TestDataLoader implements CommandLineRunner {
                         bookingRepository.findById(2).get(),
                         1,
                         1
+                )
+        );
+        seatBookingRepository.save(
+                new SeatBooking(
+                        bookingRepository.findById(3).get(),
+                        4,
+                        2
+                )
+        );
+        seatBookingRepository.save(
+                new SeatBooking(
+                        bookingRepository.findById(3).get(),
+                        5,
+                        2
                 )
         );
     }

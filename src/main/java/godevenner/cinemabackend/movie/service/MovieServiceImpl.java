@@ -33,7 +33,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     private void cacheActiveMoviesIfNeeded() {
-        if (lastMovieUpdate == null || Duration.between(lastMovieUpdate, LocalDateTime.now()).toMinutes() > 15) {
+        if (lastMovieUpdate == null || Duration.between(lastMovieUpdate, LocalDateTime.now()).toMinutes() > 0.5) {
             activeMovies = movieRepository.findAllByIsActiveTrueOrderByTitle();
             lastMovieUpdate = LocalDateTime.now();
         }
